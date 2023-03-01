@@ -1,11 +1,12 @@
-import { Inter } from "next/font/google";
+import SliderSection from "@/components/SliderSection";
+import { Outfit } from "next/font/google";
 
-const inter = Inter({ subsets: ["latin"] });
+const outfit = Outfit({ subsets: ["latin"] });
 
 export default function Home() {
   return (
-    <main className="bg-dark-blue">
-      <h1 className="font-bold text-lg text-red">home page</h1>
+    <main className={outfit.className + " bg-dark-blue"}>
+      <SliderSection title={"Trending"} />
     </main>
   );
 }
