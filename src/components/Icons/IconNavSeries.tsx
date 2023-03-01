@@ -3,7 +3,6 @@ import { usePathname } from "next/navigation";
 
 const IconNavSeries = () => {
   const path = usePathname();
-  console.log({ path });
   return (
     <svg
       className={
