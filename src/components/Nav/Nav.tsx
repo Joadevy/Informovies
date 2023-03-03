@@ -57,7 +57,6 @@ const Nav = () => {
           alt=""
           fill
           sizes="10vw"
-          unoptimized
         ></Image>
       </div>
     </nav>
