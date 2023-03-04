@@ -1,5 +1,8 @@
 import "./globals.css";
 import Nav from "@/components/Nav";
+import { Outfit } from "next/font/google";
+
+const outfit = Outfit({ subsets: ["latin"] });
 
 export const metadata = {
   title: "movies app",
@@ -13,7 +16,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="bg-dark-blue relative mt-20 sm:mt-24 lg:mt-0 lg:ml-32">
+      <body
+        className={
+          outfit.className +
+          " bg-dark-blue relative mt-20 sm:mt-24 lg:mt-0 lg:ml-32"
+        }
+      >
         <Nav />
         {children}
       </body>

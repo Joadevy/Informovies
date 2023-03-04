@@ -1,14 +1,12 @@
-import Section from "@/components/Section";
+import TopRatedMovies from "@/components/Sections/TopRatedMovies";
 import SliderSection from "@/components/SliderSection";
-import { Outfit } from "next/font/google";
-
-const outfit = Outfit({ subsets: ["latin"] });
 
 export default function Home() {
   return (
-    <main className={outfit.className + " bg-dark-blue"}>
+    <main>
       <SliderSection title={"Trending"} />
-      <Section title="test"></Section>
+      {/* @ts-expect-error Server Component */}
+      <TopRatedMovies title="Top rated" widthImages={200} />
     </main>
   );
 }
