@@ -11,6 +11,7 @@ type props = {
 // A title prop doesn't make sense unless it was a generic section component
 const TopRatedMovies = async ({ title, widthImages }: props) => {
   const movies = await getData<Movie>("movie/top_rated", "&page=1");
+  console.log(movies[0]);
   return (
     <article className="text-white">
       <h2>{title}</h2>

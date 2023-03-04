@@ -1,14 +1,8 @@
+import { IMedia } from "@/utils/types";
 import getData from "lib/getData";
 import ViewMedia from "./ViewMedia/ViewMedia";
 
-export interface Media {
-  id: number;
-  title: string;
-  name: string;
-  poster_path: string;
-}
-
-type Props<T extends Media> = {
+type Props<T extends IMedia> = {
   title: string;
   url: {
     path: string;
@@ -17,7 +11,7 @@ type Props<T extends Media> = {
   sizeImages?: number;
 };
 
-const Section = async <T extends Media>({
+const SectionMedia = async <T extends IMedia>({
   title,
   url,
   sizeImages = 200,
@@ -25,7 +19,7 @@ const Section = async <T extends Media>({
   const data = await getData<T>(url.path, url.optional ?? "");
   return (
     <article className="text-white">
-      <h2>{title}</h2>
+      <h2 className={`text-2xl m-2`}>{title}</h2>
       <div className="grid grid-cols-mobile lg:grid-cols-desktop gap-4 p-3">
         {data?.map((media) => (
           <ViewMedia key={media.id} media={media} sizeImages={sizeImages} />
@@ -35,4 +29,4 @@ const Section = async <T extends Media>({
   );
 };
 
-export default Section;
+export default SectionMedia;

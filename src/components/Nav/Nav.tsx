@@ -30,7 +30,7 @@ const NAV_ICONS = {
 
 const Nav = () => {
   return (
-    <nav className="flex lg:flex-col lg:gap-10 lg:h-[85vh] lg:max-w-min items-center justify-between lg:justify-between rounded-lg p-6 bg-semi-dark-blue fixed top-0 right-0 left-0 sm:left-1/2 sm:top-[2vh] sm:-translate-x-1/2 lg:right-10 lg:top-1/2 lg:left-[1vw] lg:-translate-y-1/2 lg:-translate-x-0">
+    <nav className="flex lg:flex-col lg:gap-10 lg:h-[85vh] lg:max-w-min items-center justify-between lg:justify-between rounded-lg p-6 bg-semi-dark-blue fixed z-50 top-0 right-0 left-0 sm:left-1/2 sm:top-[2vh] sm:-translate-x-1/2 lg:right-10 lg:top-1/2 lg:left-[1vw] lg:-translate-y-1/2 lg:-translate-x-0">
       <div className="w-7 h-7 relative">
         <Link href="/">
           <Image
