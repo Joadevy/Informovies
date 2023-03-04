@@ -1,5 +1,5 @@
 import { getImageURL } from "@/utils/helpers";
-import getTopRated from "lib/getTopRatedMovies";
+import getTopRatedMovies from "lib/getTopRatedMovies";
 import Image from "next/image";
 
 type props = {
@@ -9,7 +9,7 @@ type props = {
 
 // A title prop doesn't make sense unless it was a generic section component
 const TopRatedMovies = async ({ title, widthImages }: props) => {
-  const movies = await getTopRated();
+  const movies = await getTopRatedMovies();
   return (
     <article className="text-white">
       <h2>{title}</h2>
