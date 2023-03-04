@@ -9,6 +9,10 @@ module.exports = {
         "semi-dark-blue": "#161D2F",
         "pure-white": "#FFFFFF",
       },
+      gridTemplateColumns: {
+        mobile: "repeat(auto-fill, minmax(150px, 1fr))",
+        desktop: "repeat(auto-fill, minmax(225px, 1fr))",
+      },
     },
   },
   plugins: [],
