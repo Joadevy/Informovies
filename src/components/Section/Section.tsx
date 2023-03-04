@@ -1,22 +1,37 @@
-import { getImageURL } from "@/utils/helpers";
-import getTopRatedMovies from "lib/getTopRatedMovies";
+import getData from "lib/getData";
+import ViewMedia from "./ViewMedia/ViewMedia";
 
-type props = {
+export interface Media {
+  id: number;
   title: string;
+  name: string;
+  poster_path: string;
+}
+
+type Props<T extends Media> = {
+  title: string;
+  url: {
+    path: string;
+    optional?: string;
+  };
+  sizeImages?: number;
 };
 
-const Section = async ({ title }: props) => {
-  const movies = await getTopRatedMovies();
+const Section = async <T extends Media>({
+  title,
+  url,
+  sizeImages = 200,
+}: Props<T>) => {
+  const data = await getData<T>(url.path, url.optional ?? "");
   return (
-    <section className="text-white">
+    <article className="text-white">
       <h2>{title}</h2>
-      {movies?.map((movie) => (
-        <div key={movie.id}>
-          <p>{movie.title}</p>
-          <img src={getImageURL(movie.poster_path)} alt="" />
-        </div>
-      ))}
-    </section>
+      <div className="grid grid-cols-mobile lg:grid-cols-desktop gap-4 p-3">
+        {data?.map((media) => (
+          <ViewMedia key={media.id} media={media} sizeImages={sizeImages} />
+        ))}
+      </div>
+    </article>
   );
 };
 
