@@ -4,6 +4,7 @@ import Image from "next/image";
 
 import Link from "next/link";
 import { IMedia, Movie, TVSeries } from "@/utils/types";
+import ButtonBookmark from "@/components/Buttons/ButtonBookmark";
 
 const getYear = (date: string) => {
   console.log(date);
@@ -20,8 +21,9 @@ const ViewMedia = ({ media, sizeImages = 200 }: props) => {
   return (
     <div
       // href={`/${media.id}`}
-      className={` flex-grow flex flex-col flex-wrap`}
+      className={` flex-grow flex flex-col flex-wrap relative`}
     >
+      <ButtonBookmark />
       <header className={`h-[250px] lg:h-[${sizeImages}px] w-full relative`}>
         <Image
           className="rounded-xl"
