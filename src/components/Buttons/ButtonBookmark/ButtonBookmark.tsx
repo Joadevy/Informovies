@@ -1,14 +1,26 @@
 "use client";
 
 import IconBookmarks from "@/components/Icons/IconBookmark";
-import { useState } from "react";
+import { UserContext } from "@/components/Providers/UserProvider/UserProvider";
+import { IMedia } from "@/utils/types";
+import { useContext, useState } from "react";
 
-const ButtonBookmark = () => {
-  const [isBookmarked, setBookmarked] = useState(false);
+type Props = {
+  media: IMedia;
+};
+
+const ButtonBookmark = ({ media }: Props) => {
+  const { userData, toggleMedia } = useContext(UserContext);
+  const [isBookmarked, setBookmarked] = useState(
+    userData.bookmarks.has(media.id)
+  );
   const handleBookmark = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
     setBookmarked(!isBookmarked);
+    toggleMedia(media);
   };
+
+  console.log(userData);
 
   return (
     <button

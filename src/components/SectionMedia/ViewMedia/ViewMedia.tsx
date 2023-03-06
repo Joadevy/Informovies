@@ -23,7 +23,7 @@ const ViewMedia = ({ media, sizeImages = 200 }: props) => {
       // href={`/${media.id}`}
       className={` flex-grow flex flex-col flex-wrap relative`}
     >
-      <ButtonBookmark />
+      <ButtonBookmark media={media} />
       <header className={`h-[250px] lg:h-[${sizeImages}px] w-full relative`}>
         <Image
           className="rounded-xl"
