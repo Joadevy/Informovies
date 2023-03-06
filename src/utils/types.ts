@@ -32,3 +32,10 @@ export interface IMedia extends Movie {
   original_name: string;
   media_type: string;
 }
+
+export type UserContext = {
+  id: number;
+  name: string;
+  password: string;
+  bookmarks: Map<number, IMedia>;
+};
