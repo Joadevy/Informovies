@@ -1,6 +1,7 @@
 import "./globals.css";
 import Nav from "@/components/Nav";
 import { Outfit } from "next/font/google";
+import UserProvider from "@/components/Providers/UserProvider";
 
 const outfit = Outfit({ subsets: ["latin"] });
 
@@ -23,7 +24,7 @@ export default function RootLayout({
         }
       >
         <Nav />
-        {children}
+        <UserProvider>{children}</UserProvider>
       </body>
     </html>
   );
