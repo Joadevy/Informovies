@@ -14,6 +14,7 @@ const ButtonBookmark = ({ media }: Props) => {
   const [isBookmarked, setBookmarked] = useState(
     userData.bookmarks.has(media.id)
   );
+
   const handleBookmark = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
     setBookmarked(!isBookmarked);
