@@ -11,7 +11,7 @@ module.exports = {
       },
       gridTemplateColumns: {
         mobile: "repeat(auto-fill, minmax(150px, 1fr))",
-        desktop: "repeat(auto-fill, minmax(225px, 1fr))",
+        desktop: "repeat(auto-fill, minmax(175px, 1fr))",
       },
     },
   },
