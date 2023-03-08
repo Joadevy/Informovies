@@ -4,3 +4,7 @@ export const getApiURL = (path: string, optional?: string) =>
 
 export const getImageURL = (path: string, width = 200) =>
   `https://image.tmdb.org/t/p/w${width}/${path}`;
+
+export const getYear = (date: string) => {
+  return new Date(date).getFullYear();
+};

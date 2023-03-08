@@ -1,15 +1,10 @@
-import { getImageURL } from "@/utils/helpers";
+import { getImageURL, getYear } from "@/utils/helpers";
 import React from "react";
 import Image from "next/image";
 
 import Link from "next/link";
 import { IMedia, Movie, TVSeries } from "@/utils/types";
 import ButtonBookmark from "@/components/Buttons/ButtonBookmark";
-
-const getYear = (date: string) => {
-  console.log(date);
-  return new Date(date).getFullYear();
-};
 
 type props = {
   media: IMedia;

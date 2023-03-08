@@ -17,10 +17,11 @@ export const SwipeSection = async <T extends IMedia>({
   sizeImages = 200,
 }: Props<T>) => {
   const media = await getData<T>(url.path, url.optional ?? "");
+  console.log("data swipe: " + media);
   return (
-    <article>
+    <article className="text-white">
       <h2>{title}</h2>
-      <SwipeSlider data={media}></SwipeSlider>;
+      <SwipeSlider data={media} sizeImages={sizeImages}></SwipeSlider>
     </article>
   );
 };
