@@ -9,7 +9,7 @@ export default function Bookmarks() {
   console.log(bookmarks);
   return (
     <main className="text-white">
-      <h2>Bookmarks!</h2>
+      <h2 className="text-2xl m-2">Bookmarks</h2>
       <div className="grid grid-cols-mobile lg:grid-cols-desktop gap-4 p-3">
         {bookmarks.map((media) => (
           <ViewMedia key={media.id} media={media}></ViewMedia>
