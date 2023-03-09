@@ -21,8 +21,6 @@ const ButtonBookmark = ({ media }: Props) => {
     toggleMedia(media);
   };
 
-  console.log(userData);
-
   return (
     <button
       onClick={handleBookmark}

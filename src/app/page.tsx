@@ -6,11 +6,11 @@ export default function Home() {
     <main>
       {/* <SliderSection title={"Trending"} /> */}
       {/* @ts-expect-error Server Component */}
-      <SwipeSection
+      {/* <SwipeSection
         title="Trending"
         url={{ path: "trending/all/week", optional: "&page=1" }}
         sizeImages={400}
-      ></SwipeSection>
+      ></SwipeSection> */}
       {/* @ts-expect-error Server Component */}
       <SectionMedia
         title="Trending"
