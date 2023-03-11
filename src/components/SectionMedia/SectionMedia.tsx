@@ -17,6 +17,8 @@ const SectionMedia = async <T extends IMedia>({
   sizeImages = 200,
 }: Props<T>) => {
   const data = await getData<T>(url.path, url.optional ?? "");
+
+  if (data.length === 0) return;
   return (
     <article className="text-white">
       <h2 className={`text-2xl m-2`}>{title}</h2>
