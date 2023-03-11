@@ -11,11 +11,11 @@ export default function Movies() {
         sizeImages={400}
       />
       {/* @ts-expect-error Server Component */}
-      {/* <SectionMedia
-        title="Recommended for you"
-        url={{ path: "trending/all/week", optional: "&page=2" }}
-        sizeImages={300}
-      /> */}
+      <SectionMedia
+        title="Upcoming"
+        url={{ path: "movie/upcoming", optional: "&page=2" }}
+        sizeImages={400}
+      />
     </main>
   );
 }
