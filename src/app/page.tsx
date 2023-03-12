@@ -1,16 +1,11 @@
 import SectionMedia from "@/components/SectionMedia";
-import SwipeSection from "@/components/SwipeSection/SwipeSection";
+import TopRatedMovies from "@/components/Sections/TopRatedMovies";
+import SliderSection from "@/components/SwipeSection";
 
 export default function Home() {
   return (
     <main>
       {/* <SliderSection title={"Trending"} /> */}
-      {/* @ts-expect-error Server Component */}
-      {/* <SwipeSection
-        title="Trending"
-        url={{ path: "trending/all/week", optional: "&page=1" }}
-        sizeImages={400}
-      ></SwipeSection> */}
       {/* @ts-expect-error Server Component */}
       <SectionMedia
         title="Trending"
@@ -23,6 +18,9 @@ export default function Home() {
         url={{ path: "trending/all/week", optional: "&page=2" }}
         sizeImages={300}
       />
+
+      {/* @ts-expect-error Server Component */}
+      {/* <TopRatedMovies title="Top rated" widthImages={200} /> */}
     </main>
   );
 }
