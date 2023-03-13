@@ -22,7 +22,7 @@ const SectionMedia = async <T extends IMedia>({
   return (
     <article className="text-white">
       <h2 className={`text-2xl m-2`}>{title}</h2>
-      <div className="grid grid-cols-mobile lg:grid-cols-desktop gap-4 p-3">
+      <div className="grid grid-cols-mobile lg:grid-cols-desktop gap-y-6 gap-x-4 p-3">
         {data?.map((media) => (
           <ViewMedia key={media.id} media={media} sizeImages={sizeImages} />
         ))}
