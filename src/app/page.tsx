@@ -10,7 +10,7 @@ export default function Home() {
       <SectionMedia
         title="Trending"
         url={{ path: "trending/all/week", optional: "&page=1" }}
-        sizeImages={400}
+        sizeImages={300}
       />
       {/* @ts-expect-error Server Component */}
       <SectionMedia
