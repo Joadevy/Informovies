@@ -24,7 +24,7 @@ const ButtonBookmark = ({ media }: Props) => {
   return (
     <button
       onClick={handleBookmark}
-      className="absolute flex items-center justify-center top-2 right-2 z-10 rounded-full bg-transparent border border-grayish-blue w-7 h-7"
+      className="absolute flex items-center justify-center top-2 right-2 z-10 rounded-full bg-dark-blue lg:bg-semi-dark-blue border border-grayish-blue w-7 h-7"
     >
       <IconBookmarks isBookmarked={isBookmarked} />
     </button>

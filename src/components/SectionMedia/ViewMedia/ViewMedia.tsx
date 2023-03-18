@@ -52,29 +52,29 @@ const ViewMedia = ({ media, sizeImages = 200 }: props) => {
 
     <div
       // href={slug}
-      className={`w-full h-[300px] lg:h-[${sizeImages}px] bg-transparent cursor-pointer group perspective`}
+      className={`w-full h-[325px] lg:h-[${sizeImages}px] cursor-pointer group perspective bg-semi-dark-blue lg:bg-transparent shadow rounded-t-xl rounded-b-lg`}
     >
-      <div className="relative preserve-3d group-hover:my-rotate-y-180 w-full h-full duration-1000">
+      <div className="flex flex-col relative w-full h-full lg:preserve-3d lg:group-hover:my-rotate-y-180 lg:duration-1000">
         <header
-          className={`absolute backface-hidden h-[250px] lg:h-full w-full`}
+          className={`h-[250px] relative lg:backface-hidden lg:absolute w-full lg:h-full`}
         >
           <Image
             className="rounded-t-xl lg:rounded-xl lg:backface-hidden"
             src={getImageURL(media.poster_path, sizeImages)}
-            sizes={`25vw`}
+            sizes={`50vw`}
             fill
             alt=""
           />
         </header>
-        <footer className="flex flex-col gap-2 absolute bottom-0 lg:items-center lg:px-2 pt-2 lg:pt-4 lg:my-rotate-y-180 lg:absolute lg:top-0 lg:rounded-xl lg:backface-hidden lg:h-full lg:border lg:border-grayish-blue lg:w-full lg:bg-semi-dark-blue lg:overflow-hidden">
-          <ul className="text-xs flex gap-1 text-grayish-blue self-start">
+        <footer className="flex flex-col gap-1 w-full lg:gap-2 lg:bottom-0 lg:items-center lg:px-2 lg:pt-4 lg:my-rotate-y-180 lg:absolute lg:top-0 lg:rounded-xl lg:backface-hidden lg:h-full lg:border lg:border-grayish-blue lg:w-full lg:bg-semi-dark-blue lg:overflow-hidden">
+          <ul className="text-xs mt-1 lg:mt-0 flex gap-2 text-grayish-blue self-center lg:self-start">
             <LiMediaType media={media} />
             <LiReleaseDate media={media} />
             <li>
               {"★".repeat(Math.round(media.vote_average / 2)).padEnd(5, "☆")}
             </li>
           </ul>
-          <p className="lg:text-center">{mediaName}</p>
+          <p className="text-center">{mediaName}</p>
           <p
             className={
               "hidden lg:block lg:text-sm lg:p-1  lg:overflow-x-auto " +
