@@ -1,4 +1,4 @@
-import { IMedia } from "@/utils/types";
+import { IMedia, MovieDetails, TvDetails } from "@/utils/types";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { getApiURL, getImageURL } from "@/utils/helpers";
@@ -8,12 +8,10 @@ type Props = {
   typeMedia: IMedia["media_type"];
 };
 
-type Details = {
-  homepage: string;
-  poster_path: string;
-};
-
-const getData = async (path: string, optional?: string): Promise<Details> => {
+const getData = async (
+  path: string,
+  optional?: string
+): Promise<MovieDetails | TvDetails> => {
   const response = await fetch(getApiURL(path, optional), {});
   if (!response.ok) throw new Error(`Error while fetching ${path}`);
 
@@ -22,9 +20,8 @@ const getData = async (path: string, optional?: string): Promise<Details> => {
 };
 
 export default function MediaDetails({ idMedia, typeMedia }: Props) {
-  const [Details, setDetails] = useState<Details | null>(null);
-  // const data = await getData<Details>(`${typeMedia}/${idMedia}`);
-  // console.log(data);
+  const [Details, setDetails] = useState<TvDetails | MovieDetails | null>(null);
+
   useEffect(() => {
     getData(`${typeMedia}/${idMedia}`).then((res) => setDetails(res));
   }, []);
@@ -36,15 +33,14 @@ export default function MediaDetails({ idMedia, typeMedia }: Props) {
       </div>
     );
 
-  // Necesito pegarle al endpoint para ver el type que devuelve getData y asi mostrar bien la info
-  console.log(Details);
-
   return (
     <main className="text-white flex flex-col border w-full">
       {" "}
       <header>
-        <h2 className="text-2xl font-bold">{Details.title}</h2>
-        {typeMedia} <a href={Details.homepage}>Link to the media!</a>
+        <h2 className="text-2xl font-bold">
+          {"name" in Details ? Details.name : Details.title}
+        </h2>
+        <a href={Details.homepage}>Link to the media!</a>
       </header>
       <div className="h-[400px] w-[250px] lg:h-[500px] lg:w-[350px] relative">
         <Image
