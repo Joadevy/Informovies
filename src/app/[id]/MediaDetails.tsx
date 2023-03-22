@@ -36,12 +36,17 @@ export default function MediaDetails({ idMedia, typeMedia }: Props) {
       </div>
     );
 
+  // Necesito pegarle al endpoint para ver el type que devuelve getData y asi mostrar bien la info
+  console.log(Details);
+
   return (
-    <main className="text-white">
+    <main className="text-white flex flex-col border w-full">
       {" "}
-      Esta es la media {idMedia} entonces llego la media siendo una {typeMedia}{" "}
-      <a href={Details.homepage}>Link to the media!</a>
-      <div className="h-[400px] w-[400px] relative">
+      <header>
+        <h2 className="text-2xl font-bold">{Details.title}</h2>
+        {typeMedia} <a href={Details.homepage}>Link to the media!</a>
+      </header>
+      <div className="h-[400px] w-[250px] lg:h-[500px] lg:w-[350px] relative">
         <Image
           className="rounded-t-xl lg:rounded-xl lg:backface-hidden"
           src={getImageURL(Details.poster_path, 500)}
