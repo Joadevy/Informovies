@@ -1,7 +1,7 @@
 import { IMedia, MovieDetails, TvDetails } from "@/utils/types";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { getApiURL, getImageURL } from "@/utils/helpers";
+import { getApiURL, getImageURL, getStars } from "@/utils/helpers";
 
 type Props = {
   idMedia: IMedia["id"];
@@ -34,23 +34,30 @@ export default function MediaDetails({ idMedia, typeMedia }: Props) {
     );
 
   return (
-    <main className="text-white flex flex-col border w-full">
-      {" "}
-      <header>
-        <h2 className="text-2xl font-bold">
-          {"name" in Details ? Details.name : Details.title}
-        </h2>
-        <a href={Details.homepage}>Link to the media!</a>
-      </header>
-      <div className="h-[400px] w-[250px] lg:h-[500px] lg:w-[350px] relative">
+    <main className="text-white flex gap-10 border w-full min-h-screen">
+      <div className="self-center h-[400px] w-[250px] lg:h-[500px] lg:w-[350px] relative">
         <Image
-          className="rounded-t-xl lg:rounded-xl lg:backface-hidden"
+          className=" rounded-t-xl lg:rounded-xl lg:backface-hidden"
           src={getImageURL(Details.poster_path, 500)}
           sizes={`25vw`}
           fill
           alt=""
         />
       </div>
+      <header className="w-3/4 gap-2 border mt-[11vh]">
+        <h1 className="text-4xl font-bold">
+          {"name" in Details ? Details.name : Details.title}
+        </h1>
+        <p className="text-xl">
+          <span className="text-2xl">{getStars(Details.vote_average)}</span>{" "}
+          {`(${Details.vote_average / 2})`}
+        </p>
+        <p className="text-white-smoke">{Details.overview}</p>
+
+        <a className="text-white-smoke" href={Details.homepage}>
+          Link to the media!
+        </a>
+      </header>
       {/* <Image src={data.poster_path} alt=""></Image> */}
     </main>
   );
