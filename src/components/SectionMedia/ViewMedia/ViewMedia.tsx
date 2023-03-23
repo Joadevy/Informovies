@@ -1,4 +1,4 @@
-import { getImageURL } from "@/utils/helpers";
+import { getImageURL, getStars } from "@/utils/helpers";
 import React from "react";
 import Image from "next/image";
 
@@ -45,9 +45,7 @@ const ViewMedia = ({ media, sizeImages = 200 }: props) => {
           <ul className="text-xs mt-1 lg:mt-0 flex gap-2 text-grayish-blue self-center lg:self-start">
             <li>{mediaType === "tv" ? "Tv Series" : "Movie"}</li>
             <LiReleaseDate media={media} />
-            <li>
-              {"★".repeat(Math.round(media.vote_average / 2)).padEnd(5, "☆")}
-            </li>
+            <li>{getStars(media.vote_average)}</li>
           </ul>
           <p className="text-center">{mediaName}</p>
           <p
