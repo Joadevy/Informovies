@@ -8,3 +8,6 @@ export const getImageURL = (path: string, width = 200) =>
 export const getYear = (date: string) => {
   return new Date(date).getFullYear();
 };
+
+export const getStars = (voteAverage: number) =>
+  "★".repeat(Math.round(voteAverage / 2)).padEnd(5, "☆");
