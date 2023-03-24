@@ -50,7 +50,7 @@ export default function MediaDetails({ idMedia, typeMedia }: Props) {
         </h1>
         <p className="text-xl">
           <span className="text-2xl">{getStars(Details.vote_average)}</span>{" "}
-          {`(${Details.vote_average / 2})`}
+          {`(${(Details.vote_average / 2).toFixed(2)})`}
         </p>
         <p className="text-white-smoke">{Details.overview}</p>
 
