@@ -19,19 +19,20 @@ const getData = async (
   return results;
 };
 
-export default function MediaDetails({ idMedia, typeMedia }: Props) {
-  const [Details, setDetails] = useState<TvDetails | MovieDetails | null>(null);
+export default async function MediaDetails({ idMedia, typeMedia }: Props) {
+  const Details = await getData(`${typeMedia}/${idMedia}`);
+  // const [Details, setDetails] = useState<TvDetails | MovieDetails | null>(null);
 
-  useEffect(() => {
-    getData(`${typeMedia}/${idMedia}`).then((res) => setDetails(res));
-  }, []);
+  // useEffect(() => {
+  //   getData(`${typeMedia}/${idMedia}`).then((res) => setDetails(res));
+  // }, []);
 
-  if (!Details)
-    return (
-      <div>
-        <h1>Loading...</h1>
-      </div>
-    );
+  // if (!Details)
+  //   return (
+  //     <div>
+  //       <h1>Loading...</h1>
+  //     </div>
+  //   );
 
   return (
     <main className="text-white flex gap-10 border w-full min-h-screen">
@@ -57,6 +58,7 @@ export default function MediaDetails({ idMedia, typeMedia }: Props) {
         <a className="text-white-smoke" href={Details.homepage}>
           Link to the media!
         </a>
+        {/* <span class>&#9734;</span> */}
       </header>
       {/* <Image src={data.poster_path} alt=""></Image> */}
     </main>

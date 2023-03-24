@@ -25,7 +25,8 @@ const isLargeTitle = (title: string) => title.length > 20;
 const ViewMedia = ({ media, sizeImages = 200 }: props) => {
   const mediaName = media.title ?? media.name;
   const mediaType = getMediaType(media);
-  const URL = `/${mediaType}:${media.id}`;
+  // If use : or = to separate need to change the getId and getMediaType in MediaDetails
+  const URL = `/${mediaType}=${media.id}`;
 
   return (
     <WrapperComponent URL={URL} customHeight={sizeImages}>
