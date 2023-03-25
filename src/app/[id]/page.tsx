@@ -1,6 +1,8 @@
 import { MovieDetails, TvDetails } from "@/utils/types";
 import Image from "next/image";
 import { getApiURL, getImageURL, getStars } from "@/utils/helpers";
+import { Suspense } from "react";
+import Loading from "./loading";
 
 const getId = (pathname: String) => {
   const id = pathname.match(/%3D(\d+)/g)?.[0];
@@ -44,16 +46,19 @@ export default async function Media({ params }: Props) {
   // console.log(idMedia);
   const Details = await getData(`${typeMedia}/${idMedia}`);
   return (
-    <main className="text-white flex gap-10 border w-full min-h-screen">
-      <div className="self-center h-[400px] w-[250px] lg:h-[500px] lg:w-[350px] relative">
-        <Image
-          className=" rounded-t-xl lg:rounded-xl lg:backface-hidden"
-          src={getImageURL(Details.poster_path, 500)}
-          sizes={`25vw`}
-          fill
-          alt=""
-        />
-      </div>
+    <main className="text-white flex gap-10 w-full min-h-screen">
+      <Suspense fallback={<Loading />}>
+        <div className="self-center h-[400px] w-[250px] lg:h-[500px] lg:w-[350px] relative">
+          <Image
+            className=" rounded-t-xl lg:rounded-xl lg:backface-hidden"
+            src={getImageURL(Details.poster_path, 500)}
+            sizes={`25vw`}
+            fill
+            alt=""
+          />
+        </div>
+      </Suspense>
+
       <header className="w-3/4 gap-2 border mt-[11vh]">
         <h1 className="text-4xl font-bold">
           {"name" in Details ? Details.name : Details.title}
