@@ -10,4 +10,4 @@ export const getYear = (date: string) => {
 };
 
 export const getStars = (voteAverage: number) =>
-  "★".repeat(Math.round(voteAverage / 2)).padEnd(5, "☆");
+  "★".repeat(Math.floor(voteAverage / 2)).padEnd(5, "☆");
