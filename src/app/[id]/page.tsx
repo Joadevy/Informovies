@@ -6,7 +6,6 @@ import Loading from "./loading";
 
 const getId = (pathname: String) => {
   const id = pathname.match(/%3D(\d+)/g)?.[0];
-  console.log(id);
   if (id) return +id.substring(3);
   throw new Error("Error obtaining the id of the media content");
 };
@@ -52,7 +51,7 @@ export default async function Media({ params }: Props) {
         </div>
       </Suspense>
 
-      <article className="w-3/4 flex flex-col gap-2 border mt-[11vh]">
+      <article className="w-3/4 flex flex-col gap-2 mt-[11vh]">
         <h1 className="text-4xl font-bold">
           {"name" in Details ? Details.name : Details.title}
         </h1>

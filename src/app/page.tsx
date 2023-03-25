@@ -19,7 +19,6 @@ export default function Home() {
         sizeImages={300}
       />
 
-      {/* @ts-expect-error Server Component */}
       {/* <TopRatedMovies title="Top rated" widthImages={200} /> */}
     </main>
   );
