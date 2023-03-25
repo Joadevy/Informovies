@@ -52,7 +52,7 @@ export default async function Media({ params }: Props) {
         </div>
       </Suspense>
 
-      <header className="w-3/4 gap-2 border mt-[11vh]">
+      <article className="w-3/4 flex flex-col gap-2 border mt-[11vh]">
         <h1 className="text-4xl font-bold">
           {"name" in Details ? Details.name : Details.title}
         </h1>
@@ -62,11 +62,13 @@ export default async function Media({ params }: Props) {
         </p>
         <p className="text-white-smoke">{Details.overview}</p>
 
-        <a className="text-white-smoke" href={Details.homepage}>
-          Link to the media!
+        <a
+          className="text-white-smoke rounded-xl p-2 border bg-red mt-5 max-w-fit"
+          href={Details.homepage}
+        >
+          Official website
         </a>
-        {/* <span class>&#9734;</span> */}
-      </header>
+      </article>
     </main>
   );
 }
