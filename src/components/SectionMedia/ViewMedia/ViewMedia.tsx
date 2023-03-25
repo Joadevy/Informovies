@@ -1,5 +1,5 @@
 import { getImageURL, getStars } from "@/utils/helpers";
-import React from "react";
+import React, { Suspense } from "react";
 import Image from "next/image";
 
 import { IMedia } from "@/utils/types";
@@ -7,6 +7,7 @@ import ButtonBookmark from "@/components/Buttons/ButtonBookmark";
 import LiReleaseDate from "./LiReleaseDate";
 import ButtonWatchNow from "@/components/Buttons/ButtonWatchNow";
 import { WrapperComponent } from "./ViewWrapper";
+// import Loading from "./loading";
 
 type props = {
   media: IMedia;
@@ -31,6 +32,7 @@ const ViewMedia = ({ media, sizeImages = 200 }: props) => {
   return (
     <WrapperComponent URL={URL} customHeight={sizeImages}>
       <div className="flex flex-col relative w-full h-full lg:preserve-3d lg:group-hover:my-rotate-y-180 lg:duration-1000">
+        {/* <Suspense fallback={<Loading />}> */}
         <header
           className={`h-[250px] relative lg:backface-hidden lg:absolute w-full lg:h-full`}
         >
@@ -42,8 +44,15 @@ const ViewMedia = ({ media, sizeImages = 200 }: props) => {
             alt=""
           />
         </header>
+        {/* </Suspense> */}
+
         <footer className="flex flex-col gap-1 w-full lg:gap-2 lg:bottom-0 lg:items-center lg:px-2 lg:pt-4 lg:my-rotate-y-180 lg:absolute lg:top-0 lg:rounded-xl lg:backface-hidden lg:h-full lg:border lg:border-grayish-blue lg:w-full lg:bg-semi-dark-blue lg:overflow-hidden">
-          <ul className="text-xs mt-1 lg:mt-0 flex gap-2 text-grayish-blue self-center lg:self-start">
+          <ul
+            className={
+              "text-xs mt-1 lg:mt-0 flex text-grayish-blue self-center lg:self-start " +
+              (mediaType === "tv" ? "gap-1" : "gap-2")
+            }
+          >
             <li>{mediaType === "tv" ? "Tv Series" : "Movie"}</li>
             <LiReleaseDate media={media} />
             <li>{getStars(media.vote_average)}</li>

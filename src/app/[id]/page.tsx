@@ -27,23 +27,16 @@ const getData = async (
   path: string,
   optional?: string
 ): Promise<MovieDetails | TvDetails> => {
-  console.log({ path });
-  const response = await fetch(getApiURL(path, optional), {
-    cache: "no-store",
-  });
+  const response = await fetch(getApiURL(path, optional), {});
   if (!response.ok) throw new Error(`Error while fetching ${path}`);
 
   const results = await response.json();
-  // console.log(results);
   return results;
 };
 
 export default async function Media({ params }: Props) {
-  console.log("params: " + params.id);
   const typeMedia = getMediaType(params.id);
-  // console.log(typeMedia);
   const idMedia = getId(params.id);
-  // console.log(idMedia);
   const Details = await getData(`${typeMedia}/${idMedia}`);
   return (
     <main className="text-white flex gap-10 w-full min-h-screen">
