@@ -6,7 +6,6 @@ import ViewMedia from "@/components/SectionMedia/ViewMedia/ViewMedia";
 export default function Bookmarks() {
   const { userData } = useContext(UserContext);
   const bookmarks = Array.from(userData.bookmarks.values());
-  console.log(bookmarks);
   return (
     <main className="text-white">
       <h2 className="text-2xl m-2">Bookmarks</h2>

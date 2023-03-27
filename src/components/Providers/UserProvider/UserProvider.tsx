@@ -18,18 +18,23 @@ type GlobalUserContext = {
 };
 
 export default function UserProvider({ children }: Props) {
+  const BOOKMARKS = localStorage.getItem("bookmarks");
   const [userData, setUserData] = useState<User>({
     id: 1,
     name: "test example",
     password: "test123",
-    bookmarks: new Map(),
+    bookmarks: BOOKMARKS ? new Map(JSON.parse(BOOKMARKS)) : new Map(),
   });
 
   const toggleMedia = (media: IMedia) => {
-    const newUserData = { ...userData };
+    const newUserData = structuredClone(userData);
     if (newUserData.bookmarks.has(media.id))
       newUserData.bookmarks.delete(media.id);
     else newUserData.bookmarks.set(media.id, media);
+    localStorage.setItem(
+      "bookmarks",
+      JSON.stringify(Array.from(newUserData.bookmarks.entries()))
+    );
     setUserData(newUserData);
   };
 
