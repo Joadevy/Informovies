@@ -1,7 +1,7 @@
 "use client";
 
 import { IMedia, type UserContext as User } from "@/utils/types";
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 
 export const UserContext = createContext<GlobalUserContext>({
   userData: { id: 0, name: "", password: "", bookmarks: new Map() },
@@ -18,13 +18,22 @@ type GlobalUserContext = {
 };
 
 export default function UserProvider({ children }: Props) {
-  const BOOKMARKS = localStorage.getItem("bookmarks");
   const [userData, setUserData] = useState<User>({
     id: 1,
     name: "test example",
     password: "test123",
-    bookmarks: BOOKMARKS ? new Map(JSON.parse(BOOKMARKS)) : new Map(),
+    bookmarks: new Map(),
   });
+
+  useEffect(() => {
+    const BOOKMARKS = localStorage.getItem("bookmarks");
+    setUserData({
+      id: 1,
+      name: "test example",
+      password: "test123",
+      bookmarks: BOOKMARKS ? new Map(JSON.parse(BOOKMARKS)) : new Map(),
+    });
+  }, []);
 
   const toggleMedia = (media: IMedia) => {
     const newUserData = structuredClone(userData);
