@@ -37,6 +37,8 @@ export default async function Media({ params }: Props) {
   const typeMedia = getMediaType(params.id);
   const idMedia = getId(params.id);
   const Details = await getData(`${typeMedia}/${idMedia}`);
+  console.log(Details);
+
   return (
     <main className="text-white flex gap-10 w-full min-h-screen lg:pr-10">
       <Suspense fallback={<Loading />}>
@@ -56,6 +58,7 @@ export default async function Media({ params }: Props) {
           <h1 className="text-4xl font-bold">
             {"name" in Details ? Details.name : Details.title}
           </h1>
+          <p className="text-">{Details.tagline}</p>
           <div className="flex gap-5 items-center">
             <ul className="flex gap-2">
               {Details.genres.map((genre) => (
@@ -73,7 +76,10 @@ export default async function Media({ params }: Props) {
             </p>
           </div>
         </header>
-        <p className="text-white-smoke">{Details.overview}</p>
+        <div>
+          <h2 className="mb-1 font-bold">Synopsis</h2>
+          <p className="text-white-smoke">{Details.overview}</p>
+        </div>
         <a
           className="text-white-smoke rounded-xl p-2 border bg-red mt-5 max-w-fit"
           href={Details.homepage}
