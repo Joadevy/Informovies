@@ -17,6 +17,7 @@ const ButtonBookmark = ({ media }: Props) => {
 
   const handleBookmark = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
+    e.preventDefault();
     setBookmarked(!isBookmarked);
     toggleMedia(media);
   };
