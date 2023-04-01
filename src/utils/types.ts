@@ -72,7 +72,7 @@ export interface TvDetails {
   overview: string;
   popularity: number;
   poster_path: string;
-  production_companies: any[];
+  production_companies: ProductionCompany[];
   production_countries: ProductionCountry[];
   seasons: Season[];
   spoken_languages: SpokenLanguage[];
