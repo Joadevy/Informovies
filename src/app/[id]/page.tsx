@@ -42,27 +42,34 @@ export default async function Media({ params }: Props) {
   const typeMedia = getMediaType(params.id);
   const idMedia = getId(params.id);
   const Details = await getData(`${typeMedia}/${idMedia}`);
-  console.log(Details);
 
   return (
-    <main className="text-white flex gap-10 w-full min-h-screen lg:pr-10">
-      <Suspense fallback={<Loading />}>
-        <div className="self-center h-[400px] w-[250px] lg:h-[500px] lg:w-[350px] relative">
-          <Image
-            className=" rounded-t-xl lg:rounded-xl lg:backface-hidden"
-            src={getImageURL(Details.poster_path, 500)}
-            sizes={`25vw`}
-            fill
-            alt=""
-          />
-        </div>
-      </Suspense>
+    <>
+      <main className="text-white">
+        <section className="flex gap-10 w-full min-h-screen lg:pr-10">
+          <Suspense fallback={<Loading />}>
+            <div className="self-center h-[400px] w-[250px] lg:h-[500px] lg:w-[350px] relative">
+              <Image
+                className=" rounded-t-xl lg:rounded-xl lg:backface-hidden"
+                src={getImageURL(Details.poster_path, 500)}
+                sizes={`25vw`}
+                fill
+                alt=""
+              />
+            </div>
+          </Suspense>
 
-      {"number_of_seasons" in Details ? (
-        <TvDetails Details={Details} />
-      ) : (
-        <MovieDetails Details={Details} />
-      )}
-    </main>
+          {"number_of_seasons" in Details ? (
+            <TvDetails Details={Details} />
+          ) : (
+            <MovieDetails Details={Details} />
+          )}
+        </section>
+
+        <div>Videos section</div>
+        <div>Recommendations for user in slider section</div>
+      </main>
+      <footer className="text-white">*** Creditos to IMBD here ***</footer>
+    </>
   );
 }
