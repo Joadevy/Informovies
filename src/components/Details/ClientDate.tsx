@@ -1,4 +1,3 @@
-"use client";
 type Props = {
   date: string;
 };
@@ -6,7 +5,7 @@ type Props = {
 const ClientDate = ({ date }: Props) => {
   return (
     <>
-      {new Date(date).toLocaleString(navigator.language, {
+      {new Date(date).toLocaleString("en-US", {
         day: "numeric",
         month: "short",
         year: "numeric",
