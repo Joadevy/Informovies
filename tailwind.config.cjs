@@ -28,6 +28,7 @@ module.exports = {
         "semi-dark-blue": "#161D2F",
         "pure-white": "#FFFFFF",
         "white-smoke": "#D3D3D3",
+        "white-dust": "#8C8C8C",
       },
       gridTemplateColumns: {
         mobile: "repeat(auto-fill, minmax(150px, 1fr))",
