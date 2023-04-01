@@ -1,8 +1,13 @@
-import { MovieDetails, TvDetails } from "@/utils/types";
+import {
+  type MovieDetails as IMovieD,
+  type TvDetails as ITVD,
+} from "@/utils/types";
 import Image from "next/image";
 import { getApiURL, getImageURL, getStars } from "@/utils/helpers";
 import { Suspense } from "react";
 import Loading from "./loading";
+import TvDetails from "@/components/Details/TvDetails";
+import MovieDetails from "@/components/Details/MovieDetails";
 
 const getId = (pathname: String) => {
   const id = pathname.match(/%3D(\d+)/g)?.[0];
@@ -25,7 +30,7 @@ type Props = {
 const getData = async (
   path: string,
   optional?: string
-): Promise<MovieDetails | TvDetails> => {
+): Promise<IMovieD | ITVD> => {
   const response = await fetch(getApiURL(path, optional), {});
   if (!response.ok) throw new Error(`Error while fetching ${path}`);
 
@@ -53,40 +58,11 @@ export default async function Media({ params }: Props) {
         </div>
       </Suspense>
 
-      <article className="w-7/12 flex flex-col gap-4 mt-[11vh]">
-        <header className="flex flex-col gap-2">
-          <h1 className="text-4xl font-bold">
-            {"name" in Details ? Details.name : Details.title}
-          </h1>
-          <p className="text-">{Details.tagline}</p>
-          <div className="flex gap-5 items-center">
-            <ul className="flex gap-2">
-              {Details.genres.map((genre) => (
-                <li
-                  className="border border-grayish-blue text-grayish-blue py-1 px-2 rounded-lg bg-semi-dark-blue"
-                  key={genre.id}
-                >
-                  {genre.name}
-                </li>
-              ))}
-            </ul>
-            <p className="text-xl">
-              <span className="text-2xl">{getStars(Details.vote_average)}</span>{" "}
-              {`(${(Details.vote_average / 2).toFixed(2)})`}
-            </p>
-          </div>
-        </header>
-        <div>
-          <h2 className="mb-1 font-bold">Synopsis</h2>
-          <p className="text-white-smoke">{Details.overview}</p>
-        </div>
-        <a
-          className="text-white-smoke rounded-xl p-2 border bg-red mt-5 max-w-fit"
-          href={Details.homepage}
-        >
-          Official website
-        </a>
-      </article>
+      {"number_of_seasons" in Details ? (
+        <TvDetails Details={Details} />
+      ) : (
+        <MovieDetails Details={Details} />
+      )}
     </main>
   );
 }
