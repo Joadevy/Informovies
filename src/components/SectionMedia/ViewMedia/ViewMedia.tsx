@@ -64,7 +64,9 @@ const ViewMedia = ({ media, sizeImages = 200 }: props) => {
               (isLargeTitle(mediaName) ? "lg:h-1/2" : "lg:h-[65%]")
             }
           >
-            {media.overview}
+            {media.overview.length > 0
+              ? media.overview
+              : "We couldn't retrieve an overview but you can watch it and discover it"}
           </p>
           <ButtonBookmark media={media} />
           <ButtonWatchNow linkTo={URL} />
