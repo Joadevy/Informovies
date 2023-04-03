@@ -8,6 +8,7 @@ import { Suspense } from "react";
 import Loading from "./loading";
 import TvDetails from "@/components/Details/TvDetails";
 import MovieDetails from "@/components/Details/MovieDetails";
+import VideoComponent from "@/components/Details/VideoComponent";
 
 const getId = (pathname: String) => {
   const id = pathname.match(/%3D(\d+)/g)?.[0];
@@ -41,7 +42,8 @@ const getData = async (
 export default async function Media({ params }: Props) {
   const typeMedia = getMediaType(params.id);
   const idMedia = getId(params.id);
-  const Details = await getData(`${typeMedia}/${idMedia}`);
+  const path = `${typeMedia}/${idMedia}`;
+  const Details = await getData(path);
 
   return (
     <>
@@ -66,7 +68,10 @@ export default async function Media({ params }: Props) {
           )}
         </section>
 
-        <div>Videos section</div>
+        <section className="flex items-center justify-center">
+          {/* @ts-expect-error Server Component */}
+          <VideoComponent endpoint={path} />
+        </section>
         <div>Recommendations for user in slider section</div>
       </main>
       <footer className="text-white">*** Creditos to IMBD here ***</footer>
