@@ -1,6 +1,11 @@
 "use client";
 
-import { IMedia, type UserContext as User } from "@/utils/types";
+import {
+  IMedia,
+  MovieDetails,
+  TvDetails,
+  type UserContext as User,
+} from "@/utils/types";
 import { createContext, useEffect, useState } from "react";
 
 export const UserContext = createContext<GlobalUserContext>({
@@ -14,7 +19,7 @@ type Props = {
 
 type GlobalUserContext = {
   userData: User;
-  toggleMedia: (_: IMedia) => void;
+  toggleMedia: (_: IMedia | MovieDetails | TvDetails) => void;
 };
 
 export default function UserProvider({ children }: Props) {
@@ -35,11 +40,11 @@ export default function UserProvider({ children }: Props) {
     });
   }, []);
 
-  const toggleMedia = (media: IMedia) => {
+  const toggleMedia = (media: IMedia | MovieDetails | TvDetails) => {
     const newUserData = structuredClone(userData);
     if (newUserData.bookmarks.has(media.id))
       newUserData.bookmarks.delete(media.id);
-    else newUserData.bookmarks.set(media.id, media);
+    else newUserData.bookmarks.set(media.id, media!);
     localStorage.setItem(
       "bookmarks",
       JSON.stringify(Array.from(newUserData.bookmarks.entries()))

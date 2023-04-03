@@ -2,11 +2,11 @@
 
 import IconBookmarks from "@/components/Icons/IconBookmark";
 import { UserContext } from "@/components/Providers/UserProvider/UserProvider";
-import { IMedia } from "@/utils/types";
+import { IMedia, MovieDetails, TvDetails } from "@/utils/types";
 import { useContext, useState } from "react";
 
 type Props = {
-  media: IMedia;
+  media: IMedia | MovieDetails | TvDetails;
 };
 
 const ButtonBookmark = ({ media }: Props) => {

@@ -45,7 +45,7 @@ export type UserContext = {
   id: number;
   name: string;
   password: string;
-  bookmarks: Map<number, IMedia>;
+  bookmarks: Map<number, IMedia | MovieDetails | TvDetails>;
 };
 
 export interface TvDetails {
