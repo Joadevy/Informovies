@@ -22,9 +22,9 @@ export const VideoComponent = async ({ endpoint }: Props) => {
   const videos = await getVideos(endpoint);
   if (!videos) return null;
   return (
-    <div>
+    <article>
       <h3 className="font-extrabold mb-2">Get a sneek peek</h3>
       <ClientVideo videoKey={videos.key} />
-    </div>
+    </article>
   );
 };
