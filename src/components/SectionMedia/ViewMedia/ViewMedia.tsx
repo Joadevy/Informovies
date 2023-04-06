@@ -13,7 +13,7 @@ type props = {
   sizeImages?: number;
 };
 
-const getMediaType = (media: props["media"]) =>
+export const getMediaType = (media: props["media"]) =>
   "first_air_date" in media ? "tv" : "movie";
 
 const isLargeTitle = (title: string) => title.length > 20;

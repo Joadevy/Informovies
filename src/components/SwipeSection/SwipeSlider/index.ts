@@ -1,3 +1,3 @@
-// import SwipeSlider from "./SwipeSlider";
+import SwipeSlider from "./SwipeSlider";
 
-// export default SwipeSlider;
+export default SwipeSlider;
