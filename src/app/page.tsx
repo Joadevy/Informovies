@@ -1,6 +1,6 @@
 import SectionMedia from "@/components/SectionMedia";
 import TopRatedMovies from "@/components/Sections/TopRatedMovies";
-import SliderSection from "@/components/SwipeSection";
+// import SliderSection from "@/components/SwipeSection";
 
 export default function Home() {
   return (
