@@ -1,7 +1,6 @@
 "use client";
 
 import {
-  IMedia,
   MovieDetails,
   TvDetails,
   type UserContext as User,
@@ -19,7 +18,7 @@ type Props = {
 
 type GlobalUserContext = {
   userData: User;
-  toggleMedia: (_: IMedia | MovieDetails | TvDetails) => void;
+  toggleMedia: (_: MovieDetails | TvDetails) => void;
 };
 
 export default function UserProvider({ children }: Props) {
@@ -40,7 +39,7 @@ export default function UserProvider({ children }: Props) {
     });
   }, []);
 
-  const toggleMedia = (media: IMedia | MovieDetails | TvDetails) => {
+  const toggleMedia = (media: MovieDetails | TvDetails) => {
     const newUserData = structuredClone(userData);
     if (newUserData.bookmarks.has(media.id))
       newUserData.bookmarks.delete(media.id);

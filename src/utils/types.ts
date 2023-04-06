@@ -65,14 +65,6 @@ export interface TvDetails extends TVSeries {
   vote_count: number;
 }
 
-// export interface IMedia extends Movie {
-//   first_air_date: string;
-//   name: string;
-//   origin_country: string[];
-//   original_name: string;
-//   media_type: string;
-// }
-
 export interface CreatedBy {
   id: number;
   credit_id: string;
