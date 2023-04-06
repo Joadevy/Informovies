@@ -9,6 +9,7 @@ import Loading from "./loading";
 import TvDetails from "@/components/Details/TvDetails";
 import MovieDetails from "@/components/Details/MovieDetails";
 import VideoComponent from "@/components/Details/VideoComponent";
+import CastComponent from "@/components/Details/CastComponent";
 
 const getId = (pathname: String) => {
   const id = pathname.match(/%3D(\d+)/g)?.[0];
@@ -68,9 +69,11 @@ export default async function Media({ params }: Props) {
           )}
         </section>
 
-        <section className="flex items-center justify-center">
+        <section className="flex items-center justify-around">
           {/* @ts-expect-error Server Component */}
           <VideoComponent endpoint={path} />
+          {/* @ts-expect-error Server Component */}
+          <CastComponent path={path} />
         </section>
       </main>
       <footer className="text-white">*** Creditos to IMBD here ***</footer>
