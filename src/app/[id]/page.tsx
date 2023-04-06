@@ -9,7 +9,6 @@ import Loading from "./loading";
 import TvDetails from "@/components/Details/TvDetails";
 import MovieDetails from "@/components/Details/MovieDetails";
 import VideoComponent from "@/components/Details/VideoComponent";
-import ButtonBookmark from "@/components/Buttons/ButtonBookmark";
 
 const getId = (pathname: String) => {
   const id = pathname.match(/%3D(\d+)/g)?.[0];
@@ -48,7 +47,7 @@ export default async function Media({ params }: Props) {
 
   return (
     <>
-      <main className="text-white">
+      <main className="text-white border flex flex-col gap-10">
         <section className="flex gap-10 w-full min-h-screen lg:pr-10 relative">
           <Suspense fallback={<Loading />}>
             <div className="self-center h-[400px] w-[250px] lg:h-[500px] lg:w-[350px] relative">
@@ -73,7 +72,6 @@ export default async function Media({ params }: Props) {
           {/* @ts-expect-error Server Component */}
           <VideoComponent endpoint={path} />
         </section>
-        <div>Recommendations for user in slider section</div>
       </main>
       <footer className="text-white">*** Creditos to IMBD here ***</footer>
     </>
