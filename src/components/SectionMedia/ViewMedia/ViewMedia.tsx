@@ -1,8 +1,7 @@
 import { getImageURL, getStars } from "@/utils/helpers";
-import React, { Suspense } from "react";
 import Image from "next/image";
 
-import { IMedia } from "@/utils/types";
+import { MovieDetails, TvDetails } from "@/utils/types";
 import ButtonBookmark from "@/components/Buttons/ButtonBookmark";
 import LiReleaseDate from "./LiReleaseDate";
 import ButtonWatchNow from "@/components/Buttons/ButtonWatchNow";
@@ -10,21 +9,17 @@ import { WrapperComponent } from "./ViewWrapper";
 // import Loading from "./loading";
 
 type props = {
-  media: IMedia;
+  media: MovieDetails | TvDetails;
   sizeImages?: number;
 };
 
-const getMediaType = (media: IMedia) => {
-  if (!media.media_type) {
-    return media.first_air_date ? "tv" : "movie";
-  }
-  return media.media_type;
-};
+const getMediaType = (media: props["media"]) =>
+  "first_air_date" in media ? "tv" : "movie";
 
 const isLargeTitle = (title: string) => title.length > 20;
 
 const ViewMedia = ({ media, sizeImages = 200 }: props) => {
-  const mediaName = media.title ?? media.name;
+  const mediaName = "title" in media ? media.title : media.name;
   const mediaType = getMediaType(media);
   // If use : or = to separate need to change the getId and getMediaType in MediaDetails
   const URL = `/${mediaType}=${media.id}`;

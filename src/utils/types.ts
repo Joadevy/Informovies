@@ -10,7 +10,7 @@ interface Media {
   vote_count: number;
 }
 
-export interface Movie extends Media {
+interface Movie extends Media {
   adult: boolean;
   original_title: string;
   release_date: string;
@@ -18,20 +18,60 @@ export interface Movie extends Media {
   video: boolean;
 }
 
-export interface TVSeries extends Media {
+export interface MovieDetails extends Movie {
+  belongs_to_collection: any;
+  budget: number;
+  genres: Genre[];
+  homepage: string;
+  imdb_id: string;
+  production_companies: ProductionCompany[];
+  production_countries: ProductionCountry[];
+  revenue: number;
+  runtime: number;
+  spoken_languages: SpokenLanguage[];
+  status: string;
+  tagline: string;
+}
+
+interface TVSeries extends Media {
   first_air_date: string;
   name: string;
   origin_country: string[];
   original_name: string;
 }
 
-export interface IMedia extends Movie {
-  first_air_date: string;
-  name: string;
-  origin_country: string[];
-  original_name: string;
-  media_type: string;
+export interface TvDetails extends TVSeries {
+  adult: boolean;
+  backdrop_path: string;
+  created_by: CreatedBy[];
+  episode_run_time: number[];
+  genres: Genre[];
+  homepage: string;
+  in_production: boolean;
+  languages: string[];
+  last_air_date: string;
+  production_companies: ProductionCompany[];
+  production_countries: ProductionCountry[];
+  last_episode_to_air: LastEpisodeToAir;
+  next_episode_to_air: any;
+  networks: Network[];
+  number_of_episodes: number;
+  number_of_seasons: number;
+  seasons: Season[];
+  status: string;
+  tagline: string;
+  type: string;
+  vote_average: number;
+  vote_count: number;
 }
+
+// export interface IMedia extends Movie {
+//   first_air_date: string;
+//   name: string;
+//   origin_country: string[];
+//   original_name: string;
+//   media_type: string;
+// }
 
 export interface CreatedBy {
   id: number;
@@ -45,43 +85,8 @@ export type UserContext = {
   id: number;
   name: string;
   password: string;
-  bookmarks: Map<number, IMedia | MovieDetails | TvDetails>;
+  bookmarks: Map<number, MovieDetails | TvDetails>;
 };
-
-export interface TvDetails {
-  adult: boolean;
-  backdrop_path: string;
-  created_by: CreatedBy[];
-  episode_run_time: number[];
-  first_air_date: string;
-  genres: Genre[];
-  homepage: string;
-  id: number;
-  in_production: boolean;
-  languages: string[];
-  last_air_date: string;
-  last_episode_to_air: LastEpisodeToAir;
-  name: string;
-  next_episode_to_air: any;
-  networks: Network[];
-  number_of_episodes: number;
-  number_of_seasons: number;
-  origin_country: string[];
-  original_language: string;
-  original_name: string;
-  overview: string;
-  popularity: number;
-  poster_path: string;
-  production_companies: ProductionCompany[];
-  production_countries: ProductionCountry[];
-  seasons: Season[];
-  spoken_languages: SpokenLanguage[];
-  status: string;
-  tagline: string;
-  type: string;
-  vote_average: number;
-  vote_count: number;
-}
 
 export interface Genre {
   id: number;
@@ -129,34 +134,6 @@ export interface SpokenLanguage {
   english_name: string;
   iso_639_1: string;
   name: string;
-}
-
-export interface MovieDetails {
-  adult: boolean;
-  backdrop_path: string;
-  belongs_to_collection: any;
-  budget: number;
-  genres: Genre[];
-  homepage: string;
-  id: number;
-  imdb_id: string;
-  original_language: string;
-  original_title: string;
-  overview: string;
-  popularity: number;
-  poster_path: string;
-  production_companies: ProductionCompany[];
-  production_countries: ProductionCountry[];
-  release_date: string;
-  revenue: number;
-  runtime: number;
-  spoken_languages: SpokenLanguage[];
-  status: string;
-  tagline: string;
-  title: string;
-  video: boolean;
-  vote_average: number;
-  vote_count: number;
 }
 
 export interface ProductionCompany {

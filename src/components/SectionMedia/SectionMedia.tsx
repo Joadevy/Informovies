@@ -1,8 +1,8 @@
-import { IMedia } from "@/utils/types";
 import getData from "lib/getData";
 import ViewMedia from "./ViewMedia/ViewMedia";
+import { MovieDetails, TvDetails } from "@/utils/types";
 
-type Props<T extends IMedia> = {
+type Props = {
   title: string;
   url: {
     path: string;
@@ -11,12 +11,11 @@ type Props<T extends IMedia> = {
   sizeImages?: number;
 };
 
-const SectionMedia = async <T extends IMedia>({
-  title,
-  url,
-  sizeImages = 200,
-}: Props<T>) => {
-  const data = await getData<T>(url.path, url.optional ?? "");
+const SectionMedia = async ({ title, url, sizeImages = 200 }: Props) => {
+  const data = await getData<TvDetails | MovieDetails>(
+    url.path,
+    url.optional ?? ""
+  );
 
   if (data.length === 0) return;
   return (
