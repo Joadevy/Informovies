@@ -27,7 +27,8 @@ const getCast = async (path: string) => {
 
 const CastComponent = async ({ path }: Props) => {
   const cast = (await getCast(path)).slice(0, 50); // Take the 50-first because of length on screen
-  if (!cast) return null;
+  console.log(cast);
+  if (cast.length === 0) return null;
   return (
     <article className="">
       <h3 className="font-extrabold mb-2">Lights, Camera, Cast</h3>
