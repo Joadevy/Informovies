@@ -48,7 +48,7 @@ export default async function Media({ params }: Props) {
 
   return (
     <>
-      <main className="text-white border flex flex-col gap-10">
+      <main className="text-white flex flex-col gap-10">
         <section className="flex gap-10 w-full min-h-screen lg:pr-10 relative">
           <Suspense fallback={<Loading />}>
             <div className="self-center h-[400px] w-[250px] lg:h-[500px] lg:w-[350px] relative">
@@ -76,7 +76,7 @@ export default async function Media({ params }: Props) {
           <CastComponent path={path} />
         </section>
       </main>
-      <footer className="text-white">*** Creditos to IMBD here ***</footer>
+      <footer className="text-white mt-10">*** Credits to IMBD here ***</footer>
     </>
   );
 }

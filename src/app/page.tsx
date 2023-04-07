@@ -1,10 +1,14 @@
+import SearchBar from "@/components/SearchBar";
 import SectionMedia from "@/components/SectionMedia";
 import TopRatedMovies from "@/components/Sections/TopRatedMovies";
 // import SliderSection from "@/components/SwipeSection";
 
 export default function Home() {
   return (
-    <main>
+    <main className="flex flex-col gap-4">
+      <div className="mt-10 w-1/4">
+        <SearchBar />
+      </div>
       {/* <SliderSection title={"Trending"} /> */}
       {/* @ts-expect-error Server Component */}
       <SectionMedia
