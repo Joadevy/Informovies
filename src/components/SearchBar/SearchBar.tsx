@@ -1,12 +1,14 @@
 "use client";
 
 import { getApiURL, getImageURL } from "@/utils/helpers";
+import { MovieDetails, TvDetails } from "@/utils/types";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import noImageAvalailable from "../../../public/assets/no-image.webp";
 
 export const SearchBar = () => {
-  const [results, setResults] = useState([]);
+  const [results, setResults] = useState<(MovieDetails | TvDetails)[]>([]);
   const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
@@ -19,8 +21,11 @@ export const SearchBar = () => {
         getApiURL("search/multi", `&query=${searchQuery}`)
       );
       const data = await response.json();
-      console.log(data);
-      setResults(data.results);
+      setResults(
+        data.results
+          .slice(0, 15)
+          .filter((result: MovieDetails | TvDetails) => "poster_path" in result) // Get only the movie/tv not the cast or crew
+      );
     }
   };
 
@@ -41,7 +46,7 @@ export const SearchBar = () => {
       >
         {
           results.length > 0 && searchQuery
-            ? results.slice(0, 15).map((result: any) => (
+            ? results.map((result: any) => (
                 <li
                   className="text-white-smoke bg-dark-blue p-4 rounded-lg relative"
                   key={result.id}
@@ -50,10 +55,16 @@ export const SearchBar = () => {
                     className="flex justify-around items-center h-14 relative"
                     href={`${result.media_type}=${result.id}`}
                   >
-                    {result.title || result.name}
+                    <p className="w-7/12 text-base">
+                      {result.title || result.name}
+                    </p>
                     <div className="w-16 h-16 rounded-md overflow-hidden absolute right-0">
                       <Image
-                        src={getImageURL(result.poster_path, 200)}
+                        src={
+                          result.poster_path
+                            ? getImageURL(result.poster_path, 200)
+                            : noImageAvalailable
+                        }
                         alt=""
                         fill
                         sizes="5vw"
