@@ -1,14 +1,12 @@
 "use client";
 
-import { getApiURL, getImageURL } from "@/utils/helpers";
-import { MovieDetails, TvDetails } from "@/utils/types";
-import Image from "next/image";
-import Link from "next/link";
+import { getApiURL } from "@/utils/helpers";
+import { MovieResult, TVResult } from "@/utils/types";
 import { useEffect, useState } from "react";
-import noImageAvalailable from "../../../public/assets/no-image.webp";
+import SearchResult from "./SearchResult";
 
 export const SearchBar = () => {
-  const [results, setResults] = useState<(MovieDetails | TvDetails)[]>([]);
+  const [results, setResults] = useState<(MovieResult | TVResult)[]>([]);
   const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
@@ -24,7 +22,7 @@ export const SearchBar = () => {
       setResults(
         data.results
           .slice(0, 15)
-          .filter((result: MovieDetails | TvDetails) => "poster_path" in result) // Get only the movie/tv not the cast or crew
+          .filter((result: MovieResult | TVResult) => "poster_path" in result) // Get only the movie/tv not the cast or crew
       );
     }
   };
@@ -46,32 +44,8 @@ export const SearchBar = () => {
       >
         {
           results.length > 0 && searchQuery
-            ? results.map((result: any) => (
-                <li
-                  className="text-white-smoke bg-dark-blue p-4 rounded-lg relative"
-                  key={result.id}
-                >
-                  <Link
-                    className="flex justify-around items-center h-14 relative"
-                    href={`${result.media_type}=${result.id}`}
-                  >
-                    <p className="w-7/12 text-base">
-                      {result.title || result.name}
-                    </p>
-                    <div className="w-16 h-16 rounded-md overflow-hidden absolute right-0">
-                      <Image
-                        src={
-                          result.poster_path
-                            ? getImageURL(result.poster_path, 200)
-                            : noImageAvalailable
-                        }
-                        alt=""
-                        fill
-                        sizes="5vw"
-                      />
-                    </div>
-                  </Link>
-                </li>
+            ? results.map((result) => (
+                <SearchResult key={result.id} result={result} />
               ))
             : null
           //   <li className="text-white-smoke">No results found</li>
