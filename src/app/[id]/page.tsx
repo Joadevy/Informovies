@@ -10,6 +10,7 @@ import TvDetails from "@/components/Details/TvDetails";
 import MovieDetails from "@/components/Details/MovieDetails";
 import VideoComponent from "@/components/Details/VideoComponent";
 import CastComponent from "@/components/Details/CastComponent";
+import noImageAvalailable from "../../../public/assets/no-image.webp";
 
 const getId = (pathname: String) => {
   const id = pathname.match(/%3D(\d+)/g)?.[0];
@@ -54,7 +55,11 @@ export default async function Media({ params }: Props) {
             <div className="self-center h-[400px] w-[250px] lg:h-[500px] lg:w-[350px] relative">
               <Image
                 className=" rounded-t-xl lg:rounded-xl lg:backface-hidden"
-                src={getImageURL(Details.poster_path, 500)}
+                src={
+                  Details.poster_path
+                    ? getImageURL(Details.poster_path, 500)
+                    : noImageAvalailable
+                }
                 sizes={`25vw`}
                 fill
                 alt=""
