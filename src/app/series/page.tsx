@@ -1,8 +1,12 @@
+import SearchBar from "@/components/SearchBar";
 import SectionMedia from "@/components/SectionMedia";
 
 export default function Series() {
   return (
     <main>
+      <div className="mt-10 mb-5 w-3/4 lg:w-4/12 relative">
+        <SearchBar />
+      </div>
       {/* <SliderSection title={"Trending"} /> */}
       {/* @ts-expect-error Server Component */}
       <SectionMedia

@@ -4,6 +4,8 @@ import { getApiURL } from "@/utils/helpers";
 import { MovieResult, TVResult } from "@/utils/types";
 import { useEffect, useState } from "react";
 import SearchResult from "./SearchResult";
+import Image from "next/image";
+import searchImg from "../../../public/assets/lupa.png";
 
 export const SearchBar = () => {
   const [results, setResults] = useState<(MovieResult | TVResult)[]>([]);
@@ -29,12 +31,17 @@ export const SearchBar = () => {
 
   return (
     <>
-      <input
-        className="w-full p-2 rounded-lg bg-semi-dark-blue border border-grayish-blue text-white-smoke outline-none focus:border-white-dust"
-        type="text"
-        onChange={(e) => setSearchQuery(e.target.value)}
-        placeholder="Search for any movies or tv shows..."
-      />
+      <div className="relative">
+        <input
+          className="w-full pl-7 p-2 rounded-lg bg-semi-dark-blue border border-grayish-blue text-white-smoke outline-none focus:border-white-dust"
+          type="text"
+          onChange={(e) => setSearchQuery(e.target.value)}
+          placeholder="Search for any movies or tv shows..."
+        />
+        <div className="w-5 h-5 absolute top-2 left-1">
+          <Image src={searchImg} alt="" fill sizes="5vw"></Image>
+        </div>
+      </div>
       <ul
         className={
           results.length > 0 && searchQuery

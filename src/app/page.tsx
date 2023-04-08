@@ -6,7 +6,7 @@ import TopRatedMovies from "@/components/Sections/TopRatedMovies";
 export default function Home() {
   return (
     <main className="flex flex-col gap-4">
-      <div className="mt-10 w-4/12 relative">
+      <div className="mt-10 mb-5 w-3/4 lg:w-4/12 relative">
         <SearchBar />
       </div>
       {/* <SliderSection title={"Trending"} /> */}
