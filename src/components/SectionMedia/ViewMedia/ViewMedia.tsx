@@ -6,6 +6,7 @@ import ButtonBookmark from "@/components/Buttons/ButtonBookmark";
 import LiReleaseDate from "./LiReleaseDate";
 import ButtonWatchNow from "@/components/Buttons/ButtonWatchNow";
 import { WrapperComponent } from "./ViewWrapper";
+import noImage from "../../../../public/assets/no-image.webp";
 // import Loading from "./loading";
 
 type props = {
@@ -33,7 +34,11 @@ const ViewMedia = ({ media, sizeImages = 200 }: props) => {
         >
           <Image
             className="rounded-t-xl lg:rounded-xl lg:backface-hidden"
-            src={getImageURL(media.poster_path, sizeImages)}
+            src={
+              media.poster_path
+                ? getImageURL(media.poster_path, sizeImages)
+                : noImage
+            }
             sizes={`50vw`}
             fill
             alt=""
