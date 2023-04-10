@@ -12,15 +12,16 @@ type Props = {
 };
 
 export const SwipeSection = async ({ title, url, sizeImages = 200 }: Props) => {
-  const media = await getData<TvDetails | MovieDetails>(
-    url.path,
-    url.optional ?? ""
-  );
-  console.log("data swipe: " + media);
+  // const media = await getData<TvDetails | MovieDetails>(
+  //   url.path,
+  //   url.optional ?? ""
+  // );
+  // console.log("data swipe: " + media);
   return (
     <article className="text-white">
       <h2>{title}</h2>
-      <SwipeSlider data={media} sizeImages={sizeImages}></SwipeSlider>
+      {/* <SwipeSlider data={media} sizeImages={sizeImages}></SwipeSlider> */}
+      <SwipeSlider slides={["hola", "como", "va"]} />
     </article>
   );
 };

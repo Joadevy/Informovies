@@ -1,5 +1,6 @@
 import SearchBar from "@/components/SearchBar";
 import SectionMedia from "@/components/SectionMedia";
+import SliderSection from "@/components/SwipeSection";
 
 export default function Movies() {
   return (
@@ -7,7 +8,8 @@ export default function Movies() {
       <div className="mt-10 mb-5 w-3/4 lg:w-4/12 relative">
         <SearchBar />
       </div>
-      {/* <SliderSection title={"Trending"} /> */}
+      {/* @ts-expect-error Server Component */}
+      <SliderSection url={"hola"} title={"Trending"} />
       {/* @ts-expect-error Server Component */}
       <SectionMedia
         title="Top rated"
