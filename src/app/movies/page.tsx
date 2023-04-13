@@ -1,3 +1,4 @@
+import RandomRecommendation from "@/components/RandomRecommendation";
 import SearchBar from "@/components/SearchBar";
 import SectionMedia from "@/components/SectionMedia";
 import SliderSection from "@/components/SwipeSection";
@@ -16,6 +17,9 @@ export default function Movies() {
         url={{ path: "movie/top_rated", optional: "&page=1" }}
         sizeImages={400}
       />
+      {/* @ts-expect-error Server Component */}
+      <RandomRecommendation mediaToRecommend="movie" />
+
       {/* @ts-expect-error Server Component */}
       <SectionMedia
         title="Upcoming"
