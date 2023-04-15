@@ -4,6 +4,8 @@ import { MovieDetails, TvDetails } from "@/utils/types";
 import Image from "next/image";
 import noImage from "../../../../public/assets/no-image.webp";
 import Link from "next/link";
+import { Suspense } from "react";
+import Loading from "./loading";
 
 type Props = {
   media: TvDetails | MovieDetails;
@@ -18,15 +20,19 @@ const SwipeCard = ({ media, showDetails }: Props) => {
       href={`/${mediaType}=${media.id}`}
       className="text-white h-52 flex flex-col relative"
     >
-      <Image
-        className="rounded-t-xl lg:rounded-xl lg:backface-hidden"
-        src={
-          media.backdrop_path ? getImageURL(media.backdrop_path, 500) : noImage
-        }
-        sizes={`50vw`}
-        fill
-        alt=""
-      />
+      <Suspense fallback={<Loading />}>
+        <Image
+          className="rounded-t-xl lg:rounded-xl lg:backface-hidden"
+          src={
+            media.backdrop_path
+              ? getImageURL(media.backdrop_path, 500)
+              : noImage
+          }
+          sizes={`50vw`}
+          fill
+          alt=""
+        />
+      </Suspense>
       <div className="absolute bottom-0 p-2 rounded-tr-md bg-dark-blue bg-opacity-50">
         {showDetails && (
           <header className="text-sm">
