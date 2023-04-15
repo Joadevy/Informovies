@@ -1,3 +1,3 @@
-import SliderSection from "./SwipeSection";
+import { SwipeSection } from "./SwipeSection";
 
-export default SliderSection;
+export default SwipeSection;

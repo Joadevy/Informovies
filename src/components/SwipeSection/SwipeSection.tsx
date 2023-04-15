@@ -9,21 +9,24 @@ type Props = {
     optional?: string;
   };
   sizeImages?: number;
+  showDetails: boolean;
 };
 
-export const SwipeSection = async ({ title, url, sizeImages = 200 }: Props) => {
-  // const media = await getData<TvDetails | MovieDetails>(
-  //   url.path,
-  //   url.optional ?? ""
-  // );
-  // console.log("data swipe: " + media);
+export const SwipeSection = async ({ title, url, showDetails }: Props) => {
+  const media = await getData<TvDetails | MovieDetails>(
+    url.path,
+    url.optional ?? ""
+  );
+
   return (
     <article className="text-white">
-      <h2>{title}</h2>
-      {/* <SwipeSlider data={media} sizeImages={sizeImages}></SwipeSlider> */}
-      <SwipeSlider slides={["hola", "como", "va"]} />
+      <h2
+        className="text-2xl mb-2
+      "
+      >
+        {title}
+      </h2>
+      <SwipeSlider slides={media} showDetails={showDetails} />
     </article>
   );
 };
-
-export default SwipeSection;

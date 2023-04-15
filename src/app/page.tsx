@@ -1,7 +1,6 @@
 import SearchBar from "@/components/SearchBar";
 import SectionMedia from "@/components/SectionMedia";
-import TopRatedMovies from "@/components/Sections/TopRatedMovies";
-// import SliderSection from "@/components/SwipeSection";
+import SwipeSection from "@/components/SwipeSection";
 
 export default function Home() {
   return (
@@ -9,13 +8,19 @@ export default function Home() {
       <div className="mt-10 mb-5 w-3/4 lg:w-4/12 relative">
         <SearchBar />
       </div>
-      {/* <SliderSection title={"Trending"} /> */}
       {/* @ts-expect-error Server Component */}
-      <SectionMedia
+      <SwipeSection
+        url={{ path: "trending/all/week", optional: "&page=1" }}
+        title={"Trending"}
+        showDetails={true}
+      />
+
+      {/* <SectionMedia
         title="Trending"
         url={{ path: "trending/all/week", optional: "&page=1" }}
         sizeImages={300}
-      />
+      /> */}
+
       {/* @ts-expect-error Server Component */}
       <SectionMedia
         title="Recommended for you"

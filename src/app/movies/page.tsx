@@ -1,7 +1,7 @@
 import RandomRecommendation from "@/components/RandomRecommendation";
 import SearchBar from "@/components/SearchBar";
 import SectionMedia from "@/components/SectionMedia";
-import SliderSection from "@/components/SwipeSection";
+import SwipeSection from "@/components/SwipeSection";
 
 export default function Movies() {
   return (
@@ -10,15 +10,19 @@ export default function Movies() {
         <SearchBar />
       </div>
       {/* @ts-expect-error Server Component */}
-      <SliderSection url={"hola"} title={"Trending"} />
+      <SwipeSection
+        url={{ path: "movie/top_rated", optional: "&page=1" }}
+        title={"Trending"}
+        showDetails={false}
+      />
       {/* @ts-expect-error Server Component */}
       <SectionMedia
         title="Top rated"
         url={{ path: "movie/top_rated", optional: "&page=1" }}
         sizeImages={400}
       />
-      {/* @ts-expect-error Server Component */}
-      <RandomRecommendation mediaToRecommend="movie" />
+
+      {/* <RandomRecommendation mediaToRecommend="movie" /> */}
 
       {/* @ts-expect-error Server Component */}
       <SectionMedia
