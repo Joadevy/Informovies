@@ -59,28 +59,35 @@ export const MovieDetails = ({ Details }: Props) => {
         <p className="text-white-smoke">{Details.overview}</p>
       </div>
 
-      <article>
-        <h2 className="mb-1 font-bold">More about</h2>
-        <div className="flex gap-2">
-          <div className="border border-grayish-blue border-opacity-30 rounded-lg max-w-fit p-2">
-            <h3 className="mb-1 font-semi">Production countries</h3>
-            <ul className="flex flex-col gap-1 max-w-fit rounded-xl text-white-smoke">
-              {Details.production_countries.map((country) => (
-                <li key={country.name}>◟{country.name} </li>
-              ))}
-            </ul>
-          </div>
+      {Details.production_companies.length > 0 ||
+      Details.production_countries.length > 0 ? (
+        <article>
+          <h2 className="mb-1 font-bold">More about</h2>
+          <div className="flex gap-2">
+            {Details.production_countries.length > 0 && (
+              <div className="border border-grayish-blue border-opacity-30 rounded-lg max-w-fit p-2">
+                <h3 className="mb-1 font-semi">Production countries</h3>
+                <ul className="flex flex-col gap-1 max-w-fit rounded-xl text-white-smoke">
+                  {Details.production_countries.map((country) => (
+                    <li key={country.name}>◟{country.name} </li>
+                  ))}
+                </ul>
+              </div>
+            )}
 
-          <div className="border border-grayish-blue border-opacity-30 rounded-lg max-w-fit p-2">
-            <h3 className="mb-1 font-semi">Production companies</h3>
-            <ul className="flex flex-col gap-1 max-w-fit rounded-xl text-white-smoke">
-              {Details.production_companies.map((country) => (
-                <li key={country.id}>◟{country.name} </li>
-              ))}
-            </ul>
+            {Details.production_companies.length > 0 && (
+              <div className="border border-grayish-blue border-opacity-30 rounded-lg max-w-fit p-2">
+                <h3 className="mb-1 font-semi">Production companies</h3>
+                <ul className="flex flex-col gap-1 max-w-fit rounded-xl text-white-smoke">
+                  {Details.production_companies.map((country) => (
+                    <li key={country.id}>◟{country.name} </li>
+                  ))}
+                </ul>
+              </div>
+            )}
           </div>
-        </div>
-      </article>
+        </article>
+      ) : null}
 
       <RedAnchorTag linkTo={Details.homepage} label="Official website" />
     </article>
