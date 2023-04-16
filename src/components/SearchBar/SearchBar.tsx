@@ -33,12 +33,12 @@ export const SearchBar = () => {
     <>
       <div className="relative">
         <input
-          className="w-full pl-7 p-2 rounded-lg bg-semi-dark-blue border border-grayish-blue text-white-smoke outline-none focus:border-white-dust"
+          className="w-full pl-8 p-3 rounded-lg bg-semi-dark-blue border border-grayish-blue text-white-smoke outline-none focus:border-white-dust"
           type="text"
           onChange={(e) => setSearchQuery(e.target.value)}
           placeholder="Search for any movies or tv shows..."
         />
-        <div className="w-5 h-5 absolute top-2 left-1">
+        <div className="w-5 h-5 absolute top-3 left-1">
           <Image src={searchImg} alt="" fill sizes="5vw"></Image>
         </div>
       </div>
