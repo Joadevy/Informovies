@@ -10,14 +10,14 @@ export default function Home() {
       </div>
       {/* @ts-expect-error Server Component */}
       <SwipeSection
-        url={{ path: "trending/all/week", optional: "&page=1" }}
+        url={{ path: "trending/all/week", optional: `&page=1` }}
         title={"Trending"}
         showDetails={true}
       />
 
       {/* <SectionMedia
         title="Trending"
-        url={{ path: "trending/all/week", optional: "&page=1" }}
+        url={{ path: "trending/all/week", optional: "&page=2" }}
         sizeImages={300}
       /> */}
 
@@ -27,8 +27,6 @@ export default function Home() {
         url={{ path: "trending/all/week", optional: "&page=2" }}
         sizeImages={300}
       />
-
-      {/* <TopRatedMovies title="Top rated" widthImages={200} /> */}
     </main>
   );
 }

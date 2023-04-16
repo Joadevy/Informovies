@@ -14,7 +14,7 @@ type Props = {
 export const SwipeSlider = ({ slides, showDetails }: Props) => {
   return (
     <div className="flex flex-col h-fit gap-5">
-      <div className="p-2 border border-grayish-blue rounded-lg">
+      <div className="">
         <Swiper
           modules={[Pagination, Autoplay]}
           autoplay={{
