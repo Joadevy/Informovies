@@ -38,7 +38,7 @@ export const SearchBar = () => {
           onChange={(e) => setSearchQuery(e.target.value)}
           placeholder="Search for any movies or tv shows..."
         />
-        <div className="w-5 h-5 absolute top-3 left-1">
+        <div className="w-5 h-5 absolute top-3 left-2">
           <Image src={searchImg} alt="" fill sizes="5vw"></Image>
         </div>
       </div>
