@@ -11,6 +11,7 @@ import MovieDetails from "@/components/Details/MovieDetails";
 import VideoComponent from "@/components/Details/VideoComponent";
 import CastComponent from "@/components/Details/CastComponent";
 import noImageAvalailable from "../../../public/assets/no-image.webp";
+import SwipeSection from "@/components/SwipeSection";
 
 const getId = (pathname: String) => {
   const id = pathname.match(/%3D(\d+)/g)?.[0];
@@ -80,6 +81,16 @@ export default async function Media({ params }: Props) {
           {/* @ts-expect-error Server Component */}
           <CastComponent path={path} />
         </section>
+
+        {/* @ts-expect-error Server Component */}
+        <SwipeSection
+          url={{
+            path: `${typeMedia}/${idMedia}/recommendations`,
+            optional: `&page=1`,
+          }}
+          title={"More that maybe you would like based on this content"}
+          showDetails={true}
+        />
       </main>
       <footer className="text-white mt-10">*** Credits to IMBD here ***</footer>
     </>

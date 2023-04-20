@@ -4,6 +4,7 @@ import ClientDate from "../ClientDate";
 import LiMainInformation from "../LiMainInformation";
 import RedAnchorTag from "@/components/Buttons/RedAnchorTag";
 import ButtonBookmark from "@/components/Buttons/ButtonBookmark";
+import SwipeSection from "@/components/SwipeSection";
 
 type Props = {
   Details: IMovieD;
