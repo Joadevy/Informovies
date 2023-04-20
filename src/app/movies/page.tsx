@@ -11,7 +11,7 @@ export default function Movies() {
       </div>
       {/* @ts-expect-error Server Component */}
       <SwipeSection
-        url={{ path: "movie/top_rated", optional: "&page=1" }}
+        url={{ path: "trending/movie/week", optional: "&page=1" }}
         title={"Trending"}
         showDetails={false}
       />

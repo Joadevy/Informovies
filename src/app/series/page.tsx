@@ -1,5 +1,6 @@
 import SearchBar from "@/components/SearchBar";
 import SectionMedia from "@/components/SectionMedia";
+import SwipeSection from "@/components/SwipeSection";
 
 export default function Series() {
   return (
@@ -7,7 +8,12 @@ export default function Series() {
       <div className="mt-10 mb-5 w-3/4 lg:w-4/12 relative">
         <SearchBar />
       </div>
-      {/* <SliderSection title={"Trending"} /> */}
+      {/* @ts-expect-error Server Component */}
+      <SwipeSection
+        url={{ path: "trending/tv/week", optional: "&page=1" }}
+        title={"Trending"}
+        showDetails={false}
+      />
       {/* @ts-expect-error Server Component */}
       <SectionMedia
         title="Popular"
