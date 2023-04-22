@@ -11,7 +11,9 @@ import MovieDetails from "@/components/Details/MovieDetails";
 import VideoComponent from "@/components/Details/VideoComponent";
 import CastComponent from "@/components/Details/CastComponent";
 import noImageAvalailable from "../../../public/assets/no-image.webp";
+import atributtionIMG from "../../../public/assets/TMDBattribution.svg";
 import SwipeSection from "@/components/SwipeSection";
+import Link from "next/link";
 
 const getId = (pathname: String) => {
   const id = pathname.match(/%3D(\d+)/g)?.[0];
@@ -92,7 +94,6 @@ export default async function Media({ params }: Props) {
           showDetails={true}
         />
       </main>
-      <footer className="text-white mt-10">*** Credits to IMBD here ***</footer>
     </>
   );
 }
