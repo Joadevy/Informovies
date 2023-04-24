@@ -23,7 +23,7 @@ const ClientRandomRecommendation = ({ randomMedia }: Props) => {
       </button>
       {viewRandom && (
         <div className="">
-          <ViewMedia media={randomMedia} />
+          <ViewMedia media={randomMedia} showDetails={false} />
         </div>
       )}
     </div>
