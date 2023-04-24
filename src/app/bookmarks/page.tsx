@@ -15,7 +15,11 @@ export default function Bookmarks() {
       <h2 className="text-2xl m-2">Bookmarks</h2>
       <div className="grid grid-cols-mobile lg:grid-cols-desktop gap-4 p-3">
         {bookmarks.map((media) => (
-          <ViewMedia key={media.id} media={media}></ViewMedia>
+          <ViewMedia
+            key={media.id}
+            media={media}
+            showDetails={true}
+          ></ViewMedia>
         ))}
       </div>
     </main>
