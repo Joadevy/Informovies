@@ -1,4 +1,4 @@
-import { getImageURL } from "@/utils/helpers";
+import { getImageURL, getStars, getYear } from "@/utils/helpers";
 import { MovieDetails, TvDetails } from "@/utils/types";
 import noImage from "../../../../public/assets/no-image.webp";
 import Link from "next/link";
@@ -24,14 +24,22 @@ const SwipeCard = ({ media, showDetails }: Props) => {
         alt=""
       />
       <div className="absolute bottom-0 p-2 rounded-tr-md bg-dark-blue bg-opacity-50">
-        {showDetails && (
-          <header className="text-sm">
-            <ul>
-              <li>{mediaType}</li>
-              <li>{""}</li>
-            </ul>
-          </header>
-        )}
+        <header className="text-sm">
+          <ul className="flex gap-1">
+            {[
+              ...(showDetails ? [mediaType] : []),
+              "release_date" in media
+                ? getYear(media.release_date)
+                : getYear(media.first_air_date),
+              getStars(media.vote_average),
+            ].map((detail, index, arr) => (
+              <li key={detail}>
+                {detail}
+                {index === arr.length - 1 ? "" : ` • `}
+              </li>
+            ))}
+          </ul>
+        </header>
         <h3 className="font-bold">
           {"title" in media ? media.title : media.name}
         </h3>
