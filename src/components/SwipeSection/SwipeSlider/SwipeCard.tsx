@@ -7,10 +7,10 @@ import ImageWithLoader from "./ImageWithLoader";
 
 type Props = {
   media: TvDetails | MovieDetails;
-  showDetails: boolean;
+  showMediaType: boolean;
 };
 
-const SwipeCard = ({ media, showDetails }: Props) => {
+const SwipeCard = ({ media, showMediaType }: Props) => {
   const mediaType = "first_air_date" in media ? "tv" : "movie";
   return (
     <Link
@@ -27,7 +27,7 @@ const SwipeCard = ({ media, showDetails }: Props) => {
         <header className="text-sm">
           <ul className="flex gap-1">
             {[
-              ...(showDetails ? [mediaType] : []),
+              ...(showMediaType ? [mediaType] : []),
               "release_date" in media
                 ? getYear(media.release_date)
                 : getYear(media.first_air_date),

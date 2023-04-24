@@ -9,10 +9,10 @@ type Props = {
     optional?: string;
   };
   sizeImages?: number;
-  showDetails: boolean;
+  showMediaType: boolean;
 };
 
-export const SwipeSection = async ({ title, url, showDetails }: Props) => {
+export const SwipeSection = async ({ title, url, showMediaType }: Props) => {
   const media = await getData<TvDetails | MovieDetails>(
     url.path,
     url.optional ?? ""
@@ -26,7 +26,7 @@ export const SwipeSection = async ({ title, url, showDetails }: Props) => {
       >
         {title}
       </h2>
-      <SwipeSlider slides={media} showDetails={showDetails} />
+      <SwipeSlider slides={media} showMediaType={showMediaType} />
     </article>
   );
 };

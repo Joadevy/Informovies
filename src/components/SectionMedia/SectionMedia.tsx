@@ -9,9 +9,15 @@ type Props = {
     optional?: string;
   };
   sizeImages?: number;
+  showMediaType: boolean;
 };
 
-const SectionMedia = async ({ title, url, sizeImages = 200 }: Props) => {
+const SectionMedia = async ({
+  title,
+  url,
+  sizeImages = 200,
+  showMediaType,
+}: Props) => {
   const data = await getData<TvDetails | MovieDetails>(
     url.path,
     url.optional ?? ""
@@ -23,7 +29,12 @@ const SectionMedia = async ({ title, url, sizeImages = 200 }: Props) => {
       <h2 className={`text-2xl m-2`}>{title}</h2>
       <div className="grid grid-cols-mobile lg:grid-cols-desktop gap-y-6 gap-x-4 p-3">
         {data?.map((media) => (
-          <ViewMedia key={media.id} media={media} sizeImages={sizeImages} />
+          <ViewMedia
+            key={media.id}
+            media={media}
+            sizeImages={sizeImages}
+            showDetails={showMediaType}
+          />
         ))}
       </div>
     </article>

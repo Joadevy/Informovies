@@ -12,6 +12,7 @@ import noImage from "../../../../public/assets/no-image.webp";
 type props = {
   media: MovieDetails | TvDetails;
   sizeImages?: number;
+  showDetails: boolean;
 };
 
 export const getMediaType = (media: props["media"]) =>
@@ -19,7 +20,7 @@ export const getMediaType = (media: props["media"]) =>
 
 const isLargeTitle = (title: string) => title.length > 20;
 
-const ViewMedia = ({ media, sizeImages = 200 }: props) => {
+const ViewMedia = ({ media, sizeImages = 200, showDetails }: props) => {
   const mediaName = "title" in media ? media.title : media.name;
   const mediaType = getMediaType(media);
   // If use : or = to separate need to change the getId and getMediaType in MediaDetails
@@ -53,7 +54,9 @@ const ViewMedia = ({ media, sizeImages = 200 }: props) => {
               (mediaType === "tv" ? "gap-1" : "gap-2")
             }
           >
-            <li>{mediaType === "tv" ? "Tv Series" : "Movie"}</li>
+            {showDetails && (
+              <li>{mediaType === "tv" ? "Tv Series" : "Movie"}</li>
+            )}
             <LiReleaseDate media={media} />
             <li>{getStars(media.vote_average)}</li>
           </ul>

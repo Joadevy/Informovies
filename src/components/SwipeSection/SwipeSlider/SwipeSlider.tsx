@@ -8,10 +8,10 @@ import SwipeCard from "./SwipeCard";
 
 type Props = {
   slides: (TvDetails | MovieDetails)[];
-  showDetails: boolean;
+  showMediaType: boolean;
 };
 
-export const SwipeSlider = ({ slides, showDetails }: Props) => {
+export const SwipeSlider = ({ slides, showMediaType }: Props) => {
   return (
     <div className="flex flex-col h-fit gap-5">
       <div className="">
@@ -51,7 +51,7 @@ export const SwipeSlider = ({ slides, showDetails }: Props) => {
         >
           {slides.map((media) => (
             <SwiperSlide key={media.id}>
-              <SwipeCard media={media} showDetails={showDetails} />
+              <SwipeCard media={media} showMediaType={showMediaType} />
             </SwiperSlide>
           ))}
         </Swiper>

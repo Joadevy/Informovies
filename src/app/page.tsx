@@ -12,7 +12,7 @@ export default function Home() {
       <SwipeSection
         url={{ path: "trending/all/week", optional: `&page=1` }}
         title={"Trending"}
-        showDetails={true}
+        showMediaType={true}
       />
 
       {/* <SectionMedia
@@ -26,6 +26,7 @@ export default function Home() {
         title="Recommended for you"
         url={{ path: "trending/all/week", optional: "&page=2" }}
         sizeImages={300}
+        showMediaType={true}
       />
     </main>
   );

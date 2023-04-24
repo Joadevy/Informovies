@@ -12,19 +12,21 @@ export default function Series() {
       <SwipeSection
         url={{ path: "trending/tv/week", optional: "&page=1" }}
         title={"Trending"}
-        showDetails={false}
+        showMediaType={false}
       />
       {/* @ts-expect-error Server Component */}
       <SectionMedia
         title="Popular"
         url={{ path: "tv/popular", optional: "&page=1" }}
         sizeImages={400}
+        showMediaType={false}
       />
       {/* @ts-expect-error Server Component */}
       <SectionMedia
         title="On the air"
         url={{ path: "tv/on_the_air", optional: "&page=2" }}
         sizeImages={400}
+        showMediaType={false}
       />
     </main>
   );

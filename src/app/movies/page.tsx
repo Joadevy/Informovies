@@ -13,13 +13,14 @@ export default function Movies() {
       <SwipeSection
         url={{ path: "trending/movie/week", optional: "&page=1" }}
         title={"Trending"}
-        showDetails={false}
+        showMediaType={false}
       />
       {/* @ts-expect-error Server Component */}
       <SectionMedia
         title="Top rated"
         url={{ path: "movie/top_rated", optional: "&page=1" }}
         sizeImages={400}
+        showMediaType={false}
       />
 
       {/* <RandomRecommendation mediaToRecommend="movie" /> */}
@@ -29,6 +30,7 @@ export default function Movies() {
         title="Upcoming"
         url={{ path: "movie/upcoming", optional: "&page=2" }}
         sizeImages={400}
+        showMediaType={false}
       />
     </main>
   );

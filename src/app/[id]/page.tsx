@@ -91,7 +91,7 @@ export default async function Media({ params }: Props) {
             optional: `&page=1`,
           }}
           title={"More that maybe you would like based on this content"}
-          showDetails={true}
+          showMediaType={true}
         />
       </main>
     </>
