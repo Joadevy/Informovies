@@ -14,9 +14,7 @@ const RandomRecommendation = async ({ mediaToRecommend }: Props) => {
     `discover/${mediaToRecommend}/`,
     "&sort_by=popularity.desc&page=" + randomPage
   );
-
-  const randomMedia = data[Math.floor(Math.random() * data.length)];
-  return <ClientRandomRecommendation randomMedia={randomMedia} />;
+  return <ClientRandomRecommendation randomMedia={data} />;
 };
 
 export default RandomRecommendation;

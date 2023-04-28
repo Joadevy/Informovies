@@ -23,7 +23,10 @@ export default function Movies() {
         showMediaType={false}
       />
 
-      {/* <RandomRecommendation mediaToRecommend="movie" /> */}
+      <article className="flex flex-col w-full items-center border justify-center">
+        {/* @ts-expect-error Server Component */}
+        <RandomRecommendation mediaToRecommend="movie" />
+      </article>
 
       {/* @ts-expect-error Server Component */}
       <SectionMedia
