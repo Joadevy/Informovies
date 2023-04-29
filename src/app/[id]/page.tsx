@@ -49,11 +49,11 @@ export default async function Media({ params }: Props) {
 
   return (
     <>
-      <main className="text-white flex flex-col gap-10">
+      <main className="text-white flex flex-col lg:gap-10">
         <section className="flex flex-col lg:flex-row lg:gap-10 w-full min-h-screen lg:pr-10 relative">
           {Details.poster_path && Details.backdrop_path ? (
             <Suspense fallback={<Loading />}>
-              <div className="self-center h-[250px]  w-full sm:w-[450px] lg:h-[500px] lg:w-[350px] relative">
+              <div className="self-center h-[30vh] w-full sm:w-[450px] lg:h-[500px] lg:w-[350px] relative">
                 <PosterImage Details={Details} />
               </div>
             </Suspense>
@@ -66,7 +66,7 @@ export default async function Media({ params }: Props) {
           )}
         </section>
 
-        <section className="flex items-center justify-around gap-3">
+        <section className="flex flex-col my-10 lg:my-0 lg:flex-row items-center justify-around gap-5 lg:gap-2">
           {/* @ts-expect-error Server Component */}
           <VideoComponent endpoint={path} />
           {/* @ts-expect-error Server Component */}

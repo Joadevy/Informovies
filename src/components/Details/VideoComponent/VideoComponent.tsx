@@ -22,8 +22,8 @@ export const VideoComponent = async ({ endpoint }: Props) => {
   const videos = await getVideos(endpoint);
   if (!videos) return null;
   return (
-    <article>
-      <h3 className="font-extrabold mb-2">Get a sneek peek</h3>
+    <article className="w-full flex flex-col items-center lg:w-fit lg:block lg:items-start">
+      <h3 className="font-extrabold mb-2 self-start">Get a sneek peek</h3>
       <ClientVideo videoKey={videos.key} />
     </article>
   );

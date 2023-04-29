@@ -1,4 +1,5 @@
 import getData from "lib/getData";
+import ClientCastView from "./ClientCastView";
 
 type Props = {
   path: string;
@@ -29,18 +30,9 @@ const CastComponent = async ({ path }: Props) => {
   const cast = (await getCast(path)).slice(0, 50); // Take the 50-first because of length on screen
   if (cast.length === 0) return null;
   return (
-    <article className="">
+    <article>
       <h3 className="font-extrabold mb-2">Lights, Camera, Cast</h3>
-      <ul className="grid grid-cols-3 gap-2">
-        {cast.map((person) => (
-          <li
-            className="border border-grayish-blue text-grayish-blue py-1 px-2 rounded-lg bg-semi-dark-blue"
-            key={person.id}
-          >
-            {person.name}
-          </li>
-        ))}
-      </ul>
+      <ClientCastView cast={cast} />
     </article>
   );
 };
