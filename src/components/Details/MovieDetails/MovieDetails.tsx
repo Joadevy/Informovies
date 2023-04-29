@@ -13,7 +13,7 @@ export const MovieDetails = ({ Details }: Props) => {
   return (
     <article className="flex flex-col p-4 gap-4 lg:p-0 lg:w-7/12 lg:mt-[11vh]">
       <header className="flex flex-col gap-2">
-        <div className="max-w-fit relative">
+        <div className="lg:max-w-fit relative">
           <h1 className="text-2xl w-[85%] lg:w-full lg:text-4xl font-bold">
             {Details.title}
           </h1>

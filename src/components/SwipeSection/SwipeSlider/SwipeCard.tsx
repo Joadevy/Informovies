@@ -29,8 +29,8 @@ const SwipeCard = ({ media, showMediaType }: Props) => {
             {[
               ...(showMediaType ? [mediaType] : []),
               "release_date" in media
-                ? getYear(media.release_date)
-                : getYear(media.first_air_date),
+                ? getYear(media.release_date) ?? ""
+                : getYear(media.first_air_date) ?? "",
               getStars(media.vote_average),
             ].map((detail, index, arr) => (
               <li key={detail}>
