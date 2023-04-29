@@ -10,6 +10,16 @@ type Props = {
 
 const ClientRandomRecommendation = ({ randomMedia }: Props) => {
   const [viewRandom, toggleViewRandom] = useState(false);
+  const [media, setMedia] = useState<TvDetails | MovieDetails>();
+
+  const changeMovie = () => {
+    if (!viewRandom) toggleViewRandom(true);
+    return setMedia(
+      randomMedia.length > 1 ? randomMedia.pop()! : randomMedia[0]!
+    );
+  };
+
+  console.log(randomMedia.length);
 
   return (
     <>
@@ -18,21 +28,18 @@ const ClientRandomRecommendation = ({ randomMedia }: Props) => {
           Nothing to watch? Get a recommendation!
         </h2>
         <button
-          onClick={() => toggleViewRandom(!viewRandom)}
-          className="border rounded-lg w-1/3 p-2 bg-red text-white-smoke
-      "
+          onClick={() => changeMovie()}
+          className={
+            `border rounded-lg w-5/12 p-2 bg-red text-white-smoke 
+      ` + (randomMedia.length > 1 ? "" : "hidden")
+          }
         >
           <p>{viewRandom ? "Give me another" : "View random movie"}</p>
         </button>
       </header>
       {viewRandom && (
         <div className="w-2/12 relative self-center text-white-smoke">
-          <ViewMedia
-            media={
-              randomMedia.length > 1 ? randomMedia.pop()! : randomMedia[0]!
-            }
-            showDetails={false}
-          />
+          <ViewMedia media={media!} showDetails={false} />
         </div>
       )}
     </>

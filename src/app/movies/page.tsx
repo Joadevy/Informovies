@@ -23,7 +23,7 @@ export default function Movies() {
         showMediaType={false}
       />
 
-      <article className="flex flex-col w-full items-center justify-center">
+      <article className="flex flex-col w-full items-center justify-center my-4">
         {/* @ts-expect-error Server Component */}
         <RandomRecommendation mediaToRecommend="movie" />
       </article>
