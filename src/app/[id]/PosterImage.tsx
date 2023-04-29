@@ -10,7 +10,7 @@ type Props = {
 };
 
 const PosterImage = ({ Details }: Props) => {
-  const [isDesktop, setIsDesktop] = useState(false);
+  const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 960);
 
   useEffect(() => {
     const handleResize = () => {
