@@ -21,9 +21,9 @@ export const SwipeSection = async ({ title, url, showMediaType }: Props) => {
   if (media.length === 0) return null;
 
   return (
-    <article className="text-white">
+    <article className="text-white p-2 lg:p-0">
       <h2
-        className="text-2xl mb-2
+        className="text-2xl mb-2 
       "
       >
         {title}

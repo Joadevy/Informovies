@@ -66,7 +66,7 @@ export default async function Media({ params }: Props) {
           )}
         </section>
 
-        <section className="flex flex-col my-10 lg:my-0 lg:flex-row items-center justify-around gap-5 lg:gap-2">
+        <section className="flex flex-col my-10 lg:my-0 lg:flex-row items-center justify-around gap-5 lg:gap-2 p-2 lg:p-0">
           {/* @ts-expect-error Server Component */}
           <VideoComponent endpoint={path} />
           {/* @ts-expect-error Server Component */}

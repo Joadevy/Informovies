@@ -11,7 +11,7 @@ type Props = {
 
 export const MovieDetails = ({ Details }: Props) => {
   return (
-    <article className="flex flex-col p-4 gap-4 lg:p-0 lg:w-7/12 lg:mt-[11vh]">
+    <article className="flex flex-col p-2 gap-4 lg:p-0 lg:w-7/12 lg:mt-[11vh]">
       <header className="flex flex-col gap-2">
         <div className="lg:max-w-fit relative">
           <h1 className="text-2xl w-[85%] lg:w-full lg:text-4xl font-bold">
@@ -22,7 +22,7 @@ export const MovieDetails = ({ Details }: Props) => {
           </div>
         </div>
         <p className="text-white-dust">{Details.tagline}</p>
-        <div className="flex flex-col mt-2 lg:mt-0 lg:flex-row gap-5 items-center">
+        <div className="flex flex-col mt-2 lg:mt-0 lg:flex-row gap-5 lg:items-center">
           <ul className="flex gap-2">
             {Details.genres.map((genre) => (
               <li
