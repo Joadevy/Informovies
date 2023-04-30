@@ -15,7 +15,7 @@ const SwipeCard = ({ media, showMediaType }: Props) => {
   return (
     <Link
       href={`/${mediaType}=${media.id}`}
-      className="text-white h-52 flex flex-col relative"
+      className="text-white h-52 flex flex-col relative rounded-lg overflow-hidden"
     >
       <ImageWithLoader
         src={
