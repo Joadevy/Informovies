@@ -36,7 +36,7 @@ const ClientRandomRecommendation = ({
 
   return (
     <>
-      <header className="flex flex-col gap-2 items-center mb-3">
+      <header className="flex flex-col gap-2 items-center mb-6 lg:mb-4">
         <h2 className="p-2 lg:p-0 text-2xl text-white-smoke">
           Nothing to watch? Get a recommendation!
         </h2>

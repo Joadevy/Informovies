@@ -15,7 +15,7 @@ export function WrapperComponent({ children, URL, customHeight }: Props) {
     return (
       <Link
         href={URL}
-        className={`w-full h-[325px] lg:h-[${customHeight}px] group perspective bg-semi-dark-blue lg:bg-transparent shadow rounded-t-xl rounded-b-lg`}
+        className={`w-full h-[325px] lg:h-[${customHeight}px] group perspective bg-semi-dark-blue lg:bg-transparent shadow rounded-xl`}
       >
         {children}
       </Link>
@@ -23,7 +23,7 @@ export function WrapperComponent({ children, URL, customHeight }: Props) {
 
   return (
     <div
-      className={`w-full h-[325px] lg:h-[${customHeight}px] group perspective bg-semi-dark-blue lg:bg-transparent shadow rounded-t-xl rounded-b-lg`}
+      className={`w-full h-[325px] lg:h-[${customHeight}px] group perspective bg-semi-dark-blue lg:bg-transparent shadow rounded-xk`}
     >
       {children}
     </div>
