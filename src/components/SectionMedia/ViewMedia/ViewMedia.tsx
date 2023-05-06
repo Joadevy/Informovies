@@ -1,5 +1,4 @@
 import { getImageURL, getStars } from "@/utils/helpers";
-import Image from "next/image";
 
 import { MovieDetails, TvDetails } from "@/utils/types";
 import ButtonBookmark from "@/components/Buttons/ButtonBookmark";
@@ -7,7 +6,7 @@ import LiReleaseDate from "./LiReleaseDate";
 import ButtonWatchNow from "@/components/Buttons/ButtonWatchNow";
 import { WrapperComponent } from "./ViewWrapper";
 import noImage from "../../../../public/assets/no-image.webp";
-// import Loading from "./loading";
+import ImageWithLoader from "./ImageWIthLoader";
 
 type props = {
   media: MovieDetails | TvDetails;
@@ -29,23 +28,18 @@ const ViewMedia = ({ media, sizeImages = 200, showDetails }: props) => {
   return (
     <WrapperComponent URL={URL} customHeight={sizeImages}>
       <div className="flex flex-col relative w-full h-full lg:preserve-3d lg:group-hover:my-rotate-y-180 lg:duration-1000">
-        {/* <Suspense fallback={<Loading />}> */}
         <header
           className={`h-[250px] relative lg:backface-hidden lg:absolute w-full lg:h-full`}
         >
-          <Image
-            className="rounded-t-xl lg:rounded-xl lg:backface-hidden"
+          <ImageWithLoader
             src={
               media.poster_path
                 ? getImageURL(media.poster_path, sizeImages)
                 : noImage
             }
-            sizes={`50vw`}
-            fill
             alt=""
           />
         </header>
-        {/* </Suspense> */}
 
         <footer className="flex flex-col gap-1 w-full lg:gap-2 lg:bottom-0 lg:items-center lg:px-2 lg:pt-4 lg:my-rotate-y-180 lg:absolute lg:top-0 lg:rounded-xl lg:backface-hidden lg:h-full lg:border lg:border-grayish-blue lg:w-full lg:bg-semi-dark-blue lg:overflow-hidden">
           <ul
