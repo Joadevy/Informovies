@@ -1,3 +1,4 @@
+import GenreBar from "@/components/FilterBars/GenreBar";
 import RandomRecommendation from "@/components/RandomRecommendation";
 import SearchBar from "@/components/SearchBar";
 import SectionMedia from "@/components/SectionMedia";
@@ -6,9 +7,16 @@ import SwipeSection from "@/components/SwipeSection";
 export default function Movies() {
   return (
     <main>
-      <div className="mt-10 mb-5 w-3/4 lg:w-4/12 relative">
-        <SearchBar />
+      <div className="flex gap-2 items-center">
+        <div className="mt-10 mb-5 w-3/4 lg:w-4/12 relative">
+          <SearchBar />
+        </div>
+
+        {/* <div className="mt-10 mb-5 relative">
+          <GenreBar mediaType="movie" />
+        </div> */}
       </div>
+
       <div className="flex flex-col gap-2 lg:gap-6">
         {/* @ts-expect-error Server Component */}
         <SwipeSection
