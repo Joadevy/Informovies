@@ -44,7 +44,13 @@ const ClientRandomRecommendation = ({
           onClick={() => changeMovie()}
           className={`border rounded-lg w-5/12 p-2 bg-red text-white-smoke`}
         >
-          <p>{viewRandom ? "Give me another" : "View random movie"}</p>
+          <p>
+            {viewRandom
+              ? "Give me another"
+              : `View random ${
+                  mediaToRecommend === "tv" ? "tv show" : "movie"
+                }`}
+          </p>
         </button>
       </header>
       {viewRandom && (

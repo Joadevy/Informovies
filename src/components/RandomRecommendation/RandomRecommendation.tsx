@@ -1,7 +1,6 @@
 import { MovieDetails, TvDetails } from "@/utils/types";
 import getData from "lib/getData";
 import ClientRandomRecommendation from "./ClientRandomRecommendation";
-import ViewMedia from "../SectionMedia/ViewMedia/ViewMedia";
 
 type Props = {
   mediaToRecommend: string;
