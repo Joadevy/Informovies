@@ -12,9 +12,10 @@ export default function Movies() {
           <SearchBar />
         </div>
 
-        {/* <div className="mt-10 mb-5 relative">
+        <div className="mt-10 mb-5 relative">
+          {/* @ts-expect-error Server Component */}
           <GenreBar mediaType="movie" />
-        </div> */}
+        </div>
       </div>
 
       <div className="flex flex-col gap-2 lg:gap-6">

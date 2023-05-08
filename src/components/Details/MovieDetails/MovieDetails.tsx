@@ -4,6 +4,7 @@ import ClientDate from "../ClientDate";
 import LiMainInformation from "../LiMainInformation";
 import RedAnchorTag from "@/components/Buttons/RedAnchorTag";
 import ButtonBookmark from "@/components/Buttons/ButtonBookmark";
+import LinkToGenre from "@/components/Buttons/LInkToGenre";
 
 type Props = {
   Details: IMovieD;
@@ -25,12 +26,7 @@ export const MovieDetails = ({ Details }: Props) => {
         <div className="flex flex-col mt-2 lg:mt-0 lg:flex-row gap-5 lg:items-center">
           <ul className="flex gap-2">
             {Details.genres.map((genre) => (
-              <li
-                className="border border-grayish-blue text-grayish-blue py-1 px-2 rounded-lg bg-semi-dark-blue"
-                key={genre.id}
-              >
-                {genre.name}
-              </li>
+              <LinkToGenre key={genre.id} genre={genre} mediatype="movies" />
             ))}
           </ul>
           <p className="hidden text-lg lg:text-xl lg:flex lg:gap-1 lg:items-center lg:justify-center">
