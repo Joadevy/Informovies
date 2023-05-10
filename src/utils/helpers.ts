@@ -11,3 +11,6 @@ export const getYear = (date: string) => {
 
 export const getStars = (voteAverage: number) =>
   "★".repeat(Math.floor(voteAverage / 2)).padEnd(5, "☆");
+
+export const decodeURL = (url: string) =>
+  decodeURIComponent(url.replace(/\+/g, " "));
