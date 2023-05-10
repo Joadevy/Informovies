@@ -26,7 +26,11 @@ export const MovieDetails = ({ Details }: Props) => {
         <div className="flex flex-col mt-2 lg:mt-0 lg:flex-row gap-5 lg:items-center">
           <ul className="flex gap-2">
             {Details.genres.map((genre) => (
-              <LinkToGenre key={genre.id} genre={genre} mediatype="movies" />
+              <LinkToGenre
+                key={genre.id}
+                genre={genre.name}
+                mediatype="movies"
+              />
             ))}
           </ul>
           <p className="hidden text-lg lg:text-xl lg:flex lg:gap-1 lg:items-center lg:justify-center">
