@@ -1,4 +1,7 @@
-import { decodeURL, getApiURL } from "@/utils/helpers";
+import SwipeSection from "@/components/SwipeSection";
+import { decodeURL } from "@/utils/helpers";
+import { Genre } from "@/utils/types";
+import getData from "lib/getData";
 
 type Props = {
   params: {
@@ -18,16 +21,27 @@ type Props = {
 //   return results;
 // };
 
+const getIdGenreByName = (name: string, genres: Genre[]) => {
+  return genres.find((genre) => genre.name === name)?.id;
+};
+
 export default async function Media({ params }: Props) {
-  const genre = params.genre;
-
-  // Buscar el endpoint the imbd para mostrar contenido por genero
-  const path = `discover/tv?with_genres=${genre}`;
-  //   const Details = await getData(path);
-
+  const genreName = decodeURL(params.genre).toString();
+  const idGenres = await getData<Genre>("genre/movie/list", "", "genres");
+  const idGenre = getIdGenreByName(genreName, idGenres);
+  // const data = await getData(path, `&with_genres=${genre}&adult=false`);
   return (
     <main className="text-white text-3xl">
-      There will be tv series with genre: {decodeURL(genre)}
+      {/* @ts-expect-error Server Component */}
+      <SwipeSection
+        url={{
+          path: "discover/tv",
+          optional: `&include_adult=false&with_genres=${idGenre}&sort_by=vote_count.desc`,
+        }}
+        title={"Trending"}
+        showMediaType={false}
+      />
+      <p>There will be tv series with genre: {decodeURL(genreName)}</p>
     </main>
   );
 }

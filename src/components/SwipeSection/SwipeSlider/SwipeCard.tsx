@@ -24,7 +24,7 @@ const SwipeCard = ({ media, showMediaType }: Props) => {
         alt=""
       />
       <div className="absolute bottom-0 p-2 rounded-tr-md bg-dark-blue bg-opacity-50">
-        <header className="text-sm">
+        <header className="text-sm ">
           <ul className="flex gap-1">
             {[
               ...(showMediaType ? [mediaType] : []),
@@ -40,7 +40,7 @@ const SwipeCard = ({ media, showMediaType }: Props) => {
             ))}
           </ul>
         </header>
-        <h3 className="font-bold">
+        <h3 className="font-bold text-lg">
           {"title" in media ? media.title : media.name}
         </h3>
       </div>
