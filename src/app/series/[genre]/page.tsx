@@ -32,16 +32,20 @@ export default async function Media({ params }: Props) {
   // const data = await getData(path, `&with_genres=${genre}&adult=false`);
   return (
     <main className="text-white text-3xl">
+      <header className="mt-1 mb-2">
+        <h1 className="text-2xl lg:-ml-7">{`Tv series > ${decodeURL(
+          genreName
+        )}`}</h1>
+      </header>
       {/* @ts-expect-error Server Component */}
       <SwipeSection
         url={{
           path: "discover/tv",
           optional: `&include_adult=false&with_genres=${idGenre}&sort_by=vote_count.desc`,
         }}
-        title={"Trending"}
+        title={"More popular"}
         showMediaType={false}
       />
-      <p>There will be tv series with genre: {decodeURL(genreName)}</p>
     </main>
   );
 }
