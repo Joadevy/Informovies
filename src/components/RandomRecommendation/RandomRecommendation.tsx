@@ -11,7 +11,7 @@ const moreMedia = async (mediaToRecommend: string) => {
   const randomPage = Math.floor(Math.random() * totalPages) + 1;
   const data = await getData<TvDetails | MovieDetails>(
     `discover/${mediaToRecommend}/`,
-    "&sort_by=popularity.desc&page=" + randomPage
+    "&include_adult=false&sort_by=popularity.desc&page=" + randomPage
   );
   return data;
 };
