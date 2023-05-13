@@ -3,6 +3,7 @@ import { decodeURL, getApiURL, getIdGenreByName } from "@/utils/helpers";
 import Link from "next/link";
 import getData from "lib/getData";
 import SwipeSection from "@/components/SwipeSection";
+import SectionMedia from "@/components/SectionMedia";
 
 type Props = {
   params: {
@@ -24,7 +25,7 @@ export default async function Media({ params }: Props) {
         <span className="text-xl text-white-dust">{">"}</span>
         <span className="text-4xl text-white">{decodeURL(genreName)}</span>
       </header>
-      <main className="text-white text-3xl mt-16">
+      <main className="text-white mt-16 flex flex-col gap-4">
         {/* @ts-expect-error Server Component */}
         <SwipeSection
           url={{
@@ -32,6 +33,18 @@ export default async function Media({ params }: Props) {
             optional: `&include_adult=false&with_genres=${idGenre}&sort_by=vote_count.desc`,
           }}
           title={"More popular"}
+          showMediaType={false}
+        />
+
+        {/* This will be a paginated component starting in 2 and user can navigate and update the request by incrementing &page=X+1 */}
+        {/* @ts-expect-error Server Component */}
+        <SectionMedia
+          title="All we have for you"
+          url={{
+            path: "discover/movie",
+            optional: `&include_adult=false&with_genres=${idGenre}&sort_by=vote_count.desc&page=2`,
+          }}
+          sizeImages={300}
           showMediaType={false}
         />
       </main>
