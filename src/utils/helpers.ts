@@ -1,4 +1,5 @@
 import { ENDPOINT, API_KEY } from "@/utils/constants";
+import { Genre } from "./types";
 export const getApiURL = (path: string, optional?: string) =>
   `${ENDPOINT}${path}?api_key=${API_KEY}${optional ?? ""}`;
 
@@ -14,3 +15,6 @@ export const getStars = (voteAverage: number) =>
 
 export const decodeURL = (url: string) =>
   decodeURIComponent(url.replace(/\+/g, " "));
+
+export const getIdGenreByName = (name: string, genres: Genre[]) =>
+  genres.find((genre) => genre.name === name)?.id;

@@ -1,5 +1,8 @@
-import { type MovieDetails } from "@/utils/types";
-import { decodeURL, getApiURL } from "@/utils/helpers";
+import { Genre, type MovieDetails } from "@/utils/types";
+import { decodeURL, getApiURL, getIdGenreByName } from "@/utils/helpers";
+import Link from "next/link";
+import getData from "lib/getData";
+import SwipeSection from "@/components/SwipeSection";
 
 type Props = {
   params: {
@@ -7,28 +10,31 @@ type Props = {
   };
 };
 
-// Quitar esto, no entiendo porque esta aca
-// const getData = async (
-//   path: string,
-//   optional?: string
-// ): Promise<MovieDetails> => {
-//   const response = await fetch(getApiURL(path, optional), {});
-//   if (!response.ok) throw new Error(`Error while fetching ${path}`);
-
-//   const results = await response.json();
-//   return results;
-// };
-
 export default async function Media({ params }: Props) {
-  const genre = params.genre;
-
-  // Buscar el endpoint the imbd para mostrar contenido por genero
-  const path = `discover/movie?with_genres=${genre}`;
-  //   const Details = await getData(path);
+  const genreName = decodeURL(params.genre).toString();
+  const idGenres = await getData<Genre>("genre/tv/list", "", "genres");
+  const idGenre = getIdGenreByName(genreName, idGenres);
 
   return (
-    <main className="text-white text-3xl">
-      There will be movies with genre: {decodeURL(genre)}
-    </main>
+    <>
+      <header className="py-4 flex gap-1 items-center lg:-ml-7 fixed z-20 bg-dark-blue w-full top-0">
+        <Link href={"/movies"}>
+          <h1 className="text-xl text-white-dust">{"Movies"}</h1>
+        </Link>
+        <span className="text-xl text-white-dust">{">"}</span>
+        <span className="text-4xl text-white">{decodeURL(genreName)}</span>
+      </header>
+      <main className="text-white text-3xl mt-16">
+        {/* @ts-expect-error Server Component */}
+        <SwipeSection
+          url={{
+            path: "discover/movie",
+            optional: `&include_adult=false&with_genres=${idGenre}&sort_by=vote_count.desc`,
+          }}
+          title={"More popular"}
+          showMediaType={false}
+        />
+      </main>
+    </>
   );
 }
