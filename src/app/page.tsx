@@ -4,7 +4,7 @@ import SwipeSection from "@/components/SwipeSection";
 
 export default function Home() {
   return (
-    <main className="flex flex-col gap-4">
+    <main className="flex flex-col">
       <div className="mt-10 mb-5 w-3/4 lg:w-4/12 relative">
         <SearchBar />
       </div>
