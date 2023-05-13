@@ -8,6 +8,11 @@ type Props = {
   result: MovieResult | TVResult;
 };
 
+const cropTitle = (title: string) => {
+  if (title.length > 75) return title.slice(0, 75) + "...";
+  return title;
+};
+
 const SearchResult = ({ result }: Props) => {
   const type = "media_type" in result ? result.media_type : "movie";
   return (
@@ -21,9 +26,9 @@ const SearchResult = ({ result }: Props) => {
       >
         <p className="w-7/12 text-base">
           {"name" in result
-            ? result.name
+            ? cropTitle(result.name!)
             : "title" in result
-            ? result.title
+            ? cropTitle(result.title!)
             : ""}
         </p>
         <div className="w-16 h-16 rounded-md overflow-hidden absolute right-0">
