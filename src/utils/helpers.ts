@@ -25,7 +25,7 @@ export const getGenreNameFromURL = (url: string) => {
 export const getGenrePageFromURL = (url: string) => {
   const paginaExp = /page=(.*)/;
   const paginaMatch = url.match(paginaExp);
-  return paginaMatch ? paginaMatch[1] : "1";
+  return paginaMatch ? Number(paginaMatch[1]) : 1;
 };
 
 export const getIdGenreByName = (name: string, genres: Genre[]) =>
