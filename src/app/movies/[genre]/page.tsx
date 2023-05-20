@@ -1,5 +1,10 @@
-import { Genre, type MovieDetails } from "@/utils/types";
-import { decodeURL, getApiURL, getIdGenreByName } from "@/utils/helpers";
+import { Genre } from "@/utils/types";
+import {
+  decodeURL,
+  getGenreNameFromURL,
+  getGenrePageFromURL,
+  getIdGenreByName,
+} from "@/utils/helpers";
 import Link from "next/link";
 import getData from "lib/getData";
 import SwipeSection from "@/components/SwipeSection";
@@ -12,9 +17,11 @@ type Props = {
 };
 
 export default async function Media({ params }: Props) {
-  const genreName = decodeURL(params.genre).toString();
-  const idGenres = await getData<Genre>("genre/tv/list", "", "genres");
-  const idGenre = getIdGenreByName(genreName, idGenres);
+  const decodedURL = decodeURL(params.genre).toString();
+  const genreName = getGenreNameFromURL(decodedURL);
+  const genrePage = getGenrePageFromURL(decodedURL);
+  const idGenres = await getData<Genre>("genre/movie/list", "", "genres");
+  const idGenre = getIdGenreByName(genreName!, idGenres);
 
   return (
     <>
@@ -23,14 +30,14 @@ export default async function Media({ params }: Props) {
           <h1 className="text-xl text-white-dust">{"Movies"}</h1>
         </Link>
         <span className="text-xl text-white-dust">{">"}</span>
-        <span className="text-4xl text-white">{decodeURL(genreName)}</span>
+        <span className="text-4xl text-white">{genreName}</span>
       </header>
       <main className="text-white mt-16 flex flex-col gap-4">
         {/* @ts-expect-error Server Component */}
         <SwipeSection
           url={{
             path: "discover/movie",
-            optional: `&include_adult=false&with_genres=${idGenre}&sort_by=vote_count.desc`,
+            optional: `&include_adult=false&with_genres=${idGenre}&sort_by=vote_count.desc&page=1`,
           }}
           title={"More popular"}
           showMediaType={false}
@@ -42,11 +49,17 @@ export default async function Media({ params }: Props) {
           title="All we have for you"
           url={{
             path: "discover/movie",
-            optional: `&include_adult=false&with_genres=${idGenre}&sort_by=vote_count.desc&page=2`,
+            optional: `&include_adult=false&with_genres=${idGenre}&sort_by=vote_count.desc&page=${
+              genrePage + 1
+            }`,
           }}
           sizeImages={300}
           showMediaType={false}
         />
+
+        <Link href={`/movies/genre=${genreName}&page=${Number(genrePage) + 1}`}>
+          NEXT PAGE
+        </Link>
       </main>
     </>
   );
