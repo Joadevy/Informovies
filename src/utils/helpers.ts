@@ -16,5 +16,17 @@ export const getStars = (voteAverage: number) =>
 export const decodeURL = (url: string) =>
   decodeURIComponent(url.replace(/\+/g, " "));
 
+export const getGenreNameFromURL = (url: string) => {
+  const genreNameRegex = /genre=(.*?)(?=&page|$)/;
+  const generoMatch = url.match(genreNameRegex);
+  return generoMatch ? decodeURIComponent(generoMatch[1]) : "";
+};
+
+export const getGenrePageFromURL = (url: string) => {
+  const paginaExp = /page=(.*)/;
+  const paginaMatch = url.match(paginaExp);
+  return paginaMatch ? paginaMatch[1] : "1";
+};
+
 export const getIdGenreByName = (name: string, genres: Genre[]) =>
   genres.find((genre) => genre.name === name)?.id;
