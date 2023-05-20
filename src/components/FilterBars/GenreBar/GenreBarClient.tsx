@@ -60,7 +60,7 @@ const GenreBarClient = ({ genres }: Props) => {
                 <Link
                   key={genre.id}
                   className=""
-                  href={`${router}/${genre.name}`}
+                  href={`${router}/genre=${genre.name}&page=1`}
                 >
                   <p className="w-full text-white-smoke">{genre.name}</p>
                 </Link>
