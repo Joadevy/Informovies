@@ -9,6 +9,7 @@ import Link from "next/link";
 import getData from "lib/getData";
 import SwipeSection from "@/components/SwipeSection";
 import SectionMedia from "@/components/SectionMedia";
+import PrevNextPage from "@/components/Buttons/PrevNextPage";
 
 type Props = {
   params: {
@@ -43,23 +44,31 @@ export default async function Media({ params }: Props) {
           showMediaType={false}
         />
 
-        {/* This will be a paginated component starting in 2 and user can navigate and update the request by incrementing &page=X+1 */}
-        {/* @ts-expect-error Server Component */}
-        <SectionMedia
-          title="All we have for you"
-          url={{
-            path: "discover/movie",
-            optional: `&include_adult=false&with_genres=${idGenre}&sort_by=vote_count.desc&page=${
-              genrePage + 1
-            }`,
-          }}
-          sizeImages={300}
-          showMediaType={false}
-        />
+        <article id="all">
+          {/* @ts-expect-error Server Component */}
+          <SectionMedia
+            title="All we have for you"
+            url={{
+              path: "discover/movie",
+              optional: `&include_adult=false&with_genres=${idGenre}&sort_by=vote_count.desc&page=${
+                genrePage + 1
+              }`,
+            }}
+            sizeImages={300}
+            showMediaType={false}
+          />
+        </article>
 
-        <Link href={`/movies/genre=${genreName}&page=${Number(genrePage) + 1}`}>
-          NEXT PAGE
-        </Link>
+        <div className="flex w-full items-center justify-center">
+          <PrevNextPage
+            nextUrl={`/movies/genre=${genreName}&page=${Number(genrePage) + 1}`}
+            prevUrl={
+              genrePage > 1
+                ? `/movies/genre=${genreName}&page=${Number(genrePage) - 1}`
+                : ""
+            }
+          />
+        </div>
       </main>
     </>
   );

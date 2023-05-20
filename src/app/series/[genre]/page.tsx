@@ -1,3 +1,4 @@
+import PrevNextPage from "@/components/Buttons/PrevNextPage";
 import SectionMedia from "@/components/SectionMedia";
 import SwipeSection from "@/components/SwipeSection";
 import {
@@ -19,9 +20,7 @@ type Props = {
 export default async function Media({ params }: Props) {
   const decodedURL = decodeURL(params.genre).toString();
   const genreName = getGenreNameFromURL(decodedURL);
-  const genrePage = Number(getGenrePageFromURL(decodedURL));
-
-  console.log({ genrePage });
+  const genrePage = getGenrePageFromURL(decodedURL);
 
   const idGenres = await getData<Genre>("genre/tv/list", "", "genres");
   const idGenre = getIdGenreByName(genreName!, idGenres);
@@ -45,22 +44,31 @@ export default async function Media({ params }: Props) {
           showMediaType={false}
         />
 
-        {/* @ts-expect-error Server Component */}
-        <SectionMedia
-          title="All we have for you"
-          url={{
-            path: "discover/tv",
-            optional: `&include_adult=false&with_genres=${idGenre}&sort_by=vote_count.desc&page=${
-              genrePage + 1
-            }`,
-          }}
-          sizeImages={300}
-          showMediaType={false}
-        />
+        <article id="all">
+          {/* @ts-expect-error Server Component */}
+          <SectionMedia
+            title="All we have for you"
+            url={{
+              path: "discover/tv",
+              optional: `&include_adult=false&with_genres=${idGenre}&sort_by=vote_count.desc&page=${
+                genrePage + 1
+              }`,
+            }}
+            sizeImages={300}
+            showMediaType={false}
+          />
+        </article>
 
-        <Link href={`/series/genre=${genreName}&page=${Number(genrePage) + 1}`}>
-          NEXT PAGE
-        </Link>
+        <div className="flex w-full items-center justify-center">
+          <PrevNextPage
+            nextUrl={`/series/genre=${genreName}&page=${Number(genrePage) + 1}`}
+            prevUrl={
+              genrePage > 1
+                ? `/series/genre=${genreName}&page=${Number(genrePage) - 1}`
+                : ""
+            }
+          />
+        </div>
       </main>
     </>
   );
