@@ -34,14 +34,19 @@ const PrevNextPage = ({ nextUrl, prevUrl }: Props) => {
     <div className="flex gap-2 border-2 border-grayish-blue rounded-lg p-2">
       {prevUrl.length > 0 ? (
         <Link href={prevUrl} legacyBehavior>
-          <a onClick={handleLinkClick}>← Prev</a>
+          <a
+            onClick={handleLinkClick}
+            className="hover:opacity-60 transition-opacity"
+          >
+            ← Prev
+          </a>
         </Link>
       ) : (
         <p className=" cursor-not-allowed">← Prev</p>
       )}
 
       <Link href={nextUrl} onClick={handleLinkClick}>
-        Next →
+        <p className="hover:opacity-60 transition-opacity">Next →</p>
       </Link>
     </div>
   );
