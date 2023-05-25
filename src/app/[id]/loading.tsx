@@ -1,5 +1,6 @@
-import LinkToGenre from "@/components/Buttons/LInkToGenre";
+import IconBookmarks from "@/components/Icons/IconBookmark";
 import ClientLoader from "../../components/Loaders/ClientLoader";
+import { getStars } from "@/utils/helpers";
 
 export default function Loading() {
   return (
@@ -12,14 +13,14 @@ export default function Loading() {
         <article className="flex flex-col p-2 gap-4 lg:p-0 lg:w-7/12 lg:mt-[11vh] animate-pulse">
           <header className="flex flex-col gap-2">
             <div className="lg:max-w-fit relative">
-              <h1 className="bg-semi-dark-blue rounded-lg lg:w-80 lg:h-10">
-                {/* {Details.name} */}
-              </h1>
-              {/* <div className="absolute -top-1 right-0 lg:top-0 lg:-right-12"> */}
-              {/* <ButtonBookmark media={Details} /> */}
-              {/* </div> */}
+              <h1 className="bg-semi-dark-blue rounded-lg w-52 h-7 lg:w-80 lg:h-10"></h1>
+              <div className="absolute -top-1 right-0 lg:top-0 lg:-right-12">
+                <div className="absolute flex items-center justify-center top-2 right-2 z-10 rounded-full bg-dark-blue lg:bg-semi-dark-blue border border-grayish-blue w-7 h-7">
+                  <IconBookmarks isBookmarked={false} />
+                </div>
+              </div>
             </div>
-            <p className="text-white-dust lg:w-24 h-4"></p>
+            <p className="bg-semi-dark-blue rounded-lg h-3 w-24 lg:h-5 mb-1"></p>
             <div className="flex flex-col mt-2 lg:mt-0 lg:flex-row gap-5 lg:items-center">
               <ul className="flex gap-2">
                 {[1, 2, 3].map((i) => (
@@ -32,60 +33,28 @@ export default function Loading() {
                 ))}
               </ul>
               <p className="hidden text-lg lg:text-xl lg:flex lg:gap-1 lg:items-center lg:justify-center">
-                <span className="text-md lg:text-2xl"></span>{" "}
+                <span className="text-md lg:text-2xl"> {getStars(0)}</span>{" "}
               </p>
             </div>
           </header>
+          <div className="h-20 lg:gap-2 border w-full lg:w-3/4 p-3 rounded-xl border-grayish-blue border-opacity-30"></div>
+
+          <div>
+            <h2 className="bg-semi-dark-blue rounded-lg h-3 w-24 lg:h-5 mb-1"></h2>
+            <p className="bg-semi-dark-blue rounded-lg w-full h-20"></p>
+          </div>
+
+          <article className="">
+            <h2 className="bg-semi-dark-blue rounded-lg h-3 w-24 lg:h-5 mb-1"></h2>
+            <div className="flex gap-2 lg:w-7/12">
+              <div className="border border-grayish-blue border-opacity-30 rounded-lg w-1/2 h-24"></div>
+              <div className="border border-grayish-blue border-opacity-30 rounded-lg w-1/2 h-24"></div>
+            </div>
+          </article>
+
+          <div className="text-white-smoke rounded-xl p-2 border shadow border-grayish-blue bg-semi-dark-blue h-10 w-1/3 lg:w-2/12"></div>
         </article>
       </section>
-
-      {/* 
-        <ul className="flex gap-10 lg:gap-2 border justify-around lg:justify-between w-full lg:w-3/4 p-3 rounded-xl border-grayish-blue border-opacity-30">
-          <LiMainInformation
-            title="First air date"
-            content={<ClientDate date={Details.first_air_date} />}
-          />
-          <LiMainInformation
-            title="Seasons"
-            content={Details.number_of_seasons}
-          />
-          <LiMainInformation
-            title="Original language"
-            content={Details.original_language}
-          />
-        </ul>
-
-        <div>
-          <h2 className="mb-1 font-bold">Synopsis</h2>
-          <p className="text-white-smoke">{Details.overview}</p>
-        </div>
-
-        <article className="">
-          <h2 className="mb-1 font-bold">More about</h2>
-          <div className="flex gap-2">
-            {Details.production_countries.length > 0 ? (
-              <div className="border border-grayish-blue border-opacity-30 rounded-lg max-w-fit p-2">
-                <h3 className="mb-1 font-semibold">Production countries</h3>
-                <ul className="flex flex-col gap-1 max-w-fit rounded-xl text-white-smoke">
-                  {Details.production_countries.map((country) => (
-                    <li key={country.name}>◟{country.name} </li>
-                  ))}
-                </ul>
-              </div>
-            ) : null}
-
-            {Details.production_companies.length > 0 ? (
-              <div className="border border-grayish-blue border-opacity-30 rounded-lg max-w-fit p-2">
-                <h3 className="mb-1 font-semibold">Production companies</h3>
-                <ul className="flex flex-col gap-1 max-w-fit rounded-xl text-white-smoke">
-                  {Details.production_companies.map((country) => (
-                    <li key={country.id}>◟{country.name} </li>
-                  ))}
-                </ul>
-              </div>
-            ) : null}
-          </div>
-        </article> */}
     </main>
   );
 }
