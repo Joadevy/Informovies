@@ -1,5 +1,7 @@
 "use client";
 
+import Link from "next/link";
+
 type Cast = {
   adult: boolean;
   gender: number;
@@ -31,7 +33,7 @@ const ClientCastView = ({ cast }: Props) => {
           className="border border-grayish-blue text-grayish-blue py-1 px-2 rounded-lg bg-semi-dark-blue"
           key={person.id}
         >
-          {person.name}
+          <Link href={`/cast/${person.id}`}>{person.name}</Link>
         </li>
       ))}
     </ul>
