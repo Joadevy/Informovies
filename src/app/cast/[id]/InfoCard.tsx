@@ -10,7 +10,7 @@ const InfoCard = ({ content, title }: Props) => {
   return (
     <li className="border border-grayish-blue rounded-lg p-2 flex flex-col">
       <span className="font-bold text-center">{title}</span>
-      {content}
+      {content ?? "-"}
     </li>
   );
 };
