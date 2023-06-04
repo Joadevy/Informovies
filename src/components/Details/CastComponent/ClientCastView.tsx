@@ -30,7 +30,7 @@ const ClientCastView = ({ cast }: Props) => {
     <ul className="grid grid-cols-2 gap-3 lg:grid-cols-3 lg:gap-2">
       {cast.map((person) => (
         <li
-          className="border border-grayish-blue text-grayish-blue py-1 px-2 rounded-lg bg-semi-dark-blue"
+          className="border border-grayish-blue text-grayish-blue py-1 px-2 rounded-lg bg-semi-dark-blue hover:opacity-70 transition-opacity"
           key={person.id}
         >
           <Link href={`/cast/${person.id}`}>{person.name}</Link>
