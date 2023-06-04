@@ -30,3 +30,12 @@ export const getGenrePageFromURL = (url: string) => {
 
 export const getIdGenreByName = (name: string, genres: Genre[]) =>
   genres.find((genre) => genre.name === name)?.id;
+
+export const shuffleArray = (array: any[]) => {
+  const shuffledArray = [...array];
+  for (let i = shuffledArray.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffledArray[i], shuffledArray[j]] = [shuffledArray[j], shuffledArray[i]];
+  }
+  return shuffledArray;
+};
