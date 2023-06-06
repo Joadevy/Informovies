@@ -3,8 +3,6 @@ import {
   type TvDetails as ITVD,
 } from "@/utils/types";
 import { getApiURL } from "@/utils/helpers";
-import { Suspense } from "react";
-import Loading from "./loading";
 import TvDetails from "@/components/Details/TvDetails";
 import MovieDetails from "@/components/Details/MovieDetails";
 import VideoComponent from "@/components/Details/VideoComponent";
@@ -52,11 +50,9 @@ export default async function Media({ params }: Props) {
       <main className="text-white flex flex-col lg:gap-10">
         <section className="flex flex-col lg:flex-row lg:gap-10 w-full min-h-screen lg:pr-10 relative">
           {Details.poster_path && Details.backdrop_path ? (
-            <Suspense fallback={<Loading />}>
-              <div className="self-center h-[30vh] w-full sm:w-[450px] lg:h-[500px] lg:w-[350px] relative">
-                <PosterImage Details={Details} />
-              </div>
-            </Suspense>
+            <div className="self-center h-[30vh] w-full sm:w-[450px] lg:h-[500px] lg:w-[350px] relative">
+              <PosterImage Details={Details} />
+            </div>
           ) : null}
 
           {"number_of_seasons" in Details ? (

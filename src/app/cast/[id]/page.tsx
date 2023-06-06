@@ -1,7 +1,5 @@
 import { getApiURL } from "@/utils/helpers";
 import PersonImage from "./PersonImage";
-import { Suspense } from "react";
-import Loading from "./loading";
 import InfoCard from "./InfoCard";
 import RedAnchorTag from "@/components/Buttons/RedAnchorTag";
 import SwipeSection from "@/components/SwipeSection";
@@ -49,11 +47,9 @@ const page = async ({ params }: Props) => {
         }
       >
         {data.profile_path ? (
-          <Suspense fallback={<Loading />}>
-            <div className="self-center h-[40vh] w-1/2 rounded-lg overflow-hidden sm:w-[450px] lg:h-[500px] lg:w-[350px] relative">
-              <PersonImage url={data.profile_path!} />
-            </div>
-          </Suspense>
+          <div className="self-center h-[40vh] w-1/2 rounded-lg overflow-hidden sm:w-[450px] lg:h-[500px] lg:w-[350px] relative">
+            <PersonImage url={data.profile_path!} />
+          </div>
         ) : null}
 
         <article className="flex flex-col p-2 gap-4 lg:p-0 lg:w-7/12 lg:mt-[11vh]">
