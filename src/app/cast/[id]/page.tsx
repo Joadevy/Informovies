@@ -44,7 +44,7 @@ const page = async ({ params }: Props) => {
     <main className="text-white flex flex-col lg:gap-10 min-h-screen">
       <section
         className={
-          "flex flex-col lg:flex-row lg:gap-10 w-full lg:pr-10 relative border " +
+          "flex flex-col lg:flex-row lg:gap-10 w-full lg:pr-10 relative " +
           (data.profile_path ? "min-h-screen" : "")
         }
       >
