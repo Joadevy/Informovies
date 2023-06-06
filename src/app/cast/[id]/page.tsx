@@ -79,6 +79,7 @@ const page = async ({ params }: Props) => {
                 <InfoCard
                   content={data.also_known_as[0]}
                   title="Also known as"
+                  hidden={true}
                 />
                 {data.deathday ? (
                   <InfoCard content={data.deathday} title="Death date" />
