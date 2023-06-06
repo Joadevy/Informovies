@@ -46,7 +46,7 @@ const GenreBarClient = ({ genres }: Props) => {
       <ul
         className={
           showOptions
-            ? `absolute flex flex-col gap-2 top-0 left-0 mt-12 w-[150px] bg-semi-dark-blue border border-white-dust shadow-lg rounded-lg p-2 transition-all duration-500 z-50 visible opacity-100 overflow-y-scroll max-h-72`
+            ? `absolute flex flex-col gap-2 top-0 left-0 mt-12 w-[125px] lg:w-[150px] bg-semi-dark-blue border border-white-dust shadow-lg rounded-lg p-2 transition-all duration-500 z-50 visible opacity-100 overflow-y-scroll max-h-72`
             : "invisible opacity-0"
         }
         ref={ulRef}
