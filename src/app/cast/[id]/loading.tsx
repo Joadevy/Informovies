@@ -10,10 +10,10 @@ export default function Loading() {
 
         <article className="flex flex-col p-2 gap-4 lg:p-0 lg:w-7/12 lg:mt-[11vh] animate-pulse">
           <header className="flex flex-col gap-2">
-            <div className="lg:max-w-fit relative self-center lg:self-left">
+            <div className="lg:max-w-fit relative self-center lg:self-start">
               <h1 className="bg-semi-dark-blue rounded-lg w-52 h-7 lg:w-80 lg:h-10"></h1>
             </div>
-            <p className="bg-semi-dark-blue rounded-lg h-3 w-24 lg:h-5 mb-1 self-center lg:self-left"></p>
+            <p className="bg-semi-dark-blue rounded-lg h-3 w-24 lg:h-5 mb-1 self-center lg:self-start"></p>
             <div className="flex flex-col mt-2 lg:mt-0 lg:flex-row gap-5 lg:items-center">
               <ul className="flex gap-2">
                 {[1, 2, 3].map((i) => (
@@ -21,7 +21,7 @@ export default function Loading() {
                     key={i}
                     className={
                       `border border-grayish-blue rounded-lg bg-semi-dark-blue ` +
-                      (i === 2 ? "hidden lg:visible" : "")
+                      (i === 2 ? "hidden lg:block" : "")
                     }
                   >
                     <p className="px-20 py-9 lg:py-6"></p>

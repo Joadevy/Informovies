@@ -12,7 +12,7 @@ const InfoCard = ({ content, title, hidden }: Props) => {
     <li
       className={
         "border border-grayish-blue rounded-lg p-2 flex flex-col " +
-        (hidden ? "hidden lg:visible" : "")
+        (hidden ? "hidden lg:flex" : "")
       }
     >
       <span className="font-bold text-center">{title}</span>
