@@ -7,7 +7,7 @@ type Props = {
 };
 
 const ClientVideo = ({ videoKey }: Props) => {
-  const [isDesktop, setIsDesktop] = useState(false);
+  const [isDesktop, setIsDesktop] = useState(true);
   const [windowWidth, setWindowWidth] = useState(300);
 
   useEffect(() => {
