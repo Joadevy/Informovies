@@ -26,14 +26,14 @@ export default async function Media({ params }: Props) {
 
   return (
     <>
-      <header className="py-4 flex gap-1 items-center lg:-ml-7 fixed z-20 bg-dark-blue w-full top-0">
+      <header className="lg:py-4 flex justify-center lg:justify-start gap-1 items-center lg:-ml-7 lg:fixed lg:z-20 bg-dark-blue w-full lg:top-0">
         <Link href={"/movies"}>
           <h1 className="text-xl text-white-dust">{"Movies"}</h1>
         </Link>
         <span className="text-xl text-white-dust">{">"}</span>
         <span className="text-4xl text-white">{genreName}</span>
       </header>
-      <main className="text-white mt-16 flex flex-col gap-4">
+      <main className="text-white mt-2 lg:mt-16 flex flex-col gap-4">
         {/* @ts-expect-error Server Component */}
         <SwipeSection
           url={{
