@@ -40,10 +40,14 @@ const getData = async (path: string, optional?: string): Promise<Person> => {
 const page = async ({ params }: Props) => {
   const path = `person/${params.id}`;
   const data = await getData(path);
-
   return (
     <main className="text-white flex flex-col lg:gap-10 min-h-screen">
-      <section className="flex flex-col lg:flex-row lg:gap-10 w-full lg:pr-10 relative">
+      <section
+        className={
+          "flex flex-col lg:flex-row lg:gap-10 w-full lg:pr-10 relative border " +
+          (data.profile_path ? "min-h-screen" : "")
+        }
+      >
         {data.profile_path ? (
           <Suspense fallback={<Loading />}>
             <div className="self-center h-[40vh] w-1/2 rounded-lg overflow-hidden sm:w-[450px] lg:h-[500px] lg:w-[350px] relative">

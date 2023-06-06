@@ -1,5 +1,4 @@
 import ClientLoader from "../../../components/Loaders/ClientLoader";
-import { getStars } from "@/utils/helpers";
 
 export default function Loading() {
   return (
