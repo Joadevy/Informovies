@@ -14,7 +14,7 @@ export default function Loading() {
               <h1 className="bg-semi-dark-blue rounded-lg w-52 h-7 lg:w-80 lg:h-10"></h1>
             </div>
             <p className="bg-semi-dark-blue rounded-lg h-3 w-24 lg:h-5 mb-1 self-center lg:self-start"></p>
-            <div className="flex flex-col mt-2 lg:mt-0 lg:flex-row gap-5 lg:items-center">
+            <div className="flex flex-col mt-2 lg:mt-0 lg:flex-row gap-5 items-center">
               <ul className="flex gap-2">
                 {[1, 2, 3].map((i) => (
                   <li
@@ -24,7 +24,7 @@ export default function Loading() {
                       (i === 2 ? "hidden lg:block" : "")
                     }
                   >
-                    <p className="px-20 py-9 lg:py-6"></p>
+                    <p className="px-20 py-6"></p>
                   </li>
                 ))}
               </ul>

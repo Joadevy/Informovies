@@ -62,7 +62,7 @@ const page = async ({ params }: Props) => {
             <p className="text-white-dust text-center lg:text-left">
               {data.known_for_department}
             </p>
-            <div className="flex flex-col mt-2 lg:mt-0 lg:flex-row gap-5 lg:items-center">
+            <div className="flex flex-col items-center mt-2 lg:mt-0 lg:flex-row gap-5">
               <ul className="flex gap-2">
                 <InfoCard
                   content={new Date(data.birthday).toLocaleString("en-US", {
