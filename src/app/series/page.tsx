@@ -21,8 +21,9 @@ export default function Series() {
         {/* @ts-expect-error Server Component */}
         <SwipeSection
           url={{ path: "trending/tv/week", optional: "&page=1" }}
-          title={"Trending"}
+          title={"Top 10 trending series"}
           showMediaType={false}
+          isTopSection={true}
         />
         {/* @ts-expect-error Server Component */}
         <SectionMedia
