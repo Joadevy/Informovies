@@ -15,6 +15,7 @@ type Props = {
     path: string;
     optional?: string;
   };
+  isTopSection?: boolean;
 };
 
 export const SwipeSection = async ({
@@ -22,6 +23,7 @@ export const SwipeSection = async ({
   url,
   showMediaType,
   url2,
+  isTopSection = false,
 }: Props) => {
   let media = await getData<TvDetails | MovieDetails>(
     url.path,
@@ -47,7 +49,11 @@ export const SwipeSection = async ({
       >
         {title}
       </h2>
-      <SwipeSlider slides={media} showMediaType={showMediaType} />
+      <SwipeSlider
+        slides={media}
+        showMediaType={showMediaType}
+        isTopSection={isTopSection}
+      />
     </article>
   );
 };
