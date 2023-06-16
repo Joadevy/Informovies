@@ -11,13 +11,13 @@ export default function Error({ error }: { error: Error }) {
     // Log the error to an error reporting service
     console.error(error);
     // go back to home within 10 seconds
-    // const timeOut = setTimeout(() => {
-    //   route.push("/");
-    // }, 5000);
+    const timeOut = setTimeout(() => {
+      route.push("/");
+    }, 5000);
 
-    // return () => {
-    //   clearTimeout(timeOut);
-    // };
+    return () => {
+      clearTimeout(timeOut);
+    };
   }, [error]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
