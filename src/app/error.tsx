@@ -11,18 +11,18 @@ export default function Error({ error }: { error: Error }) {
     // Log the error to an error reporting service
     console.error(error);
     // go back to home within 10 seconds
-    const timeOut = setTimeout(() => {
-      route.push("/");
-    }, 5000);
+    // const timeOut = setTimeout(() => {
+    //   route.push("/");
+    // }, 5000);
 
-    return () => {
-      clearTimeout(timeOut);
-    };
+    // return () => {
+    //   clearTimeout(timeOut);
+    // };
   }, [error]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
-    <div className=" min-h-screen text-white-smoke flex flex-col items-center justify-center">
-      <h2>Oh no, something went wrong!</h2>
+    <div className=" min-h-screen text-white-smoke flex flex-col gap-2 items-center justify-center">
+      <h2 className="text-xl">Oh no, something went wrong...</h2>
       <button
         onClick={
           // Attempt to go home root page
@@ -30,8 +30,9 @@ export default function Error({ error }: { error: Error }) {
             route.push("/");
           }
         }
+        className="bg-grayish-blue hover:opacity-50 text-white font-bold py-2 px-4 rounded transition-opacity"
       >
-        Take me back to safe!
+        Get me out of here!
       </button>
     </div>
   );
