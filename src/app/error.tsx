@@ -3,6 +3,7 @@
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { Router } from "next/router";
+import Countdown from "@/components/Countdown";
 
 export default function Error({ error }: { error: Error }) {
   const route = useRouter();
@@ -34,6 +35,7 @@ export default function Error({ error }: { error: Error }) {
       >
         Get me out of here!
       </button>
+      <Countdown text="You will be automatically redirected in " />
     </div>
   );
 }

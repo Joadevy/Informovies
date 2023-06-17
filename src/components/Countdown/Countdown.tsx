@@ -19,7 +19,7 @@ const Countdown = ({ text }: Props) => {
 
   return (
     <div>
-      <p>
+      <p className="text-sm text-white-dust">
         {text}
         {count}
       </p>
