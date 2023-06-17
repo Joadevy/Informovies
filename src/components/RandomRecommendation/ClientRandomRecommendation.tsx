@@ -11,13 +11,12 @@ type Props = {
 };
 
 const moreMediaClientSide = async (mediaToRecommend: string) => {
-  const totalPages = 100; // The maximum according to the API docs is 500 but the first 100 pages are proobably more interesting
+  const totalPages = 100; // The maximum according to the API docs is 500 but the first 100 pages are probably more interesting
   const randomPage = Math.floor(Math.random() * totalPages) + 1;
   const data = await getData<TvDetails | MovieDetails>(
     `discover/${mediaToRecommend}/`,
     "&sort_by=popularity.desc&page=" + randomPage
   );
-  // return data[0]; // Porque no devolver la pagina entera y almacenar eso?
   return data;
 };
 
@@ -29,7 +28,7 @@ const ClientRandomRecommendation = ({
   const [media, setMedia] = useState<(TvDetails | MovieDetails)[]>(randomMedia);
 
   const changeMovie = async () => {
-    if (!viewRandom) toggleViewRandom(true); // if (randomMedia.length >= 1) return setMedia(randomMedia.pop());
+    if (!viewRandom) toggleViewRandom(true);
     if (media.length > 1) return setMedia(media.slice(1));
     const moreMedia = await moreMediaClientSide(mediaToRecommend);
     if (moreMedia.length > 0) return setMedia(moreMedia);
@@ -43,7 +42,7 @@ const ClientRandomRecommendation = ({
         </h2>
         <button
           onClick={() => changeMovie()}
-          className={`border rounded-lg w-5/12 p-2 bg-red text-white-smoke`}
+          className={`border rounded-lg w-5/12 p-2 bg-red text-white-smoke hover:opacity-70 transition-opacity`}
         >
           <p>
             {viewRandom
