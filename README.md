@@ -16,7 +16,13 @@ Informovies is an app where you can search information about all series and movi
 Besides, in future updates, it'll include a backend for auth users and keeping their directly bookmarks in a database instead of local storage.
 
 ### Features
-
+↠ Search for media
+↠ Media page with information about
+↠ Recommendations based on the content clicked
+↠ Movies page
+↠ Tv shows page
+↠ Filter content by genres
+↠ Actor page details
 
 ### Built with
 
