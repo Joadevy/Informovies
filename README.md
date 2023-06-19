@@ -1,2 +1,2 @@
 Being built with NEXTJS.   
-Beta: https://movies-app-joadevy.vercel.app/
+Beta: https://informovies.vercel.app/
