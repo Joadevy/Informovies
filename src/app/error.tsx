@@ -2,7 +2,6 @@
 
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { Router } from "next/router";
 import Countdown from "@/components/Countdown";
 
 export default function Error({ error }: { error: Error }) {
@@ -26,7 +25,7 @@ export default function Error({ error }: { error: Error }) {
       <h2 className="text-xl">Oh no, something went wrong...</h2>
       <button
         onClick={
-          // Attempt to go home root page
+          // go home root page
           () => {
             route.push("/");
           }
