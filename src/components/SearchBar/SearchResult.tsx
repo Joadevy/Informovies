@@ -3,6 +3,7 @@ import { MovieResult, TVResult } from "@/utils/types";
 import Link from "next/link";
 import noImageAvalailable from "../../../public/assets/no-image.webp";
 import Image from "next/image";
+import ImageWithLoader from "./ImageWithLoader";
 
 type Props = {
   result: MovieResult | TVResult;
@@ -32,15 +33,13 @@ const SearchResult = ({ result }: Props) => {
             : ""}
         </p>
         <div className="w-16 h-16 rounded-md overflow-hidden absolute right-0">
-          <Image
+          <ImageWithLoader
             src={
               result.poster_path
                 ? getImageURL(result.poster_path, 200)
                 : noImageAvalailable
             }
             alt=""
-            fill
-            sizes="5vw"
           />
         </div>
       </Link>
