@@ -11,18 +11,18 @@
   - [Author](#author)
 
 ## Overview
-Informovies is an app where you can search information about all series and movies available. You can also look for recommendations, actors and actresses, trailers, and much more. 
-   
-Besides, in future updates, it'll include a backend for auth users and keeping their directly bookmarks in a database instead of local storage.
+Informovies is an app where you can search for information on all available series and movies. You can also find recommendations, actors and actresses, trailers, ratings, release dates, and more.
+
+Additionally, in upcoming updates, it will include a backend for authenticated users and store their bookmarks directly in a database instead of local storage.
 
 ### Features
-↠ Search for media
-↠ Media page with information about
-↠ Recommendations based on the content clicked
-↠ Movies page
-↠ Tv shows page
-↠ Filter content by genres
-↠ Actor page details
+↠ Search for media  
+↠ Media page with information about  
+↠ Recommendations based on the content clicked  
+↠ Movies page  
+↠ Tv shows page  
+↠ Filter content by genres  
+↠ Actor page details  
 
 ### Built with
 
