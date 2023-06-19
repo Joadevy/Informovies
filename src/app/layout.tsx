@@ -9,8 +9,8 @@ import atributtionIMG from "../../public/assets/TMDBattribution.svg";
 const outfit = Outfit({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "movies app",
-  description: "Find all your movies and get information abut them!",
+  title: "Informovies",
+  description: "Find information about all your favorite movies and tv shows!",
 };
 
 export default function RootLayout({

@@ -17,16 +17,18 @@ export default function Home() {
           showMediaType={true}
         />
 
-        {/* <SectionMedia
-        title="Trending"
-        url={{ path: "trending/all/week", optional: "&page=2" }}
-        sizeImages={300}
-      /> */}
-
         {/* @ts-expect-error Server Component */}
         <SectionMedia
           title="Recommended for you"
           url={{ path: "trending/all/week", optional: "&page=2" }}
+          sizeImages={300}
+          showMediaType={true}
+        />
+
+        {/* @ts-expect-error Server Component */}
+        <SectionMedia
+          title="Popular"
+          url={{ path: "trending/all/week", optional: "&page=3" }}
           sizeImages={300}
           showMediaType={true}
         />
