@@ -5,44 +5,43 @@ import IconNavHome from "../Icons/IconNavHome";
 import IconNavMovies from "../Icons/IconNavMovies";
 import IconNavSeries from "../Icons/IconNavSeries";
 import icon from "../../../public/assets/favicon.png";
+import NavLink from "./NavLink";
 
 const NAV_ICONS = {
   home: (
-    <Link href="/">
+    <NavLink description="Home" href="/">
       <IconNavHome />
-    </Link>
+    </NavLink>
   ),
   movies: (
-    <Link href="/movies">
+    <NavLink description="Movies" href="/movies">
       <IconNavMovies />
-    </Link>
+    </NavLink>
   ),
   series: (
-    <Link href="/series">
+    <NavLink description="Series" href="/series">
       <IconNavSeries />
-    </Link>
+    </NavLink>
   ),
   bookmarks: (
-    <Link href="/bookmarks">
+    <NavLink description="Bookmarks" href="/bookmarks">
       <IconNavBookmarks />
-    </Link>
+    </NavLink>
   ),
 };
 
 const Nav = () => {
   return (
-    <nav className="flex lg:flex-col lg:gap-10 lg:h-[85vh] lg:max-w-min items-center justify-between lg:justify-between rounded-lg p-6 bg-semi-dark-blue fixed z-50 top-0 right-0 left-0 sm:left-1/2 sm:top-[2vh] sm:-translate-x-1/2 lg:right-10 lg:top-1/2 lg:left-[1vw] lg:-translate-y-1/2 lg:-translate-x-0">
+    <nav className="flex lg:flex-col lg:gap-10 lg:h-[85vh] lg:max-w-min items-center justify-between lg:justify-between lg:rounded-lg p-5 lg:p-4 bg-semi-dark-blue fixed z-50 top-0 right-0 left-0 sm:left-1/2 sm:top-[2vh] sm:-translate-x-1/2 lg:right-10 lg:top-1/2 lg:left-[1vw] lg:-translate-y-1/2 lg:-translate-x-0">
       <div className="w-7 h-7 relative">
         <Link href="/">
           <Image src={icon} alt="" fill sizes="10vw" priority></Image>
         </Link>
       </div>
 
-      <ul className="flex lg:flex-col lg:-mt-48 gap-7 items-center justify-center">
+      <ul className="flex lg:flex-col lg:-mt-40 gap-5 items-center justify-center">
         {Object.values(NAV_ICONS).map((icon, index) => (
-          <li className="w-6 h-6 relative" key={index}>
-            {icon}
-          </li>
+          <li key={index}>{icon}</li>
         ))}
       </ul>
 
