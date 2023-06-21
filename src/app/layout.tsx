@@ -29,7 +29,10 @@ export default function RootLayout({
         <Nav />
         <UserProvider>{children}</UserProvider>
         <footer className="text-white mt-20 mb-10 w-full h-10 relative">
-          <Link href={"https://www.themoviedb.org/"}>
+          <Link
+            href={"https://www.themoviedb.org/"}
+            aria-label="The Movie Database page"
+          >
             <Image src={atributtionIMG} alt="" fill />
           </Link>
         </footer>
