@@ -33,23 +33,23 @@ export const SwipeSlider = ({ slides, showMediaType, isTopSection }: Props) => {
               ? {
                   "@0.50": {
                     slidesPerView: 1.75,
-                    spaceBetween: 25,
+                    spaceBetween: 0,
                   },
                   "@1.00": {
                     slidesPerView: 2,
-                    spaceBetween: 25,
+                    spaceBetween: 0,
                   },
                   "@1.25": {
                     slidesPerView: 3,
-                    spaceBetween: 20,
+                    spaceBetween: 0,
                   },
                   "@1.50": {
                     slidesPerView: 4,
-                    spaceBetween: 30,
+                    spaceBetween: 0,
                   },
                   "@1.75": {
                     slidesPerView: 5,
-                    spaceBetween: 15,
+                    spaceBetween: 0,
                   },
                 }
               : {
