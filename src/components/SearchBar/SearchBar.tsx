@@ -13,6 +13,7 @@ export const SearchBar = () => {
   const [results, setResults] = useState<(MovieResult | TVResult)[]>([]);
   const [searchQuery, setSearchQuery] = useState("");
   const searchControllerRef = useRef<null | AbortController>(null);
+  const refTimeout = useRef<null | ReturnType<typeof setTimeout>>(null);
 
   useEffect(() => {
     handleSearch();
@@ -41,24 +42,28 @@ export const SearchBar = () => {
     return { data };
   };
 
-  const handleSearch = useCallback(async () => {
+  const handleSearch = useCallback(() => {
     if (searchQuery.length < 1) return;
 
-    if (searchControllerRef.current) {
-      searchControllerRef.current.abort();
-      searchControllerRef.current = new AbortController();
-    }
+    if (refTimeout.current) clearTimeout(refTimeout.current);
 
-    try {
-      const { data } = await searchMedia(searchQuery);
-      setResults(
-        data.results
-          .slice(0, 15)
-          .filter((result: MovieResult | TVResult) => "poster_path" in result)
-      );
-    } catch (error: any) {
-      if (error.name === "AbortError") return;
-    }
+    refTimeout.current = setTimeout(async () => {
+      if (searchControllerRef.current) {
+        searchControllerRef.current.abort();
+        searchControllerRef.current = new AbortController();
+      }
+
+      try {
+        const { data } = await searchMedia(searchQuery);
+        setResults(
+          data.results
+            .slice(0, 15)
+            .filter((result: MovieResult | TVResult) => "poster_path" in result)
+        );
+      } catch (error: any) {
+        if (error.name === "AbortError") return;
+      }
+    }, 500);
   }, [searchQuery]);
 
   return (
