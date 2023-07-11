@@ -12,10 +12,15 @@ export const SearchBar = () => {
   const [close, toggleClose] = useState(false);
   const [results, setResults] = useState<(MovieResult | TVResult)[]>([]);
   const [searchQuery, setSearchQuery] = useState("");
+  const searchControllerRef = useRef<null | AbortController>(null);
 
   useEffect(() => {
     handleSearch();
   }, [searchQuery]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  useEffect(() => {
+    searchControllerRef.current = new AbortController();
+  }, []);
 
   useEffect(() => {
     const handler = (e: MouseEvent) => {
@@ -28,17 +33,31 @@ export const SearchBar = () => {
     return () => document.removeEventListener("click", handler);
   }, []);
 
+  const searchMedia = async (query: string) => {
+    const data = await fetch(getApiURL("search/multi", `&query=${query}`), {
+      signal: searchControllerRef.current!.signal,
+    }).then((res) => res.json());
+
+    return { data };
+  };
+
   const handleSearch = useCallback(async () => {
-    if (searchQuery.length > 1) {
-      const response = await fetch(
-        getApiURL("search/multi", `&query=${searchQuery}`)
-      );
-      const data = await response.json();
+    if (searchQuery.length < 1) return;
+
+    if (searchControllerRef.current) {
+      searchControllerRef.current.abort();
+      searchControllerRef.current = new AbortController();
+    }
+
+    try {
+      const { data } = await searchMedia(searchQuery);
       setResults(
         data.results
           .slice(0, 15)
-          .filter((result: MovieResult | TVResult) => "poster_path" in result) // Get only the movie/tv not the cast or crew
+          .filter((result: MovieResult | TVResult) => "poster_path" in result)
       );
+    } catch (error: any) {
+      if (error.name === "AbortError") return;
     }
   }, [searchQuery]);
 
