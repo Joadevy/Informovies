@@ -18,7 +18,7 @@ type Props = {
 };
 
 export async function generateStaticParams() {
-  const idGenres = await getGenres();
+  const idGenres = await getGenres("tv");
   const genres = idGenres.map((genre) => ({
     genre: encodeURL(`genre=${genre.name}&page=1`),
   }));
@@ -30,7 +30,7 @@ export default async function Media({ params }: Props) {
   const genreName = getGenreNameFromURL(decodedURL);
   const genrePage = getGenrePageFromURL(decodedURL);
 
-  const idGenres = await getGenres();
+  const idGenres = await getGenres("tv");
   const idGenre = getIdGenreByName(genreName!, idGenres);
   return (
     <>

@@ -1,8 +1,8 @@
-import getData from "lib/getData";
+import { getGenres } from "lib/getData";
 import GenreBarClient from "./GenreBarClient";
 
 type Props = {
-  mediaType: string;
+  mediaType: "tv" | "movie";
 };
 
 export type Genre = {
@@ -11,7 +11,7 @@ export type Genre = {
 };
 
 const GenreBar = async ({ mediaType }: Props) => {
-  const genres = await getData<Genre>(`genre/${mediaType}/list`, "", "genres");
+  const genres = await getGenres(mediaType);
   return <GenreBarClient genres={genres} />;
 };
 

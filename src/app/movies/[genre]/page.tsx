@@ -1,12 +1,13 @@
-import { Genre } from "@/utils/types";
+import type { Genre } from "@/utils/types";
 import {
   decodeURL,
+  encodeURL,
   getGenreNameFromURL,
   getGenrePageFromURL,
   getIdGenreByName,
 } from "@/utils/helpers";
 import Link from "next/link";
-import getData from "lib/getData";
+import { getGenres } from "lib/getData";
 import SwipeSection from "@/components/SwipeSection";
 import SectionMedia from "@/components/SectionMedia";
 import PrevNextPage from "@/components/Buttons/PrevNextPage";
@@ -17,12 +18,20 @@ type Props = {
   };
 };
 
+export async function generateStaticParams() {
+  const idGenres = await getGenres("movie");
+  const genres = idGenres.map((genre) => ({
+    genre: encodeURL(`genre=${genre.name}&page=1`),
+  }));
+  return genres;
+}
+
 export default async function Media({ params }: Props) {
   const decodedURL = decodeURL(params.genre).toString();
   const genreName = getGenreNameFromURL(decodedURL);
   const genrePage = getGenrePageFromURL(decodedURL);
-  const idGenres = await getData<Genre>("genre/movie/list", "", "genres");
-  const idGenre = getIdGenreByName(genreName!, idGenres);
+  const genres: Genre[] = await getGenres("movie");
+  const idGenre = getIdGenreByName(genreName!, genres);
 
   return (
     <>
