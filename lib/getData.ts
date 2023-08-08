@@ -16,8 +16,10 @@ const getData = async <T>(
   return results;
 };
 
-export const getGenres = async (): Promise<Genre[]> => {
-  const response = await fetch(getApiURL("genre/tv/list"), {
+export const getGenres = async (
+  mediaType: "tv" | "movie"
+): Promise<Genre[]> => {
+  const response = await fetch(getApiURL(`genre/${mediaType}/list`), {
     next: { revalidate: 60 * 60 * 24 },
   });
   if (!response.ok) throw new Error(`Error while fetching genre/tv/list`);
