@@ -16,6 +16,9 @@ export const getStars = (voteAverage: number) =>
 export const decodeURL = (url: string) =>
   decodeURIComponent(url.replace(/\+/g, " "));
 
+export const encodeURL = (url: string) =>
+  encodeURIComponent(url.replace(/ /g, "+"));
+
 export const getGenreNameFromURL = (url: string) => {
   const genreNameRegex = /genre=(.*?)(?=&page|$)/;
   const generoMatch = url.match(genreNameRegex);
