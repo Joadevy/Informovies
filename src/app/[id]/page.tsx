@@ -41,6 +41,7 @@ const getData = async (
 
 export default async function Media({ params }: Props) {
   const typeMedia = getMediaType(params.id);
+  // console.log(params);
   const idMedia = getId(params.id);
   const path = `${typeMedia}/${idMedia}`;
   const Details = await getData(path);

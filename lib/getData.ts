@@ -6,7 +6,9 @@ const getData = async <T>(
   optional?: string,
   property?: string
 ): Promise<T[]> => {
-  const response = await fetch(getApiURL(path, optional), {});
+  const response = await fetch(getApiURL(path, optional), {
+    next: { revalidate: 60 * 60 * 24 },
+  });
   if (!response.ok) throw new Error(`Error while fetching ${path}`);
   if (!property) {
     const { results } = await response.json();
