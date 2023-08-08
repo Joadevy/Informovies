@@ -1,3 +1,4 @@
+import { Genre } from "@/components/FilterBars/GenreBar/GenreBar";
 import { getApiURL } from "@/utils/helpers";
 
 const getData = async <T>(
@@ -12,6 +13,16 @@ const getData = async <T>(
     return results;
   }
   const { [property]: results } = await response.json();
+  return results;
+};
+
+export const getGenres = async (): Promise<Genre[]> => {
+  const response = await fetch(getApiURL("genre/tv/list"), {
+    next: { revalidate: 60 * 60 * 24 },
+  });
+  if (!response.ok) throw new Error(`Error while fetching genre/tv/list`);
+
+  const { ["genres"]: results } = await response.json();
   return results;
 };
 
