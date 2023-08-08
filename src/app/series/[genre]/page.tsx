@@ -3,12 +3,12 @@ import SectionMedia from "@/components/SectionMedia";
 import SwipeSection from "@/components/SwipeSection";
 import {
   decodeURL,
+  encodeURL,
   getGenreNameFromURL,
   getGenrePageFromURL,
   getIdGenreByName,
 } from "@/utils/helpers";
-import { Genre } from "@/utils/types";
-import getData from "lib/getData";
+import { getGenres } from "lib/getData";
 import Link from "next/link";
 
 type Props = {
@@ -17,12 +17,20 @@ type Props = {
   };
 };
 
+export async function generateStaticParams() {
+  const idGenres = await getGenres();
+  const genres = idGenres.map((genre) => ({
+    genre: encodeURL(`genre=${genre.name}&page=1`),
+  }));
+  return genres;
+}
+
 export default async function Media({ params }: Props) {
   const decodedURL = decodeURL(params.genre).toString();
   const genreName = getGenreNameFromURL(decodedURL);
   const genrePage = getGenrePageFromURL(decodedURL);
 
-  const idGenres = await getData<Genre>("genre/tv/list", "", "genres");
+  const idGenres = await getGenres();
   const idGenre = getIdGenreByName(genreName!, idGenres);
   return (
     <>
