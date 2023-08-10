@@ -9,6 +9,7 @@ import {
   getIdGenreByName,
 } from "@/utils/helpers";
 import { getGenres } from "lib/getData";
+import { Metadata } from "next";
 import Link from "next/link";
 
 type Props = {
@@ -23,6 +24,15 @@ export async function generateStaticParams() {
     genre: encodeURL(`genre=${genre.name}&page=1`),
   }));
   return genres;
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const decodedURL = decodeURL(params.genre).toString();
+  const genreName = getGenreNameFromURL(decodedURL);
+  return {
+    title: `${genreName} series —Informovies`,
+    description: `All ${genreName} series we have for you`,
+  };
 }
 
 export default async function Media({ params }: Props) {

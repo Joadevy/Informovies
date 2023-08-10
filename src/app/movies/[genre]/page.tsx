@@ -11,12 +11,22 @@ import { getGenres } from "lib/getData";
 import SwipeSection from "@/components/SwipeSection";
 import SectionMedia from "@/components/SectionMedia";
 import PrevNextPage from "@/components/Buttons/PrevNextPage";
+import { Metadata } from "next";
 
 type Props = {
   params: {
     genre: string;
   };
 };
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const decodedURL = decodeURL(params.genre).toString();
+  const genreName = getGenreNameFromURL(decodedURL);
+  return {
+    title: `${genreName} movies —Informovies`,
+    description: `All ${genreName} movies we have for you`,
+  };
+}
 
 export async function generateStaticParams() {
   const idGenres = await getGenres("movie");

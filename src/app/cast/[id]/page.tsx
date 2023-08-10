@@ -3,6 +3,7 @@ import PersonImage from "./PersonImage";
 import InfoCard from "./InfoCard";
 import RedAnchorTag from "@/components/Buttons/RedAnchorTag";
 import SwipeSection from "@/components/SwipeSection";
+import { Metadata } from "next";
 
 type Props = {
   params: {
@@ -34,6 +35,15 @@ const getData = async (path: string, optional?: string): Promise<Person> => {
   const results = await response.json();
   return results;
 };
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const path = `person/${params.id}`;
+  const person = await getData(path);
+  return {
+    title: `${person.name} —Informovies`,
+    description: `Personal information about ${person.name}`,
+  };
+}
 
 const page = async ({ params }: Props) => {
   const path = `person/${params.id}`;

@@ -9,6 +9,7 @@ import VideoComponent from "@/components/Details/VideoComponent";
 import CastComponent from "@/components/Details/CastComponent";
 import SwipeSection from "@/components/SwipeSection";
 import PosterImage from "./PosterImage";
+import type { Metadata } from "next";
 
 const getId = (pathname: String) => {
   const id = pathname.match(/%3D(\d+)/g)?.[0];
@@ -38,6 +39,19 @@ const getData = async (
   const results = await response.json();
   return results;
 };
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const typeMedia = getMediaType(params.id);
+  const idMedia = getId(params.id);
+  const path = `${typeMedia}/${idMedia}`;
+  const Details = await getData(path);
+  return {
+    title: `${
+      "number_of_seasons" in Details ? Details.name : Details.title
+    } —Informovies`,
+    description: Details.overview,
+  };
+}
 
 export default async function Media({ params }: Props) {
   const typeMedia = getMediaType(params.id);
