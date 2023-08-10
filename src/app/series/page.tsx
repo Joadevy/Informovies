@@ -3,6 +3,12 @@ import RandomRecommendation from "@/components/RandomRecommendation";
 import SearchBar from "@/components/SearchBar";
 import SectionMedia from "@/components/SectionMedia";
 import SwipeSection from "@/components/SwipeSection";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Series —Informovies",
+  description: "The best tv shows in one place",
+};
 
 export default function Series() {
   return (

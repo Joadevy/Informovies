@@ -4,6 +4,13 @@ import SearchBar from "@/components/SearchBar";
 import SectionMedia from "@/components/SectionMedia";
 import SwipeSection from "@/components/SwipeSection";
 
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Movies —Informovies",
+  description: "The best movies in one place",
+};
+
 export default function Movies() {
   return (
     <main>
