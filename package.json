@@ -9,19 +9,26 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@radix-ui/react-dropdown-menu": "^2.0.6",
     "@react-hook/media-query": "^1.1.1",
     "@types/node": "18.14.2",
     "@types/react": "18.0.28",
     "@types/react-dom": "18.0.11",
     "@uiball/loaders": "^1.2.6",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.0.0",
     "eslint": "8.35.0",
     "eslint-config-next": "13.2.1",
+    "lucide-react": "^0.300.0",
     "next": "13.2.1",
+    "next-auth": "^4.24.5",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-youtube": "^10.1.0",
     "sharp": "^0.32.5",
     "swiper": "^9.1.0",
+    "tailwind-merge": "^2.2.0",
+    "tailwindcss-animate": "^1.0.7",
     "typescript": "4.9.5"
   },
   "devDependencies": {

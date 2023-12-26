@@ -6,6 +6,7 @@ import IconNavMovies from "../Icons/IconNavMovies";
 import IconNavSeries from "../Icons/IconNavSeries";
 import icon from "../../../public/assets/favicon.png";
 import NavLink from "./NavLink";
+import NavUserProfile from "./NavUserProfile";
 
 const NAV_ICONS = {
   home: (
@@ -45,14 +46,7 @@ const Nav = () => {
         ))}
       </ul>
 
-      <div className="w-7 h-7 relative rounded-full border-white border-2">
-        <Image
-          src={"/assets/image-avatar.png"}
-          alt=""
-          fill
-          sizes="10vw"
-        ></Image>
-      </div>
+      <NavUserProfile />
     </nav>
   );
 };

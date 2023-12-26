@@ -23,7 +23,7 @@ export default function RootLayout({
       <body
         className={
           outfit.className +
-          " bg-dark-blue relative mt-20 sm:mt-24 lg:mt-0 lg:ml-32"
+          " bg-dark-blue relative pt-20 sm:pt-24 lg:pt-0 lg:pl-32"
         }
       >
         <Nav />
