@@ -6,6 +6,6 @@ export const metadata: Metadata = {
   description: "The favorite tv shows and movies in one place",
 };
 
-export default function Bookmarks() {
+export default async function Bookmarks() {
   return <ClientBookmarks></ClientBookmarks>;
 }

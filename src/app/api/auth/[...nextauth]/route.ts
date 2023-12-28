@@ -1,7 +1,17 @@
 import NextAuth, { type AuthOptions } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
+import { PrismaAdapter } from "@next-auth/prisma-adapter";
+import { db } from "@/backend/db";
 
 export const authOptions: AuthOptions = {
+  adapter: PrismaAdapter(db),
+  session: {
+    strategy: "jwt",
+  },
+  jwt: {
+    secret: process.env.JWT_SECRET!,
+  },
+  secret: process.env.NEXTAUTH_SECRET!,
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID!,
@@ -31,6 +41,13 @@ export const authOptions: AuthOptions = {
 
       return baseUrl;
     },
+    session({ session, token }) {
+      return session;
+    },
+    jwt: ({ token, user }) => ({
+      ...token,
+      user,
+    }),
   },
 
   pages: {
