@@ -108,11 +108,23 @@ export interface CreatedBy {
   profile_path: string;
 }
 
+export interface Bookmark {
+  id: string;
+  mediaId: number;
+  active: boolean;
+  userId: string;
+  overview: string | null;
+  title: string | null;
+  imageUrl: string | null;
+  voteAverage: number | null;
+  dateReleased: string | null;
+  createdAt: Date;
+  typeMediaId: number;
+  name: string; // represents "movie" or "tv series"
+}
+
 export type UserContext = {
-  id: number;
-  name: string;
-  password: string;
-  bookmarks: Map<number, MovieDetails | TvDetails>;
+  bookmarks: Set<Bookmark["mediaId"]>;
 };
 
 export interface Genre {

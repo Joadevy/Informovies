@@ -19,7 +19,16 @@ const ButtonBookmark = ({ media }: Props) => {
     e.stopPropagation();
     e.preventDefault();
     setBookmarked(!isBookmarked);
-    toggleMedia(media);
+    toggleMedia({
+      id: media.id,
+      title: "title" in media ? media.title : media.name,
+      overview: media.overview,
+      imageUrl: media.poster_path ?? media.backdrop_path,
+      typeMedia: "title" in media ? "movie" : "tv series",
+      voteAverage: media.vote_average,
+      dateReleased:
+        "title" in media ? media.release_date : media.first_air_date,
+    });
   };
 
   return (

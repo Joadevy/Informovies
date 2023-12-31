@@ -14,7 +14,7 @@ export default function ClientBookmarks() {
       </div>
 
       <h2 className="text-2xl m-2">Bookmarks</h2>
-      <div className="grid grid-cols-mobile lg:grid-cols-desktop gap-4 p-3">
+      {/* <div className="grid grid-cols-mobile lg:grid-cols-desktop gap-4 p-3">
         {bookmarks.map((media) => (
           <ViewMedia
             key={media.id}
@@ -22,7 +22,7 @@ export default function ClientBookmarks() {
             showDetails={true}
           ></ViewMedia>
         ))}
-      </div>
+      </div> */}
     </main>
   );
 }

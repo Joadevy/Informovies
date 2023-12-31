@@ -1,14 +1,11 @@
 "use client";
 
-import {
-  MovieDetails,
-  TvDetails,
-  type UserContext as User,
-} from "@/utils/types";
+import { Bookmark, type UserContext as User } from "@/utils/types";
+import { useSession } from "next-auth/react";
 import { createContext, useEffect, useState } from "react";
 
 export const UserContext = createContext<GlobalUserContext>({
-  userData: { id: 0, name: "", password: "", bookmarks: new Map() },
+  userData: { bookmarks: new Set() },
   toggleMedia: () => {},
 });
 
@@ -16,38 +13,74 @@ type Props = {
   children: React.ReactNode;
 };
 
+type EditableBookmark = {
+  id: Bookmark["mediaId"];
+  title: Bookmark["title"];
+  overview: Bookmark["overview"];
+  imageUrl: Bookmark["imageUrl"];
+  typeMedia: "movie" | "tv series";
+  voteAverage: Bookmark["voteAverage"];
+  dateReleased: Bookmark["dateReleased"];
+};
+
 type GlobalUserContext = {
   userData: User;
-  toggleMedia: (_: MovieDetails | TvDetails) => void;
+  toggleMedia: (_: EditableBookmark) => void;
+};
+
+const getBOOKMARKS = async () => {
+  const {
+    data: userBookmarks,
+  }: {
+    data: [
+      {
+        mediaId: Bookmark["mediaId"];
+      }
+    ];
+    status: number;
+  } = await fetch("/api/bookmarks").then((res) => res.json());
+
+  return userBookmarks.map((bookmark) => bookmark.mediaId);
 };
 
 export default function UserProvider({ children }: Props) {
   const [userData, setUserData] = useState<User>({
-    id: 1,
-    name: "test example",
-    password: "test123",
-    bookmarks: new Map(),
+    bookmarks: new Set(),
   });
+  const session = useSession();
 
   useEffect(() => {
-    const BOOKMARKS = localStorage.getItem("bookmarks");
-    setUserData({
-      id: 1,
-      name: "test example",
-      password: "test123",
-      bookmarks: BOOKMARKS ? new Map(JSON.parse(BOOKMARKS)) : new Map(),
-    });
-  }, []);
+    const fetchBookmarks = async () => {
+      const MediaIdOfBookmarks = await getBOOKMARKS();
+      setUserData({
+        bookmarks: MediaIdOfBookmarks ? new Set(MediaIdOfBookmarks) : new Set(),
+      });
+    };
 
-  const toggleMedia = (media: MovieDetails | TvDetails) => {
+    fetchBookmarks();
+  }, [session]);
+
+  const toggleMedia = async (media: EditableBookmark) => {
     const newUserData = structuredClone(userData);
-    if (newUserData.bookmarks.has(media.id))
+    if (newUserData.bookmarks.has(media.id)) {
       newUserData.bookmarks.delete(media.id);
-    else newUserData.bookmarks.set(media.id, media!);
-    localStorage.setItem(
-      "bookmarks",
-      JSON.stringify(Array.from(newUserData.bookmarks.entries()))
-    );
+      await fetch(`/api/bookmarks`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ mediaId: media.id, active: 0 }),
+      });
+    } else {
+      newUserData.bookmarks.add(media.id);
+      await fetch(`/api/bookmarks`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ mediaId: media.id, active: 1, ...media }),
+      });
+    }
     setUserData(newUserData);
   };
 

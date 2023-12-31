@@ -66,6 +66,18 @@ model Bookmark {
   active    Boolean @default(true)
   userId    String
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  overview  String?
+  title     String?
+  imageUrl  String?
+  voteAverage Int?
+  dateReleased   String?
   createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  typeMediaId Int
+  typeMedia TypeMedia @relation(fields: [typeMediaId], references: [id], onDelete: Cascade)
+}
+
+model TypeMedia {
+  id        Int      @id @default(autoincrement())
+  name      String   @unique
+  bookmarks     Bookmark[]
 }
