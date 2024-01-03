@@ -3,7 +3,7 @@
 import IconBookmarks from "@/components/Icons/IconBookmark";
 import { UserContext } from "@/components/Providers/UserProvider/UserProvider";
 import { MovieDetails, TvDetails } from "@/utils/types";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 
 type Props = {
   media: MovieDetails | TvDetails;
@@ -11,9 +11,11 @@ type Props = {
 
 const ButtonBookmark = ({ media }: Props) => {
   const { userData, toggleMedia } = useContext(UserContext);
-  const [isBookmarked, setBookmarked] = useState(
-    userData.bookmarks.has(media.id)
-  );
+  const [isBookmarked, setBookmarked] = useState(false);
+
+  useEffect(() => {
+    setBookmarked(userData.bookmarks.has(media.id));
+  }, [userData.bookmarks]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleBookmark = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
