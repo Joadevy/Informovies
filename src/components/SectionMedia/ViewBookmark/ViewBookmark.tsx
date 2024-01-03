@@ -1,6 +1,6 @@
 import { getImageURL, getStars, getYear } from "@/utils/helpers";
 
-import { Bookmark, MovieDetails, TvDetails } from "@/utils/types";
+import { Bookmark } from "@/utils/types";
 import ButtonBookmark from "@/components/Buttons/ButtonBookmark";
 import ButtonWatchNow from "@/components/Buttons/ButtonWatchNow";
 import noImage from "../../../../public/assets/no-image.webp";
@@ -59,7 +59,7 @@ const ViewBookmark = ({ media, sizeImages = 200, showDetails }: props) => {
               ? media.overview!
               : "We couldn't retrieve an overview but you can watch it and discover it"}
           </p>
-          {/* <ButtonBookmark media={media} /> */}
+          <ButtonBookmark media={media} />
           <ButtonWatchNow linkTo={URL} />
         </footer>
       </div>

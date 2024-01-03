@@ -59,13 +59,13 @@ async function POST(req: NextRequest) {
     title,
     overview,
     imageUrl,
-    typeMedia,
+    name,
     voteAverage,
     dateReleased,
   } = await req.json();
 
   const resultTypeMediaSet = db.execute(
-    `SELECT id FROM typeMedia WHERE name = '${typeMedia.toLowerCase()}'`
+    `SELECT id FROM typeMedia WHERE name = '${name.toLowerCase()}'`
   );
 
   const resultUserSet = db.execute(

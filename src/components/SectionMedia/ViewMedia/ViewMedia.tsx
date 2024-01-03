@@ -65,7 +65,18 @@ const ViewMedia = ({ media, sizeImages = 200, showDetails }: props) => {
               ? media.overview
               : "We couldn't retrieve an overview but you can watch it and discover it"}
           </p>
-          <ButtonBookmark media={media} />
+          <ButtonBookmark
+            media={{
+              mediaId: media.id,
+              title: "title" in media ? media.title : media.name,
+              overview: media.overview,
+              imageUrl: media.poster_path ?? media.backdrop_path,
+              name: "title" in media ? "movie" : "tv series",
+              voteAverage: media.vote_average,
+              dateReleased:
+                "title" in media ? media.release_date : media.first_air_date,
+            }}
+          />
           <ButtonWatchNow linkTo={URL} />
         </footer>
       </div>

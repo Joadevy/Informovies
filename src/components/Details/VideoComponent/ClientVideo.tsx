@@ -25,7 +25,7 @@ const ClientVideo = ({ videoKey }: Props) => {
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-  }, [window.innerWidth]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [typeof window !== "undefined" ? window.innerWidth : null]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const opts = {
     height: isDesktop ? "390" : "300",

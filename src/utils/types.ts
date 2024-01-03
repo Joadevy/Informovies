@@ -109,18 +109,13 @@ export interface CreatedBy {
 }
 
 export interface Bookmark {
-  id: string;
   mediaId: number;
-  active: boolean;
-  userId: string;
   overview: string | null;
   title: string | null;
   imageUrl: string | null;
   voteAverage: number | null;
   dateReleased: string | null;
-  createdAt: Date;
-  typeMediaId: number;
-  name: string; // represents "movie" or "tv series"
+  name: "movie" | "tv series";
 }
 
 export type UserContext = {

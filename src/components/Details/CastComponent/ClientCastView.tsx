@@ -22,7 +22,7 @@ type Props = {
 };
 
 const ClientCastView = ({ cast }: Props) => {
-  if (window) {
+  if (typeof window !== "undefined") {
     window.innerWidth < 960 ? (cast = cast.slice(0, 21)) : "";
   }
 

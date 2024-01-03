@@ -13,19 +13,9 @@ type Props = {
   children: React.ReactNode;
 };
 
-type EditableBookmark = {
-  id: Bookmark["mediaId"];
-  title: Bookmark["title"];
-  overview: Bookmark["overview"];
-  imageUrl: Bookmark["imageUrl"];
-  typeMedia: "movie" | "tv series";
-  voteAverage: Bookmark["voteAverage"];
-  dateReleased: Bookmark["dateReleased"];
-};
-
 type GlobalUserContext = {
   userData: User;
-  toggleMedia: (_: EditableBookmark) => void;
+  toggleMedia: (_: Bookmark) => void;
 };
 
 const getBOOKMARKS = async () => {
@@ -60,25 +50,25 @@ export default function UserProvider({ children }: Props) {
     fetchBookmarks();
   }, [session]);
 
-  const toggleMedia = async (media: EditableBookmark) => {
+  const toggleMedia = async (media: Bookmark) => {
     const newUserData = structuredClone(userData);
-    if (newUserData.bookmarks.has(media.id)) {
-      newUserData.bookmarks.delete(media.id);
+    if (newUserData.bookmarks.has(media.mediaId)) {
+      newUserData.bookmarks.delete(media.mediaId);
       await fetch(`/api/bookmarks`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ mediaId: media.id, active: 0 }),
+        body: JSON.stringify({ mediaId: media.mediaId, active: 0 }),
       });
     } else {
-      newUserData.bookmarks.add(media.id);
+      newUserData.bookmarks.add(media.mediaId);
       await fetch(`/api/bookmarks`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ mediaId: media.id, active: 1, ...media }),
+        body: JSON.stringify({ ...media, active: 1 }),
       });
     }
     setUserData(newUserData);

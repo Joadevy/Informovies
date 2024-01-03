@@ -19,7 +19,17 @@ export const MovieDetails = ({ Details }: Props) => {
             {Details.title}
           </h1>
           <div className="absolute -top-1 right-0 lg:top-0 lg:-right-12">
-            <ButtonBookmark media={Details} />
+            <ButtonBookmark
+              media={{
+                mediaId: Details.id,
+                title: Details.title,
+                overview: Details.overview,
+                imageUrl: Details.poster_path ?? Details.backdrop_path,
+                name: "tv series",
+                voteAverage: Details.vote_average,
+                dateReleased: Details.release_date,
+              }}
+            />
           </div>
         </div>
         <p className="text-white-dust">{Details.tagline}</p>

@@ -4,13 +4,18 @@ import { MovieDetails, TvDetails } from "@/utils/types";
 import Image from "next/image";
 import noImageAvalailable from "../../../public/assets/no-image.webp";
 import { useEffect, useState } from "react";
+import dynamic from "next/dynamic";
 
 type Props = {
   Details: MovieDetails | TvDetails;
 };
 
 const PosterImage = ({ Details }: Props) => {
-  const [isDesktop, setIsDesktop] = useState(false);
+  // const [isDesktop, setIsDesktop] = useState(
+  //   typeof window !== "undefined" ? window.innerWidth >= 960 : false
+  // );
+
+  const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 960);
 
   useEffect(() => {
     const handleResize = () => {
@@ -45,4 +50,8 @@ const PosterImage = ({ Details }: Props) => {
   );
 };
 
-export default PosterImage;
+const NoSSR = dynamic(() => Promise.resolve(PosterImage), {
+  ssr: false,
+});
+
+export default NoSSR;
