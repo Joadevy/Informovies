@@ -24,10 +24,18 @@ const NAV_ICONS = {
       <IconNavSeries />
     </NavLink>
   ),
+  // Can't use the Link component because of the next-cache problems (bookmarks cache & don't refresh)
   bookmarks: (
-    <NavLink description="Bookmarks" href="/bookmarks">
-      <IconNavBookmarks />
-    </NavLink>
+    <a
+      href={"/bookmarks"}
+      className="flex flex-col gap-1 items-center justify-center"
+      aria-label={"/bookmarks" + " page"}
+    >
+      <div className="w-6 h-6 relative">
+        <IconNavBookmarks />
+      </div>
+      <p className="text-xs text-grayish-blue">{"Bookmarks"}</p>
+    </a>
   ),
 };
 
