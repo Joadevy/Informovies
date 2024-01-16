@@ -60,6 +60,7 @@ export default function UserProvider({ children }: Props) {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ mediaId: media.mediaId, active: 0 }),
+        cache: "no-store",
       });
     } else {
       newUserData.bookmarks.add(media.mediaId);
@@ -69,6 +70,7 @@ export default function UserProvider({ children }: Props) {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ ...media, active: 1 }),
+        cache: "no-store",
       });
     }
     setUserData(newUserData);
