@@ -1,3 +1,4 @@
+"use client";
 import { getImageURL, getStars, getYear } from "@/utils/helpers";
 
 import { Bookmark } from "@/utils/types";
@@ -6,6 +7,8 @@ import ButtonWatchNow from "@/components/Buttons/ButtonWatchNow";
 import noImage from "../../../../public/assets/no-image.webp";
 import { WrapperComponent } from "../ViewMedia/ViewWrapper";
 import ImageWithLoader from "../ViewMedia/ImageWIthLoader";
+import { Suspense, useContext } from "react";
+import { UserContext } from "@/components/Providers/UserProvider/UserProvider";
 
 type props = {
   media: Bookmark;
@@ -16,12 +19,13 @@ type props = {
 const isLargeTitle = (title: string) => title.length > 20;
 
 const ViewBookmark = ({ media, sizeImages = 200, showDetails }: props) => {
+  const { userData } = useContext(UserContext);
   const mediaName = media.title;
   const mediaType = media.name == "movie" ? "movie" : "tv";
   // If use : or = to separate need to change the getId and getMediaType in MediaDetails
   const URL = `/${mediaType}=${media.mediaId}`;
 
-  return (
+  return userData.bookmarks.has(media.mediaId) ? (
     <WrapperComponent URL={URL} customHeight={sizeImages}>
       <div className="flex flex-col relative w-full h-full lg:preserve-3d lg:group-hover:my-rotate-y-180 lg:duration-1000">
         <header
@@ -64,7 +68,7 @@ const ViewBookmark = ({ media, sizeImages = 200, showDetails }: props) => {
         </footer>
       </div>
     </WrapperComponent>
-  );
+  ) : null;
 };
 
 export default ViewBookmark;

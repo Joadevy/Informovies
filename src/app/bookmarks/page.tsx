@@ -2,10 +2,11 @@ import ClientBookmarks from "./ClientBookmarks";
 import type { Metadata } from "next";
 import { db } from "@/backend/db/turso";
 import { getServerSession } from "next-auth";
-import { authOptions } from "../api/auth/[...nextauth]/route";
+import { authOptions } from "@/utils/authOptions";
 import ViewBookmark from "@/components/SectionMedia/ViewBookmark/ViewBookmark";
 import { Bookmark } from "@/utils/types";
 import SearchBar from "@/components/SearchBar";
+import { Suspense } from "react";
 
 export const metadata: Metadata = {
   title: "Bookmarks —Informovies",
@@ -13,6 +14,8 @@ export const metadata: Metadata = {
 };
 
 export const revalidate = 0;
+export const dynamic = "force-dynamic";
+export const fetchCache = "force-no-store";
 
 export default async function Bookmarks() {
   const session = await getServerSession(authOptions);
@@ -33,7 +36,7 @@ export default async function Bookmarks() {
       <div className="grid grid-cols-mobile lg:grid-cols-desktop gap-4 p-3">
         {userBookmarks.map((media) => (
           <ViewBookmark
-            key={media.id}
+            key={media.mediaId}
             media={media}
             showDetails={true}
           ></ViewBookmark>
