@@ -27,7 +27,11 @@ export default async function Bookmarks() {
   const userBookmarks = resultSet.rows as unknown as Bookmark[];
 
   return (
-    <main className="text-white">
+    <main
+      className={`text-white min-h-screen ${
+        userBookmarks.length > 8 ? "lg:-mb-10" : "lg:-mb-40"
+      } border border-transparent`}
+    >
       <div className="mt-10 mb-5 w-3/4 lg:w-4/12 relative">
         <SearchBar />
       </div>
