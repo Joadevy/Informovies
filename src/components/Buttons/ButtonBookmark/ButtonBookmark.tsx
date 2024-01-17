@@ -3,18 +3,15 @@
 import IconBookmarks from "@/components/Icons/IconBookmark";
 import { UserContext } from "@/components/Providers/UserProvider/UserProvider";
 import { Bookmark } from "@/utils/types";
-import { useRouter } from "next/navigation";
 import { useContext, useEffect, useState } from "react";
 
 type Props = {
   media: Bookmark;
-  refreshAfter?: boolean;
 };
 
-const ButtonBookmark = ({ media, refreshAfter }: Props) => {
+const ButtonBookmark = ({ media }: Props) => {
   const { userData, toggleMedia } = useContext(UserContext);
   const [isBookmarked, setBookmarked] = useState(false);
-  const router = useRouter();
 
   useEffect(() => {
     setBookmarked(userData.bookmarks.has(media.mediaId));

@@ -1,4 +1,3 @@
-import ClientBookmarks from "./ClientBookmarks";
 import type { Metadata } from "next";
 import { db } from "@/backend/db/turso";
 import { getServerSession } from "next-auth";
@@ -6,7 +5,6 @@ import { authOptions } from "@/utils/authOptions";
 import ViewBookmark from "@/components/SectionMedia/ViewBookmark/ViewBookmark";
 import { Bookmark } from "@/utils/types";
 import SearchBar from "@/components/SearchBar";
-import { Suspense } from "react";
 
 export const metadata: Metadata = {
   title: "Bookmarks —Informovies",
@@ -48,6 +46,4 @@ export default async function Bookmarks() {
       </div>
     </main>
   );
-
-  return <ClientBookmarks />;
 }
