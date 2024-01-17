@@ -29,7 +29,7 @@ export default async function Bookmarks() {
   return (
     <main
       className={`text-white min-h-screen ${
-        userBookmarks.length > 8 ? "lg:-mb-10" : "lg:-mb-40"
+        userBookmarks.length > 4 ? "lg:-mb-10" : "lg:-mb-40"
       } border border-transparent`}
     >
       <div className="mt-10 mb-5 w-3/4 lg:w-4/12 relative">
