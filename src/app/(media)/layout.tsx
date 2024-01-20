@@ -1,37 +1,3 @@
-import "../globals.css";
-import Nav from "@/components/Nav";
-import { Outfit } from "next/font/google";
-import UserProvider from "@/components/Providers/UserProvider";
-import Link from "next/link";
-import Image from "next/image";
-import atributtionIMG from "../../public/assets/TMDBattribution.svg";
-import { NextAuthProvider } from "@/components/Providers/NextAuthProvider";
-
-const outfit = Outfit({ subsets: ["latin"] });
-
-export const metadata = {
-  title: "Informovies",
-  description: "Find information about all your favorite movies and tv shows!",
-};
-
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
-  return (
-    <html lang="en">
-      <body
-        className={
-          outfit.className +
-          " bg-dark-blue relative pt-20 sm:pt-24 lg:pt-0 lg:pl-32 min-h-screen pb-44"
-        }
-      >
-        <NextAuthProvider>
-          <Nav />
-          <UserProvider>{children}</UserProvider>
-        </NextAuthProvider>
-      </body>
-    </html>
-  );
+export default function Layout({ children }: { children: React.ReactNode }) {
+  return <div className={" min-h-screen pb-40"}>{children}</div>;
 }
