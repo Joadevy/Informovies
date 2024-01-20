@@ -1,4 +1,4 @@
-import "./globals.css";
+import "../globals.css";
 import Nav from "@/components/Nav";
 import { Outfit } from "next/font/google";
 import UserProvider from "@/components/Providers/UserProvider";
@@ -24,22 +24,12 @@ export default function RootLayout({
       <body
         className={
           outfit.className +
-          " bg-dark-blue relative pt-20 sm:pt-24 lg:pt-0 lg:pl-32"
+          " bg-dark-blue relative pt-20 sm:pt-24 lg:pt-0 lg:pl-32 min-h-screen pb-44"
         }
       >
         <NextAuthProvider>
-          <div className="min-h-screen relative">
-            <Nav />
-            <UserProvider>{children}</UserProvider>
-            <footer className="text-white mt-20 mb-10 h-10 absolute bottom-0  left-1/2 transform -translate-x-1/2 w-56">
-              <Link
-                href={"https://www.themoviedb.org/"}
-                aria-label="The Movie Database page"
-              >
-                <Image src={atributtionIMG} alt="" fill />
-              </Link>
-            </footer>
-          </div>
+          <Nav />
+          <UserProvider>{children}</UserProvider>
         </NextAuthProvider>
       </body>
     </html>
