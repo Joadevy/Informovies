@@ -13,7 +13,7 @@ const page = async () => {
     <div className="text-white gap-4 flex flex-col justify-center items-center min-h-screen pb-32">
       <header className="flex items-center flex-col gap-2">
         <h1 className="text-center text-3xl lg:text-5xl uppercase font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-green-500 to-indigo-400">
-          Hey, join us today & be a Informovier!
+          Hey, join us today & be an Informovier!
         </h1>
         <p className="lg:text-md max-w-sm md:max-w-md lg:max-w-xl self-center text-white-smoke text-pretty">
           Unleash unlimited access to a vast library of information about movies
