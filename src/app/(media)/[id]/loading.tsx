@@ -1,5 +1,5 @@
 import IconBookmarks from "@/components/Icons/IconBookmark";
-import ClientLoader from "../../components/Loaders/ClientLoader";
+import ClientLoader from "@/components/Loaders/ClientLoader";
 import { getStars } from "@/utils/helpers";
 
 export default function Loading() {

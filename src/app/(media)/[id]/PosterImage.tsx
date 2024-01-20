@@ -2,7 +2,7 @@
 import { getImageURL } from "@/utils/helpers";
 import { MovieDetails, TvDetails } from "@/utils/types";
 import Image from "next/image";
-import noImageAvalailable from "../../../public/assets/no-image.webp";
+import noImageAvalailable from "/public/assets/no-image.webp";
 import { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 
