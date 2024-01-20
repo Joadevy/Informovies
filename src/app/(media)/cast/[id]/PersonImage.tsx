@@ -1,7 +1,7 @@
 "use client";
 import { getImageURL } from "@/utils/helpers";
 import Image from "next/image";
-import noImageAvalailable from "../../../../public/assets/no-image.webp";
+import noImageAvalailable from "/public/assets/no-image.webp";
 import { useEffect, useState } from "react";
 
 type Props = {

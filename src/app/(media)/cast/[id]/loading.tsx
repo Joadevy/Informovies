@@ -1,4 +1,4 @@
-import ClientLoader from "../../../components/Loaders/ClientLoader";
+import ClientLoader from "@/components/Loaders/ClientLoader";
 
 export default function Loading() {
   return (
