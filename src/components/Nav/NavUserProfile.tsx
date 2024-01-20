@@ -56,10 +56,6 @@ const NavUserProfile = async () => {
               <DropdownMenuItem>
                 <Link href="/subscribe">Subscribe</Link>
               </DropdownMenuItem>
-              <DropdownMenuSeparator className=" text-slate-400 bg-slate-400" />
-              <DropdownMenuItem>
-                <SignIn />
-              </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
         )}
