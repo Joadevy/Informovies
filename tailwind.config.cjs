@@ -34,6 +34,10 @@ module.exports = {
         mobile: "repeat(auto-fill, minmax(150px, 1fr))",
         desktop: "repeat(auto-fill, minmax(175px, 1fr))",
       },
+      backgroundImage: {
+        "gradient-text":
+          "bg-gradient-to-r from-blue-600 via-green-500 to-indigo-400",
+      },
     },
   },
   plugins: [Myclass],
