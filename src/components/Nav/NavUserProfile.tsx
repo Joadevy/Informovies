@@ -10,6 +10,7 @@ import {
 import { getServerSession } from "next-auth";
 import SignOut from "../Buttons/Session/LogOut";
 import SignIn from "../Buttons/Session/SignIn";
+import Link from "next/link";
 
 const NavUserProfile = async () => {
   const session = await getServerSession();
@@ -51,6 +52,10 @@ const NavUserProfile = async () => {
             </DropdownMenuTrigger>
             <DropdownMenuContent className="bg-semi-dark-blue">
               <DropdownMenuLabel>Informovies</DropdownMenuLabel>
+              <DropdownMenuSeparator className=" text-slate-400 bg-slate-400" />
+              <DropdownMenuItem>
+                <Link href="/subscribe">Subscribe</Link>
+              </DropdownMenuItem>
               <DropdownMenuSeparator className=" text-slate-400 bg-slate-400" />
               <DropdownMenuItem>
                 <SignIn />
