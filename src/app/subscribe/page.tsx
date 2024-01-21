@@ -8,7 +8,7 @@ import SignInButton from "./components/signInButton";
 
 const page = async () => {
   const session = await getServerSession(authOptions);
-  if (session) redirect("/subscription");
+  if (session) redirect("/");
   return (
     <div className="text-white gap-4 flex flex-col justify-center items-center min-h-screen pb-32">
       <header className="flex items-center flex-col gap-2">
