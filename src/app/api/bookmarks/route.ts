@@ -12,7 +12,7 @@ const allowedOrigins = [
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
-  "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+  "Access-Control-Allow-Methods": "GET, OPTIONS",
   "Access-Control-Allow-Headers": "Content-Type, Authorization",
 };
 
@@ -47,75 +47,4 @@ async function GET() {
   return NextResponse.json({ status: 200, data: userBookmarksId });
 }
 
-async function POST(req: NextRequest) {
-  const session = await getServerSession(authOptions);
-
-  if (!session?.user?.email) {
-    return NextResponse.json({ status: 401, data: [] });
-  }
-
-  const {
-    mediaId,
-    title,
-    overview,
-    imageUrl,
-    name,
-    voteAverage,
-    dateReleased,
-  } = await req.json();
-
-  const resultTypeMediaSet = db.execute(
-    `SELECT id FROM typeMedia WHERE name = '${name.toLowerCase()}'`
-  );
-
-  const resultUserSet = db.execute(
-    `SELECT id FROM User WHERE email == '${session?.user?.email}'`
-  );
-
-  const [TypeMediaSet, UserSet] = await Promise.all([
-    resultTypeMediaSet,
-    resultUserSet,
-  ]);
-
-  const userId = UserSet.rows[0][0] as string;
-  const typeMediaId = TypeMediaSet.rows[0][0] as string;
-
-  try {
-    const escapedOverview = overview.replace(/'/g, "''");
-    const escapedTitle = title.replace(/'/g, "''");
-
-    await db.execute(
-      `INSERT INTO Bookmark (id, mediaId, active, userId, overview, title, imageUrl, typeMediaId, voteAverage, dateReleased) VALUES ('${crypto.randomUUID()}', '${mediaId}', 1, '${userId}', '${escapedOverview}', '${escapedTitle}', '${imageUrl}', ${typeMediaId}, ${voteAverage}, '${dateReleased}')`
-    );
-    return NextResponse.json({ status: 200, data: [] });
-  } catch {
-    return NextResponse.json({ status: 500, data: [] });
-  }
-}
-
-async function PATCH(req: NextRequest) {
-  const session = await getServerSession(authOptions);
-
-  if (!session?.user?.email) {
-    return NextResponse.json({ status: 401, data: [] });
-  }
-
-  const { mediaId, active } = await req.json();
-
-  const resultSet = await db.execute(
-    `SELECT id FROM User WHERE email == '${session?.user?.email}'`
-  );
-
-  const userId = resultSet.rows[0][0] as string;
-
-  try {
-    await db.execute(
-      `UPDATE Bookmark SET active = ${active} WHERE mediaId = ${mediaId} AND userId = '${userId}'`
-    );
-    return NextResponse.json({ status: 200, data: [] });
-  } catch {
-    return NextResponse.json({ status: 500, data: [] });
-  }
-}
-
-export { GET, POST, PATCH };
+export { GET };
