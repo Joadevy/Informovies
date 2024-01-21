@@ -6,7 +6,7 @@ import { createContext, useEffect, useState } from "react";
 
 export const UserContext = createContext<GlobalUserContext>({
   userData: { bookmarks: new Set() },
-  toggleMedia: () => {},
+  toggleMediaClient: () => {},
 });
 
 type Props = {
@@ -15,7 +15,7 @@ type Props = {
 
 type GlobalUserContext = {
   userData: User;
-  toggleMedia: (_: Bookmark) => void;
+  toggleMediaClient: (_: Bookmark["mediaId"]) => void;
 };
 
 const getBOOKMARKS = async () => {
@@ -37,7 +37,6 @@ export default function UserProvider({ children }: Props) {
   const [userData, setUserData] = useState<User>({
     bookmarks: new Set(),
   });
-  const session = useSession();
 
   useEffect(() => {
     const fetchBookmarks = async () => {
@@ -48,36 +47,19 @@ export default function UserProvider({ children }: Props) {
     };
 
     fetchBookmarks();
-  }, [session]);
+  }, []);
 
-  const toggleMedia = async (media: Bookmark) => {
+  const toggleMediaClient = async (mediaId: Bookmark["mediaId"]) => {
     const newUserData = structuredClone(userData);
-    if (newUserData.bookmarks.has(media.mediaId)) {
-      newUserData.bookmarks.delete(media.mediaId);
-      await fetch(`/api/bookmarks`, {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ mediaId: media.mediaId, active: 0 }),
-        cache: "no-store",
-      });
-    } else {
-      newUserData.bookmarks.add(media.mediaId);
-      await fetch(`/api/bookmarks`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ ...media, active: 1 }),
-        cache: "no-store",
-      });
-    }
+    if (newUserData.bookmarks.has(mediaId))
+      newUserData.bookmarks.delete(mediaId);
+    else newUserData.bookmarks.add(mediaId);
+
     setUserData(newUserData);
   };
 
   return (
-    <UserContext.Provider value={{ userData, toggleMedia }}>
+    <UserContext.Provider value={{ userData, toggleMediaClient }}>
       {children}
     </UserContext.Provider>
   );

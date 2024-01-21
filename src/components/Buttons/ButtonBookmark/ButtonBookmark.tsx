@@ -1,27 +1,31 @@
 "use client";
-
+import { toggleMediaAction } from "@/backend/actions/actions";
 import IconBookmarks from "@/components/Icons/IconBookmark";
 import { UserContext } from "@/components/Providers/UserProvider/UserProvider";
 import { Bookmark } from "@/utils/types";
-import { useContext } from "react";
+import { useSession } from "next-auth/react";
+import { useContext, useTransition } from "react";
 
 type Props = {
   media: Bookmark;
 };
 
 const ButtonBookmark = ({ media }: Props) => {
-  const { userData, toggleMedia } = useContext(UserContext);
+  const session = useSession();
+  const { userData, toggleMediaClient } = useContext(UserContext);
   const isBookmarked = userData.bookmarks.has(media.mediaId);
+  const [pending, startTransition] = useTransition();
 
-  const handleBookmark = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.stopPropagation();
-    e.preventDefault();
-    toggleMedia(media);
-  };
+  if (!session.data?.user?.email) return null;
 
   return (
     <button
-      onClick={handleBookmark}
+      onClick={() => {
+        toggleMediaClient(media.mediaId);
+        startTransition(() => {
+          toggleMediaAction(media);
+        });
+      }}
       className="absolute flex items-center justify-center top-2 right-2 z-10 rounded-full bg-dark-blue lg:bg-semi-dark-blue border border-grayish-blue w-7 h-7 hover:opacity-50 transition-opacity"
       aria-label="Bookmark this media"
     >
