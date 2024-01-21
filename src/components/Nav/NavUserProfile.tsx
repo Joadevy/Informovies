@@ -31,9 +31,9 @@ const NavUserProfile = async () => {
             <DropdownMenuContent className="bg-semi-dark-blue">
               <DropdownMenuLabel>My Account</DropdownMenuLabel>
               <DropdownMenuSeparator className=" text-slate-400 bg-slate-400" />
-              <DropdownMenuItem>Profile</DropdownMenuItem>
-              <DropdownMenuItem>Billing</DropdownMenuItem>
-              <DropdownMenuItem>Subscription</DropdownMenuItem>
+              <DropdownMenuItem>
+                <Link href="/profile">Profile</Link>
+              </DropdownMenuItem>
               <DropdownMenuSeparator className=" text-slate-400 bg-slate-400" />
               <DropdownMenuItem>
                 <SignOut />

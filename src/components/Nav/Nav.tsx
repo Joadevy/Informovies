@@ -54,6 +54,7 @@ const Nav = () => {
         ))}
       </ul>
 
+      {/* @ts-ignore */}
       <NavUserProfile />
     </nav>
   );
