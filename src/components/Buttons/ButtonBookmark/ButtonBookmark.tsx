@@ -3,6 +3,7 @@ import { toggleMediaAction } from "@/backend/actions/actions";
 import IconBookmarks from "@/components/Icons/IconBookmark";
 import { UserContext } from "@/components/Providers/UserProvider/UserProvider";
 import { Bookmark } from "@/utils/types";
+import { useSession } from "next-auth/react";
 import { useContext, useTransition } from "react";
 
 type Props = {
@@ -10,9 +11,12 @@ type Props = {
 };
 
 const ButtonBookmark = ({ media }: Props) => {
+  const session = useSession();
   const { userData, toggleMediaClient } = useContext(UserContext);
   const isBookmarked = userData.bookmarks.has(media.mediaId);
   const [pending, startTransition] = useTransition();
+
+  if (!session.data?.user?.email) return null;
 
   return (
     <button
