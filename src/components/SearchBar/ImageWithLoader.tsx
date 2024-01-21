@@ -1,3 +1,4 @@
+"use client";
 import { useState } from "react";
 import Image, { StaticImageData } from "next/image";
 import Loading from "./loading";

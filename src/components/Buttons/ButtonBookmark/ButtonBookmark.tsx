@@ -1,9 +1,9 @@
 "use client";
-
 import IconBookmarks from "@/components/Icons/IconBookmark";
 import { UserContext } from "@/components/Providers/UserProvider/UserProvider";
 import { Bookmark } from "@/utils/types";
-import { useContext, useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import { useContext } from "react";
 
 type Props = {
   media: Bookmark;
@@ -11,17 +11,14 @@ type Props = {
 
 const ButtonBookmark = ({ media }: Props) => {
   const { userData, toggleMedia } = useContext(UserContext);
-  const [isBookmarked, setBookmarked] = useState(false);
-
-  useEffect(() => {
-    setBookmarked(userData.bookmarks.has(media.mediaId));
-  }, [userData.bookmarks]); // eslint-disable-line react-hooks/exhaustive-deps
+  const router = useRouter();
+  const isBookmarked = userData.bookmarks.has(media.mediaId);
 
   const handleBookmark = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
     e.preventDefault();
-    setBookmarked(!isBookmarked);
     toggleMedia(media);
+    router.refresh();
   };
 
   return (
