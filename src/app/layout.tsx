@@ -1,15 +1,11 @@
 import "./globals.css";
 import Nav from "@/components/Nav";
-import { Outfit } from "next/font/google";
 import UserProvider from "@/components/Providers/UserProvider";
 import Link from "next/link";
 import Image from "next/image";
 import atributtionIMG from "../../public/assets/TMDBattribution.svg";
 import { GeistSans } from "geist/font/sans";
-import { GeistMono } from "geist/font/mono";
 import { NextAuthProvider } from "@/components/Providers/NextAuthProvider";
-
-const outfit = Outfit({ subsets: ["latin"] });
 
 export const metadata = {
   title: "Informovies",
