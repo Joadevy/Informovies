@@ -5,6 +5,8 @@ import UserProvider from "@/components/Providers/UserProvider";
 import Link from "next/link";
 import Image from "next/image";
 import atributtionIMG from "../../public/assets/TMDBattribution.svg";
+import { GeistSans } from "geist/font/sans";
+import { GeistMono } from "geist/font/mono";
 import { NextAuthProvider } from "@/components/Providers/NextAuthProvider";
 
 const outfit = Outfit({ subsets: ["latin"] });
@@ -23,7 +25,7 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={
-          outfit.className +
+          GeistSans.className +
           " bg-dark-blue relative pt-20 sm:pt-24 lg:pt-0 lg:pl-32"
         }
       >
