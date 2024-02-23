@@ -10,7 +10,7 @@ const moreMedia = async (mediaToRecommend: string) => {
   const totalPages = 499; // That's the maximum according to the API docs (the max is 500 but maybe this would be safer)
   const randomPage = Math.floor(Math.random() * totalPages) + 1;
   const data = await getData<TvDetails | MovieDetails>(
-    `discover/${mediaToRecommend}/`,
+    `discover/${mediaToRecommend}`,
     "&include_adult=false&sort_by=popularity.desc&page=" + randomPage
   );
   return data;

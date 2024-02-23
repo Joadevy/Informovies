@@ -7,9 +7,16 @@ const getData = async <T>(
   property?: string
 ): Promise<T[]> => {
   const response = await fetch(getApiURL(path, optional), {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${process.env.TMDB_READ_ACCESS_API_KEY}`,
+    },
     next: { revalidate: 60 * 60 * 24 },
   });
-  if (!response.ok) throw new Error(`Error while fetching ${path}`);
+  if (!(response.status == 200)) {
+    console.log(response.status);
+    throw new Error(`Error while fetching ${path}`);
+  }
   if (!property) {
     const { results } = await response.json();
     return results;
@@ -22,9 +29,14 @@ export const getGenres = async (
   mediaType: "tv" | "movie"
 ): Promise<Genre[]> => {
   const response = await fetch(getApiURL(`genre/${mediaType}/list`), {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${process.env.TMDB_READ_ACCESS_API_KEY}`,
+    },
     next: { revalidate: 60 * 60 * 24 },
   });
-  if (!response.ok) throw new Error(`Error while fetching genre/tv/list`);
+  if (!(response.status === 200))
+    throw new Error(`Error while fetching genre/tv/list`);
 
   const { ["genres"]: results } = await response.json();
   return results;

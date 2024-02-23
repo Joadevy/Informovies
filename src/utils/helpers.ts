@@ -1,7 +1,8 @@
-import { ENDPOINT, API_KEY } from "@/utils/constants";
+import { ENDPOINT } from "@/utils/constants";
 import { Genre } from "./types";
 export const getApiURL = (path: string, optional?: string) =>
-  `${ENDPOINT}${path}?api_key=${API_KEY}${optional ?? ""}`;
+  // `${ENDPOINT}${path}?api_key=${API_KEY}${optional ?? ""}`;
+  `${ENDPOINT}${path}?${optional ?? ""}`;
 
 export const getImageURL = (path: string, width = 200) =>
   `https://image.tmdb.org/t/p/w${width}/${path}`;

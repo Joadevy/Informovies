@@ -3,7 +3,6 @@
 import { MovieDetails, TvDetails } from "@/utils/types";
 import React, { useState } from "react";
 import ViewMedia from "../SectionMedia/ViewMedia/ViewMedia";
-import getData from "lib/getData";
 
 type Props = {
   randomMedia: (TvDetails | MovieDetails)[];
@@ -13,10 +12,18 @@ type Props = {
 const moreMediaClientSide = async (mediaToRecommend: string) => {
   const totalPages = 100; // The maximum according to the API docs is 500 but the first 100 pages are probably more interesting
   const randomPage = Math.floor(Math.random() * totalPages) + 1;
-  const data = await getData<TvDetails | MovieDetails>(
-    `discover/${mediaToRecommend}/`,
-    "&sort_by=popularity.desc&page=" + randomPage
-  );
+  const data: {
+    status: number;
+    data: (TvDetails | MovieDetails)[];
+    message: string;
+  } = await fetch(
+    `/api/proxy/fetchContentAPI?path=discover/${mediaToRecommend}&sort_by=popularity.desc&page=${randomPage}`
+  ).then((res) => res.json());
+
+  if (data.status !== 200) {
+    throw new Error(`Error while fetching discover/${mediaToRecommend}`);
+  }
+
   return data;
 };
 
@@ -30,8 +37,12 @@ const ClientRandomRecommendation = ({
   const changeMovie = async () => {
     if (!viewRandom) toggleViewRandom(true);
     if (media.length > 1) return setMedia(media.slice(1));
-    const moreMedia = await moreMediaClientSide(mediaToRecommend);
-    if (moreMedia.length > 0) return setMedia(moreMedia);
+    try {
+      const { data } = await moreMediaClientSide(mediaToRecommend);
+      if (data.length > 0) return setMedia(data);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
