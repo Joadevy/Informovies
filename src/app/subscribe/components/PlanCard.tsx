@@ -15,7 +15,7 @@ type Iprops = {
 
 const PlanCard = ({ title, duration, price, features }: Iprops) => {
   return (
-    <div className="border border-grayish-blue p-6 rounded-md w-96 h-72 relative">
+    <div className="border border-grayish-blue p-6 rounded-md w-96 h-80 relative">
       <header className="mb-1">
         <h2 className="text-center text-xl lg:text-2xl">{title}</h2>
 
