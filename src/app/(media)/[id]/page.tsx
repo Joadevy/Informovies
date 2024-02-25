@@ -33,7 +33,13 @@ const getData = async (
   path: string,
   optional?: string
 ): Promise<IMovieD | ITVD> => {
-  const response = await fetch(getApiURL(path, optional), {});
+  const response = await fetch(getApiURL(path, optional), {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${process.env.TMDB_READ_ACCESS_API_KEY}`,
+    },
+    next: { revalidate: 60 * 60 * 24 },
+  });
   if (!response.ok) throw new Error(`Error while fetching ${path}`);
 
   const results = await response.json();
